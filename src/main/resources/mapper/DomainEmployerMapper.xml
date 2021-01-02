@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainEmployerMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainEmployer">
+    <constructor>
+      <idArg column="employer_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="employer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_pwd" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="employer_age" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_telnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="employer_postname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_field" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="employer_role" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    employer_id, employer_name, employer_pwd, employer_age, employer_idcard, employer_address, 
+    employer_telnum, employer_postname, employer_field, employer_desc, employer_role
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employer
+    where employer_id = #{employerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_employer
+    where employer_id = #{employerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainEmployer">
+    insert into tb_employer (employer_id, employer_name, employer_pwd, 
+      employer_age, employer_idcard, employer_address, 
+      employer_telnum, employer_postname, employer_field, 
+      employer_desc, employer_role)
+    values (#{employerId,jdbcType=INTEGER}, #{employerName,jdbcType=VARCHAR}, #{employerPwd,jdbcType=INTEGER}, 
+      #{employerAge,jdbcType=VARCHAR}, #{employerIdcard,jdbcType=VARCHAR}, #{employerAddress,jdbcType=VARCHAR}, 
+      #{employerTelnum,jdbcType=INTEGER}, #{employerPostname,jdbcType=VARCHAR}, #{employerField,jdbcType=VARCHAR}, 
+      #{employerDesc,jdbcType=VARCHAR}, #{employerRole,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainEmployer">
+    insert into tb_employer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employerId != null">
+        employer_id,
+      </if>
+      <if test="employerName != null">
+        employer_name,
+      </if>
+      <if test="employerPwd != null">
+        employer_pwd,
+      </if>
+      <if test="employerAge != null">
+        employer_age,
+      </if>
+      <if test="employerIdcard != null">
+        employer_idcard,
+      </if>
+      <if test="employerAddress != null">
+        employer_address,
+      </if>
+      <if test="employerTelnum != null">
+        employer_telnum,
+      </if>
+      <if test="employerPostname != null">
+        employer_postname,
+      </if>
+      <if test="employerField != null">
+        employer_field,
+      </if>
+      <if test="employerDesc != null">
+        employer_desc,
+      </if>
+      <if test="employerRole != null">
+        employer_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employerId != null">
+        #{employerId,jdbcType=INTEGER},
+      </if>
+      <if test="employerName != null">
+        #{employerName,jdbcType=VARCHAR},
+      </if>
+      <if test="employerPwd != null">
+        #{employerPwd,jdbcType=INTEGER},
+      </if>
+      <if test="employerAge != null">
+        #{employerAge,jdbcType=VARCHAR},
+      </if>
+      <if test="employerIdcard != null">
+        #{employerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="employerAddress != null">
+        #{employerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="employerTelnum != null">
+        #{employerTelnum,jdbcType=INTEGER},
+      </if>
+      <if test="employerPostname != null">
+        #{employerPostname,jdbcType=VARCHAR},
+      </if>
+      <if test="employerField != null">
+        #{employerField,jdbcType=VARCHAR},
+      </if>
+      <if test="employerDesc != null">
+        #{employerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="employerRole != null">
+        #{employerRole,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainEmployer">
+    update tb_employer
+    <set>
+      <if test="employerName != null">
+        employer_name = #{employerName,jdbcType=VARCHAR},
+      </if>
+      <if test="employerPwd != null">
+        employer_pwd = #{employerPwd,jdbcType=INTEGER},
+      </if>
+      <if test="employerAge != null">
+        employer_age = #{employerAge,jdbcType=VARCHAR},
+      </if>
+      <if test="employerIdcard != null">
+        employer_idcard = #{employerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="employerAddress != null">
+        employer_address = #{employerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="employerTelnum != null">
+        employer_telnum = #{employerTelnum,jdbcType=INTEGER},
+      </if>
+      <if test="employerPostname != null">
+        employer_postname = #{employerPostname,jdbcType=VARCHAR},
+      </if>
+      <if test="employerField != null">
+        employer_field = #{employerField,jdbcType=VARCHAR},
+      </if>
+      <if test="employerDesc != null">
+        employer_desc = #{employerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="employerRole != null">
+        employer_role = #{employerRole,jdbcType=INTEGER},
+      </if>
+    </set>
+    where employer_id = #{employerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainEmployer">
+    update tb_employer
+    set employer_name = #{employerName,jdbcType=VARCHAR},
+      employer_pwd = #{employerPwd,jdbcType=INTEGER},
+      employer_age = #{employerAge,jdbcType=VARCHAR},
+      employer_idcard = #{employerIdcard,jdbcType=VARCHAR},
+      employer_address = #{employerAddress,jdbcType=VARCHAR},
+      employer_telnum = #{employerTelnum,jdbcType=INTEGER},
+      employer_postname = #{employerPostname,jdbcType=VARCHAR},
+      employer_field = #{employerField,jdbcType=VARCHAR},
+      employer_desc = #{employerDesc,jdbcType=VARCHAR},
+      employer_role = #{employerRole,jdbcType=INTEGER}
+    where employer_id = #{employerId,jdbcType=INTEGER}
+  </update>
+</mapper>

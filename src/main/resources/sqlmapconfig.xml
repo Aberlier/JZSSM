@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 全局setting配置 ，可以根据需要进行添加 -->
+    <!-- 配置别名 -->
+    <typeAliases>
+        <!-- 批量扫描别名 -->
+        <!-- 配置别名：在MyBatis中为一个类取别名   配置别名是为了在对象映射文件中接收参数类型和返回参数类型时使用-->
+        <!--
+                设置这个包下面的所有类的别名  默认是类名小写
+                <package name="cn.itsource.domain"/>
+            -->
+
+        <!--
+            设置单个类的别名
+　　　　　　　　　　　　alias:取的别名
+　　　　　　　　　　　　type：这个别名所对应的Java类    别名使用的时候与大小写无关
+        -->
+        <typeAlias alias="Product" type="cn.itsource.domain.Product"/>
+        <package name="cn.edu.hpu.ssm.po"/>
+    </typeAliases>
+
+    <!-- 配置Mapper
+        由于要整合SPring和mybatis的整合包进行Mapper扫描，所以这里不在配置。
+        但是必须要遵循mapper.xml与mapper.java同名且在一个目录下
+     -->
+    <!-- <mappers></mappers> -->
+</configuration>
