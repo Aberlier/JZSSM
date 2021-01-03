@@ -45,18 +45,17 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="tb_employer" domainObjectName="DomainEmployer"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"/>
-<!--
+        <!-- <table tableName="tb_user" domainObjectName="DomainUser"
+                enableCountByExample="false" enableUpdateByExample="false"
+                enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false"/>-->
         <table tableName="tb_admin" domainObjectName="DomainAdmin"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            &lt;!&ndash;<columnRenamingRule searchString="^D_"
-                                replaceString=""/>&ndash;&gt;
-        </table>-->
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
 
     </context>
 </generatorConfiguration>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainAdminMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainAdmin">
+    <constructor>
+      <idArg column="admin_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="admin_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="admin_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="admin_sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="admin_createtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="admin_updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="admin_role" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    admin_id, admin_name, admin_pwd, admin_sex, admin_createtime, admin_updatetime, admin_role
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainAdmin">
+    insert into tb_admin (admin_id, admin_name, admin_pwd, 
+      admin_sex, admin_createtime, admin_updatetime, 
+      admin_role)
+    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{adminSex,jdbcType=VARCHAR}, #{adminCreatetime,jdbcType=TIMESTAMP}, #{adminUpdatetime,jdbcType=TIMESTAMP}, 
+      #{adminRole,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainAdmin">
+    insert into tb_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd,
+      </if>
+      <if test="adminSex != null">
+        admin_sex,
+      </if>
+      <if test="adminCreatetime != null">
+        admin_createtime,
+      </if>
+      <if test="adminUpdatetime != null">
+        admin_updatetime,
+      </if>
+      <if test="adminRole != null">
+        admin_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminSex != null">
+        #{adminSex,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreatetime != null">
+        #{adminCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUpdatetime != null">
+        #{adminUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminRole != null">
+        #{adminRole,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainAdmin">
+    update tb_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminSex != null">
+        admin_sex = #{adminSex,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreatetime != null">
+        admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminUpdatetime != null">
+        admin_updatetime = #{adminUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminRole != null">
+        admin_role = #{adminRole,jdbcType=INTEGER},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainAdmin">
+    update tb_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_sex = #{adminSex,jdbcType=VARCHAR},
+      admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP},
+      admin_updatetime = #{adminUpdatetime,jdbcType=TIMESTAMP},
+      admin_role = #{adminRole,jdbcType=INTEGER}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+</mapper>

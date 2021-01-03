@@ -34,12 +34,21 @@
         <property name="initialPoolSize" value="${c3p0.pool.acquireIncrement}"/>
     </bean>
 
-    <!-- 4.SessionFactory -->
-    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!-- 整合MyBatis,包扫描Mapper文件 -->
-        <!-- <property name="configLocation" value="classpath:sqlMapConfig.xml"></property> -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <!-- 扫描model包 -->
+        <property name="typeAliasesPackage" value="com.jzssm.fhf.entity"/>
+        <!-- 扫描sql配置文件:mapper需要的xml文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!-- Mapper动态代理开发，扫描dao接口包-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!-- 给出需要扫描Dao接口包 -->
+        <property name="basePackage" value="com.jzssm.fhf.dao"/>
     </bean>
     <!-- 5事务管理 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

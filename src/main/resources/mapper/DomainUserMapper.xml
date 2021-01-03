@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainUserMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainUser">
+    <constructor>
+      <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_telnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_demand" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_urgent" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_dispatch_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_other_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_pwd, user_telnum, user_demand, user_urgent, user_address, 
+    user_dispatch_address, user_role, user_other_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainUser">
+    insert into tb_user (user_id, user_name, user_pwd, 
+      user_telnum, user_demand, user_urgent, 
+      user_address, user_dispatch_address, user_role, 
+      user_other_desc)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userTelnum,jdbcType=INTEGER}, #{userDemand,jdbcType=VARCHAR}, #{userUrgent,jdbcType=VARCHAR}, 
+      #{userAddress,jdbcType=VARCHAR}, #{userDispatchAddress,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}, 
+      #{userOtherDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainUser">
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="userTelnum != null">
+        user_telnum,
+      </if>
+      <if test="userDemand != null">
+        user_demand,
+      </if>
+      <if test="userUrgent != null">
+        user_urgent,
+      </if>
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="userDispatchAddress != null">
+        user_dispatch_address,
+      </if>
+      <if test="userRole != null">
+        user_role,
+      </if>
+      <if test="userOtherDesc != null">
+        user_other_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelnum != null">
+        #{userTelnum,jdbcType=INTEGER},
+      </if>
+      <if test="userDemand != null">
+        #{userDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="userUrgent != null">
+        #{userUrgent,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userDispatchAddress != null">
+        #{userDispatchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        #{userRole,jdbcType=VARCHAR},
+      </if>
+      <if test="userOtherDesc != null">
+        #{userOtherDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainUser">
+    update tb_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelnum != null">
+        user_telnum = #{userTelnum,jdbcType=INTEGER},
+      </if>
+      <if test="userDemand != null">
+        user_demand = #{userDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="userUrgent != null">
+        user_urgent = #{userUrgent,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userDispatchAddress != null">
+        user_dispatch_address = #{userDispatchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        user_role = #{userRole,jdbcType=VARCHAR},
+      </if>
+      <if test="userOtherDesc != null">
+        user_other_desc = #{userOtherDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainUser">
+    update tb_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_telnum = #{userTelnum,jdbcType=INTEGER},
+      user_demand = #{userDemand,jdbcType=VARCHAR},
+      user_urgent = #{userUrgent,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_dispatch_address = #{userDispatchAddress,jdbcType=VARCHAR},
+      user_role = #{userRole,jdbcType=VARCHAR},
+      user_other_desc = #{userOtherDesc,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>
