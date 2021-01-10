@@ -7,34 +7,188 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201ff9a3-3faf-41aa-995b-f0fdda56777a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.annotation.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.ejb.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.jms.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.persistence.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.resource.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.transaction.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainAdminMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainUserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/entity/DomainAdmin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/entity/DomainUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/serviceImpl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/JWT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/ResponseData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/TokenIntercepter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DomainAdminMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DomainUserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/CORSFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/ScheduledMgr.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/admin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/iconfont.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/css/view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/ai.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/ai.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/ai.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/ai.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/font/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/banner01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/banner02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/17.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/face/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/sp_img01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/images/sp_img02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/jquery-1.9.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/assets/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/js/home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/js/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/01轮播图-添加图片.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/01轮播图.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/01轮播图.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/02任务发布-发布任务.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/02任务发布.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/03消息发布.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/04筛选设置.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/05发布职位1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/06发布职位2-弹框.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/06发布职位2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/07职位管理-详情.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/07职位管理.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/10人才流转-详情.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/10人才流转.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/11换购商品-上传商品.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/11换购商品.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/12兑换信息.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/13提现账号.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/14提现通知.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/15帮助中心-召π简介.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/15帮助中心-合作共赢.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/15帮助中心-帮助中心.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/pages/15帮助中心-网站导航.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/entity/DomainUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/entity/DomainUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/serviceImpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/TokenIntercepter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/utils/TokenIntercepter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DomainUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DomainUserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +200,8 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -99,14 +255,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/views/js" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.5316642" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MyProject\JZSSM\src\main\webapp\views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MyProject\JZSSM\src\main\webapp\views\js" />
+      <recent name="E:\MyProject\JZSSM\src\main\webapp\views" />
       <recent name="E:\MyProject\JZSSM\src\main\resources" />
     </key>
   </component>
@@ -191,6 +352,7 @@
     <option name="viewStates">
       <list>
         <serviceView>
+          <option name="contentProportion" value="0.1728142" />
           <treeState>
             <expand>
               <path>
@@ -221,7 +383,12 @@
       <updated>1609586029660</updated>
       <workItem from="1609586032793" duration="3161000" />
       <workItem from="1609591911486" duration="3871000" />
-      <workItem from="1609673153790" duration="8492000" />
+      <workItem from="1609673153790" duration="8617000" />
+      <workItem from="1610117601163" duration="1322000" />
+      <workItem from="1610167558903" duration="4615000" />
+      <workItem from="1610183233830" duration="4541000" />
+      <workItem from="1610200412773" duration="2784000" />
+      <workItem from="1610237607437" duration="19781000" />
     </task>
     <task id="LOCAL-00001" summary="初始搭建基于SSM的家政服务管理系统">
       <created>1609586809026</created>
@@ -237,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609595109321</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="整合jwt登录授权认证">
+      <created>1609681708758</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609681708758</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,105 +434,118 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="初始搭建基于SSM的家政服务管理系统" />
     <MESSAGE value="引入pom依赖、spring相关配置文件、对应的数据库和实体" />
-    <option name="LAST_COMMIT_MESSAGE" value="引入pom依赖、spring相关配置文件、对应的数据库和实体" />
+    <MESSAGE value="整合jwt登录授权认证" />
+    <option name="LAST_COMMIT_MESSAGE" value="整合jwt登录授权认证" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="181" y="77" width="814" height="680" key="#Project_Structure" timestamp="1609593065280">
+    <state x="193" y="80" width="814" height="680" key="#Project_Structure" timestamp="1610182607391">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="181" y="77" width="814" height="680" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1609593065280" />
-    <state x="223" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609594844266">
+    <state x="193" y="80" width="814" height="680" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1610182607391" />
+    <state x="223" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610237708614">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="223" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1609594844266" />
+    <state x="223" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1610237708614" />
     <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1609679924110">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1609679924110" />
-    <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1609595107998">
+    <state x="524" y="126" key="#xdebugger.evaluate" timestamp="1610250576920">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1609595107998" />
+    <state x="524" y="126" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1610250576920" />
+    <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1609681707422">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1609681707422" />
+    <state width="453" height="466" key="DebuggerActiveHint" timestamp="1610250559879">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="453" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1610250559879" />
     <state x="549" y="159" key="FileChooserDialogImpl" timestamp="1609591858433">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="159" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1609591858433" />
-    <state width="1024" height="117" key="GridCell.Tab.0.bottom" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.0.bottom" timestamp="1610259625362">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.0.center" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1610259625362" />
+    <state width="1210" height="319" key="GridCell.Tab.0.center" timestamp="1610259625362">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.0.left" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1610259625362" />
+    <state width="1210" height="319" key="GridCell.Tab.0.left" timestamp="1610259625362">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.0.right" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1610259625362" />
+    <state width="1210" height="319" key="GridCell.Tab.0.right" timestamp="1610259625362">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.1.bottom" timestamp="1609681664712">
+    <state width="1210" height="319" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1610259625362" />
+    <state width="1210" height="319" key="GridCell.Tab.1.bottom" timestamp="1610259688763">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1609681664712" />
-    <state width="1024" height="117" key="GridCell.Tab.1.center" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1610259688763" />
+    <state width="1210" height="319" key="GridCell.Tab.1.center" timestamp="1610259688762">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.1.left" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1610259688762" />
+    <state width="1210" height="319" key="GridCell.Tab.1.left" timestamp="1610259688760">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.1.right" timestamp="1609681664711">
+    <state width="1210" height="319" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1610259688760" />
+    <state width="1210" height="319" key="GridCell.Tab.1.right" timestamp="1610259688763">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1609681664711" />
-    <state width="1024" height="117" key="GridCell.Tab.2.bottom" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1610259688763" />
+    <state width="1210" height="319" key="GridCell.Tab.2.bottom" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.2.center" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.2.center" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.2.left" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.2.left" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.2.right" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.2.right" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.3.bottom" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.3.bottom" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.3.bottom/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.3.center" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.3.bottom/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.3.center" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.3.center/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.3.left" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.3.center/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.3.left" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.3.left/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state width="1024" height="117" key="GridCell.Tab.3.right" timestamp="1609681664439">
+    <state width="1210" height="319" key="GridCell.Tab.3.left/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state width="1210" height="319" key="GridCell.Tab.3.right" timestamp="1610259625363">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1024" height="117" key="GridCell.Tab.3.right/0.0.1536.834@0.0.1536.834" timestamp="1609681664439" />
-    <state x="219" y="91" key="SettingsEditor" timestamp="1609673411710">
+    <state width="1210" height="319" key="GridCell.Tab.3.right/0.0.1536.834@0.0.1536.834" timestamp="1610259625363" />
+    <state x="219" y="91" key="SettingsEditor" timestamp="1610245319757">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="219" y="91" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1609673411710" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1609595121176">
+    <state x="219" y="91" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1610245319757" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1609681730677">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1609595121176" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1609681730677" />
     <state x="485" y="310" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1609591863417">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="485" y="310" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.834@0.0.1536.834" timestamp="1609591863417" />
+    <state x="377" y="117" width="782" height="600" key="find.popup" timestamp="1610185338380">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="377" y="117" width="782" height="600" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1610185338380" />
     <state x="445" y="264" width="715" height="305" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1609673424801">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -367,9 +554,9 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="45" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1609678242558" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1609673419677">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1610257652140">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1609673419677" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1610257652140" />
   </component>
 </project>

@@ -18,6 +18,8 @@ public interface UserService {
 
     DomainUser selectByPrimaryKey(Integer userId);
 
+    DomainUser selectByTelNum(String telnum);
+
     int updateByPrimaryKeySelective(DomainUser record);
 
     int updateByPrimaryKey(DomainUser record);

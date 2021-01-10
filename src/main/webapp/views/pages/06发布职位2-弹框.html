@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="../assets/css/layui.css">
+	    <link rel="stylesheet" href="../assets/css/view.css"/>
+	    <link rel="stylesheet" href="../assets/css/style.css"/>
+	    <style type="text/css">
+	    	.layui-tank .layui-card{ padding: 50px;}
+	    	.layui-card{ text-align: center;}
+	    	.layui-rate li i.layui-icon{ font-size: 40px;}
+	    	.layui-form-item{ margin-bottom: 0;}
+	    </style>
+	</head>
+	<body class="layui-tank">
+		 <div class="layui-card">
+		 	   <div id="test1"></div>		
+		 	   <p><span class="col-red">提示：</span>星级越高越靠前</p>
+		 </div>
+		 <div class="tkbtnfxd">		 	
+		 	 <div class="layui-form float-left">		    
+			      <input type="checkbox" name="like1[write]" lay-skin="primary" title="紧急职位" checked="">
+			      <input type="checkbox" name="like1[read]" lay-skin="primary" title="置顶">				      
+			</div>			 
+	    	 <button type="button" class="layui-btn  layui-btn-normal float-right">确定</button>
+	         <button type="button" class="layui-btn layui-btn-primary float-right">取消</button>
+	    </div>
+	
+	<script src="../assets/jquery.min.js"></script>
+	<script src="../assets/layui.all.js"></script>    
+	<script>
+	  layui.use('rate', function(){
+	    var rate = layui.rate;	   
+	    //渲染
+	    var ins1 = rate.render({
+	      elem: '#test1'  //绑定元素
+	    });
+	  });	 
+	   layui.use('form', function(){
+		  var form = layui.form; 
+		  form.render();
+		}); 
+	 </script>	  
+	</body>
+</html>

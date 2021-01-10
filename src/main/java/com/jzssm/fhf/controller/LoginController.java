@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author ：Angular
  * @date ：Created in 2021/1/3 20:08
@@ -23,23 +25,23 @@ public class LoginController {
     UserService userService;
 
     //处理登录
-    @RequestMapping(value = "login", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/login", produces = "application/json; charset=utf-8")
     @ResponseBody
     public ResponseData login(@RequestParam("telnum") String telnum,
-                              @RequestParam("password") String password) {
-        DomainUser user = new DomainUser();
-        user.setUserTelnum(Integer.parseInt(telnum));
-        user.setUserPwd(password);
+                              @RequestParam("password") String password,HttpSession session) {
         ResponseData responseData = ResponseData.ok();
         //先到数据库验证
-        DomainUser loginUser = userService.selectByPrimaryKey(Integer.parseInt(telnum));
-        if (null != loginUser) {
+        DomainUser loginUser = userService.selectByTelNum(telnum);
+        if (null != loginUser && password.equals(loginUser.getUserPwd())) {
             //给用户jwt加密生成token
             String token = JWT.sign(loginUser, 60L * 1000L * 30L);
             //封装成对象返回给客户端
+            session.setAttribute("user",loginUser);
             responseData.putDataValue("loginId", loginUser.getUserId());
             responseData.putDataValue("token", token);
-            responseData.putDataValue("user", user);
+            responseData.putDataValue("user", loginUser);
+            responseData.putDataValue("code",200);
+            responseData.putDataValue("msg","登陆成功");
         } else {
             responseData = ResponseData.customerError();
         }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>提现账号</title>
+    <link rel="stylesheet" href="../assets/css/layui.css">    
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css"/>
+    <style type="text/css">
+    	.layui-elem-quote{ font-size: 18px; margin-bottom: 20px;}    
+    	.layui-tab-card>.layui-tab-title{ background-color: #009688; color: #fff;}	
+    	.layui-tab-content{ padding: 0;}
+    </style>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+    	<!--面包屑导航-->
+    	<div class="mianb">
+    		<div class="mblf layui-col-xs6 layui-col-md6">
+    			 <i class="layui-icon">&#xe656;</i>
+    			 <p>账号管理 > <span>提现账号</span></p>
+    		</div>    		
+    	</div>
+    	<!--面包屑导航-->
+        <div class="layui-row">
+            <div class="layui-card">
+            	   <div class="layui-tab layui-tab-card">
+					  <ul class="layui-tab-title">
+					    <li class="layui-this">支付宝</li>
+					    <li>银行卡</li>					    					    
+					  </ul>
+					  <div class="layui-tab-content">
+						    <div class="layui-tab-item layui-show">
+						    	  <div class="table-responsive">
+								 		  <table class="layui-table" lay-skin="line" lay-size="lg" id="table">						  
+											  <thead>
+											    <tr>											      
+											      <th>ID</th>
+											      <th>支付宝账号</th>	
+											      <th>支付宝认证姓名</th>											      											      
+											    </tr> 
+											  </thead>
+											  <tbody>
+											    <tr>											      
+											      <td>01</td>
+											      <td>15734651523</td>
+											      <td>门三</td>											     
+											    </tr>
+											    <tr>											      
+											      <td>02</td>
+											      <td>157346@qq.com</td>
+											      <td>王大陆</td>											     
+											    </tr>
+											  </tbody>
+										</table>
+								 	</div>					                   
+					           		<!--分页-->
+					           		<div id="page"></div>
+					           		<!--分页-->
+						    </div>
+						    <div class="layui-tab-item">
+						    	<div class="table-responsive">
+								 		  <table class="layui-table" lay-skin="line" lay-size="lg" id="table">						  
+											  <thead>
+											    <tr>											      
+											      <th>ID</th>
+											      <th>银行卡号</th>	
+											      <th>真实姓名</th>
+											      <th>预留手机号</th>
+											      <th>开户行</th>											      										      
+											    </tr> 
+											  </thead>
+											  <tbody>
+											    <tr>											      
+											      <td>01</td>
+											      <td>410725164232415124234</td>
+											      <td>张大龙</td>
+											      <td>15734786452</td>
+											      <td>郑州市人民路支行</td>											      
+											    </tr>
+											    <tr>											      
+											      <td>02</td>
+											      <td>410725164232415124234</td>
+											      <td>李霞</td>
+											      <td>15734786452</td>
+											      <td>中原路支行</td>											      
+											    </tr>
+											  </tbody>
+										</table>
+								 	</div>					                   
+					           		<!--分页-->
+					           		<div id="page"></div>
+					           		<!--分页-->
+						    </div>						    
+					  </div>
+				</div>
+            </div>           
+        </div>
+    </div>
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/layui.all.js"></script>    
+    <script>
+    	var element = layui.element;
+    	layui.use(['laypage', 'layer'], function(){
+		  var laypage = layui.laypage
+		  ,layer = layui.layer;		  
+		  
+		  //页码完整功能
+		  laypage.render({
+		    elem: 'page'
+		    ,count: 100
+		    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+		    ,jump: function(obj){
+		      console.log(obj)
+		    }
+		  });	 
+		});		
+		
+	</script>
+	
+</body>
+</html>

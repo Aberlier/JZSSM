@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>筛选设置</title>
+    <link rel="stylesheet" href="../assets/css/layui.css">    
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css"/>   
+    <link rel="stylesheet" href="../assets/css/style.css"/>   
+    <style type="text/css">
+    	.layui-card{ padding: 20px;}
+    	.layui-btn .layui-icon{ margin-right: 0; margin-left: 3px;}
+    </style>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+    	<!--面包屑导航-->
+    	<div class="mianb">
+    		<div class="mblf layui-col-xs6 layui-col-md6">
+    			 <i class="layui-icon">&#xe656;</i>
+    			 <p>职位管理 > <span>筛选设置</span></p>
+    		</div>    		
+    	</div>
+    	<!--面包屑导航-->
+        <div class="layui-row">
+            <div class="layui-card">
+            	  <p class="col-red">默认分类都在，可自行添加和删除</p>
+            	  <div class="seachadd">
+            	  	     <p class="float-left">行业类别：</p>
+            	  	     <div class="layui-inline float-left">
+            	  	     		<input type="text"   placeholder="请输入筛选条件" class="layui-input">            	  	     		
+            	  	     </div>            	  	     
+            	  	     <a href="javascript:;" class="layui-btn">添加</a>
+            	  </div>
+            	  <div class="addbox">
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">IT/通信/电子/互联网 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">金融业 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">房地产/建筑业  <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">商业服务 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">贸易/批发/零售/租赁业  <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">生产/加工/制造 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">交通/运输/物流 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">服务业 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">能源/矿产/环保 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">政府/非盈利机构 <i class="layui-icon">&#x1007;</i></a>            	  	   
+            	  </div>
+            	  <div class="seachadd">
+            	  	     <p class="float-left">薪资：</p>
+            	  	     <div class="layui-inline float-left">
+            	  	     		<input type="text"   placeholder="请输入筛选条件" class="layui-input">            	  	     		
+            	  	     </div>            	  	     
+            	  	     <a href="javascript:;" class="layui-btn">添加</a>
+            	  </div>
+            	  <div class="addbox">
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">2000以下 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">2000-4000 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">4000-6000<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">6000-8000 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">8000-10000<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">10000以上 <i class="layui-icon">&#x1007;</i></a>            	  	   
+            	  </div>
+            	  <div class="seachadd">
+            	  	     <p class="float-left">福利：</p>
+            	  	     <div class="layui-inline float-left">
+            	  	     		<input type="text"   placeholder="请输入筛选条件" class="layui-input">            	  	     		
+            	  	     </div>            	  	     
+            	  	     <a href="javascript:;" class="layui-btn">添加</a>
+            	  </div>
+            	  <div class="addbox">
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">社保 <i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">公积金<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">奖金<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">绩效<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">提成<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">年终奖 <i class="layui-icon">&#x1007;</i></a> 
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">带薪年假<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">房屋补助<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">商业保险<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">通讯补助<i class="layui-icon">&#x1007;</i></a>
+            	  	   <a href="javascript:;" class="layui-btn layui-btn-primary">交通补助<i class="layui-icon">&#x1007;</i></a> 
+            	  </div>
+            </div>           
+        </div>
+    </div>
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/layui.all.js"></script>    
+    <script>
+    	var element = layui.element;
+    	layui.use(['laypage', 'layer'], function(){
+		  var laypage = layui.laypage
+		  ,layer = layui.layer;		  
+		  
+		  //页码完整功能
+		  laypage.render({
+		    elem: 'page'
+		    ,count: 100
+		    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+		    ,jump: function(obj){
+		      console.log(obj)
+		    }
+		  });	 
+		});
+		
+		//弹框		
+		$('#fabu').on('click', function(){			
+		  layui.use('layer', function(){
+          var layer = layui.layer;
+          layer.open({
+                type: 2,
+                title: '发布任务',
+                fix: false,
+                shadeClose: true,
+                shade: 0.8,
+                area: ['660px', '420px'],
+                content: '02任务发布-发布任务.html',
+                end: function () {
+                   location.reload();
+                }
+            });
+        });
+      })
+		
+		//判断弹框
+		$(".delete").click(function(){
+			layer.confirm('确定要删除此任务？', {
+			  btn: ['是','否'] //按钮
+			}, function(){
+			  layer.msg('已删除', {icon: 1});
+			}, function(){
+			  layer.msg('已取消',  {icon: 2});
+			});
+		})			
+		
+		 layui.use('form', function(){
+		  var form = layui.form; 
+		  form.render();
+		}); 
+	</script>
+	
+</body>
+</html>

@@ -7,7 +7,7 @@ public class DomainUser {
 
     private String userPwd;
 
-    private Integer userTelnum;
+    private String userTelnum;
 
     private String userDemand;
 
@@ -21,7 +21,7 @@ public class DomainUser {
 
     private String userOtherDesc;
 
-    public DomainUser(Integer userId, String userName, String userPwd, Integer userTelnum, String userDemand, String userUrgent, String userAddress, String userDispatchAddress, String userRole, String userOtherDesc) {
+    public DomainUser(Integer userId, String userName, String userPwd, String userTelnum, String userDemand, String userUrgent, String userAddress, String userDispatchAddress, String userRole, String userOtherDesc) {
         this.userId = userId;
         this.userName = userName;
         this.userPwd = userPwd;
@@ -62,11 +62,11 @@ public class DomainUser {
         this.userPwd = userPwd == null ? null : userPwd.trim();
     }
 
-    public Integer getUserTelnum() {
+    public String getUserTelnum() {
         return userTelnum;
     }
 
-    public void setUserTelnum(Integer userTelnum) {
+    public void setUserTelnum(String userTelnum) {
         this.userTelnum = userTelnum;
     }
 

@@ -21,6 +21,8 @@ public class TokenIntercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
+        //从原来的headers里改到普通
+//        String token = request.getHeader("token");
         String token = request.getParameter("token");
         ResponseData responseData = ResponseData.ok();
         //token不存在

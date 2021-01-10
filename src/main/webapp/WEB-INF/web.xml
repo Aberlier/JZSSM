@@ -9,7 +9,7 @@
   <display-name>JZSSM</display-name>
   <!--项目的欢迎页，项目运行起来后访问的页面-->
   <welcome-file-list>
-    <welcome-file>/index.jsp</welcome-file>
+    <welcome-file>views/login.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- 注册ServletContext监听器，创建容器对象，并且将ApplicationContext对象放到Application域中 -->

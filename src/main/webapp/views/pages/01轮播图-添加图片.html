@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="../assets/css/layui.css">
+	    <link rel="stylesheet" href="../assets/css/view.css"/>
+	    <link rel="stylesheet" href="../assets/css/style.css"/>
+	</head>
+	<body class="layui-tank">
+		 <div class="layui-card">
+		 	<form class="layui-form" action="">
+			   <div class="layui-form-item">
+				    <label class="layui-form-label">序号</label>
+				    <div class="layui-input-block">
+				        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+				    	<div class="layui-form-mid layui-word-aux">数字越小越靠前</div>
+				    </div>					    
+				</div>
+				<div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">添加图片</label>
+				    <div class="layui-input-block">
+				         <button type="button" class="layui-btn layui-btn-danger" id="test7"><i class="layui-icon"></i>上传图片</button>
+				    </div>
+				</div>
+			</form>	
+		 </div>
+		 <div class=" tkbtnfxd">
+	    	<button type="button" class="layui-btn  layui-btn-normal float-right">确定</button>
+	        <button type="button" class="layui-btn layui-btn-primary float-right">取消</button>
+	    </div>
+	    
+	<script src="../assets/layui.all.js"></script>    
+	<script>
+		layui.use('upload', function(){
+		  var $ = layui.jquery
+		  ,upload = layui.upload; 
+		
+		//设定文件大小限制
+		  upload.render({
+		    elem: '#test7'
+		    ,url: '/upload/'
+//		    ,size: 60 //限制文件大小，单位 KB
+		    ,done: function(res){
+		      console.log(res)
+		    }
+		  });
+		});
+		</script>
+	</body>
+</html>

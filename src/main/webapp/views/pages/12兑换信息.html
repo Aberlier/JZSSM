@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>兑换信息</title>
+    <link rel="stylesheet" href="../assets/css/layui.css">    
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css"/>    
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+    	<!--面包屑导航-->
+    	<div class="mianb">
+    		<div class="mblf layui-col-xs6 layui-col-md6">
+    			 <i class="layui-icon">&#xe656;</i>
+    			 <p>账号管理 > <span>兑换信息</span></p>
+    		</div>    		
+    	</div>
+    	<!--面包屑导航-->
+        <div class="layui-row">
+            <div class="layui-card">
+            	<div class="table-responsive">
+			 		  <table class="layui-table" lay-skin="line" lay-size="lg" id="table">						  
+						  <thead>
+						    <tr>
+						      <th>商品名称</th>
+						      <th>商品数量</th>
+						      <th>收货人</th>	
+						      <th>联系电话</th>
+						      <th>收货地址</th>
+						      <th>消耗积分</th>
+						      <th>状态</th>
+						      <th>操作</th>
+						    </tr> 
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>鼠标垫</td>
+						      <td>2</td>
+						      <td>门三</td>
+						      <td>15737894613</td>	
+						      <td>河南省郑州市二七区解放路正弘凯宾城</td>
+						      <td>3000</td>
+						      <td class="col-green">已发货(需不需要添加物流单号)</td>
+						      <td>
+						      	  <div class="layui-table-cell laytable-cell-1-0-10"> 							      	  	 
+							      	  	<a class="layui-btn layui-btn-primary layui-btn-xs">已确认</a> 							      	  	
+						      	  </div>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>鼠标垫</td>
+						      <td>2</td>
+						      <td>门三</td>
+						      <td>15737894613</td>	
+						      <td>河南省郑州市二七区解放路正弘凯宾城</td>
+						      <td>3000</td>
+						      <td class="col-red">待发货</td>
+						      <td>
+						      	  <div class="layui-table-cell laytable-cell-1-0-10"> 							      	  	 
+							      	  	<a class="layui-btn layui-btn-normal layui-btn-xs submit">确认发货</a> 							      	  	
+						      	  </div>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>鼠标垫</td>
+						      <td>2</td>
+						      <td>门三</td>
+						      <td>15737894613</td>	
+						      <td>河南省郑州市二七区解放路正弘凯宾城</td>
+						      <td>3000</td>
+						      <td class="col-green">已发货</td>
+						      <td>
+						      	  <div class="layui-table-cell laytable-cell-1-0-10"> 							      	  	 
+							      	  	<a class="layui-btn layui-btn-primary layui-btn-xs">已确认</a> 							      	  	
+						      	  </div>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>鼠标垫</td>
+						      <td>2</td>
+						      <td>门三</td>
+						      <td>15737894613</td>	
+						      <td>河南省郑州市二七区解放路正弘凯宾城</td>
+						      <td>3000</td>
+						      <td class="col-red">待发货</td>
+						      <td>
+						      	  <div class="layui-table-cell laytable-cell-1-0-10"> 							      	  	 
+							      	  	<a class="layui-btn layui-btn-normal layui-btn-xs submit">确认发货</a> 							      	  	
+						      	  </div>
+						      </td>
+						    </tr>
+						  </tbody>
+					</table>
+			 	</div>
+                   
+           		<!--分页-->
+           		<div id="page"></div>
+           		<!--分页-->
+            </div>           
+        </div>
+    </div>
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/layui.all.js"></script>    
+    <script>
+    	var element = layui.element;
+    	layui.use(['laypage', 'layer'], function(){
+		  var laypage = layui.laypage
+		  ,layer = layui.layer;		  
+		  
+		  //页码完整功能
+		  laypage.render({
+		    elem: 'page'
+		    ,count: 100
+		    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+		    ,jump: function(obj){
+		      console.log(obj)
+		    }
+		  });	 
+		});
+		
+		//判断弹框
+		$(".submit").click(function(){
+			layer.confirm('确定已给该用户下单的商品已发货？', {
+			  btn: ['是','否'] //按钮
+			}, function(){
+			  layer.msg('已发货', {icon: 1});
+			}, function(){
+			  layer.msg('已取消',  {icon: 2});
+			});
+		})		
+		
+	</script>
+	
+</body>
+</html>

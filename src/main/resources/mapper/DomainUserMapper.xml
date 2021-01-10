@@ -6,7 +6,7 @@
       <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="user_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_telnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_telnum" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="user_demand" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="user_urgent" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="user_address" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -25,6 +25,12 @@
     from tb_user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <select id="selectByTelNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_user
+    where user_telnum = #{userTelnum,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_user
     where user_id = #{userId,jdbcType=INTEGER}
@@ -35,7 +41,7 @@
       user_address, user_dispatch_address, user_role, 
       user_other_desc)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      #{userTelnum,jdbcType=INTEGER}, #{userDemand,jdbcType=VARCHAR}, #{userUrgent,jdbcType=VARCHAR}, 
+      #{userTelnum,jdbcType=VARCHAR}, #{userDemand,jdbcType=VARCHAR}, #{userUrgent,jdbcType=VARCHAR},
       #{userAddress,jdbcType=VARCHAR}, #{userDispatchAddress,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}, 
       #{userOtherDesc,jdbcType=VARCHAR})
   </insert>
@@ -84,7 +90,7 @@
         #{userPwd,jdbcType=VARCHAR},
       </if>
       <if test="userTelnum != null">
-        #{userTelnum,jdbcType=INTEGER},
+        #{userTelnum,jdbcType=VARCHAR},
       </if>
       <if test="userDemand != null">
         #{userDemand,jdbcType=VARCHAR},
@@ -116,7 +122,7 @@
         user_pwd = #{userPwd,jdbcType=VARCHAR},
       </if>
       <if test="userTelnum != null">
-        user_telnum = #{userTelnum,jdbcType=INTEGER},
+        user_telnum = #{userTelnum,jdbcType=VARCHAR},
       </if>
       <if test="userDemand != null">
         user_demand = #{userDemand,jdbcType=VARCHAR},
@@ -143,7 +149,7 @@
     update tb_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR},
-      user_telnum = #{userTelnum,jdbcType=INTEGER},
+      user_telnum = #{userTelnum,jdbcType=VARCHAR},
       user_demand = #{userDemand,jdbcType=VARCHAR},
       user_urgent = #{userUrgent,jdbcType=VARCHAR},
       user_address = #{userAddress,jdbcType=VARCHAR},

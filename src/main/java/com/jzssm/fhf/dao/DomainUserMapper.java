@@ -14,4 +14,6 @@ public interface DomainUserMapper {
     int updateByPrimaryKeySelective(DomainUser record);
 
     int updateByPrimaryKey(DomainUser record);
+
+    DomainUser selectByTelNum(String telnum);
 }

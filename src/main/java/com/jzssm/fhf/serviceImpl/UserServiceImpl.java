@@ -39,7 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DomainUser selectByPrimaryKey(Integer userId) {
-        return null;
+        return domainUserMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public DomainUser selectByTelNum(String telnum) {
+        return domainUserMapper.selectByTelNum(telnum);
     }
 
     @Override

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>帮助中心</title>
+    <link rel="stylesheet" href="../assets/css/layui.css">    
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="stylesheet" href="../assets/css/admin.css"/>  
+    <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+    	<!--面包屑导航-->
+    	<div class="mianb">
+    		<div class="mblf layui-col-xs6 layui-col-md6">
+    			 <i class="layui-icon">&#xe656;</i>
+    			 <p>帮助中心 > <span>帮助中心</span></p>
+    		</div>    		
+    	</div>
+    	<!--面包屑导航-->
+        <div class="layui-row">
+            <div class="layui-card positionbox">
+            	    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+					    <legend>猎头悬赏手册</legend>
+					</fieldset>
+					<form class="layui-form" action="">
+						 <div class="layui-form-item">
+							    <label class="layui-form-label"><span class="col-red">*</span>标题</label>
+							    <div class="layui-input-block">
+							      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位" class="layui-input">
+							    </div>
+						  </div>						  
+						  <div class="layui-form-item layui-form-text">
+							    <label class="layui-form-label">内容介绍</label>							    
+							    <div class="layui-input-block">							    	
+							       <textarea id="demo" style="display: none;"></textarea>
+							    </div>			
+							</div>
+					</form>	
+					<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+					    <legend>关于悬赏</legend>
+					</fieldset>
+					<form class="layui-form" action="">
+						 <div class="layui-form-item">
+							    <label class="layui-form-label"><span class="col-red">*</span>标题</label>
+							    <div class="layui-input-block">
+							      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位" class="layui-input">
+							    </div>
+						  </div>						  
+						  <div class="layui-form-item layui-form-text">
+							    <label class="layui-form-label">内容介绍</label>							    
+							    <div class="layui-input-block">							    	
+							       <textarea id="demo2" style="display: none;"></textarea>
+							    </div>			
+							</div>
+					</form>						
+					<div class="layui-form-item">
+					    <div class="layui-input-block">
+					    	<a href="javascript:;" class="layui-btn layui-btn-primary">清空重置</a>
+					        <a href="javascript:;" class="layui-btn layui-btn-normal">保存</a>
+					    </div>
+					  </div>
+            </div>           
+        </div>
+    </div>
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/layui.all.js"></script>    
+    <script>
+	layui.use('layedit', function(){
+	  var layedit = layui.layedit;
+	  layedit.build('demo'); //建立编辑器
+	});
+	layui.use('layedit', function(){
+	  var layedit = layui.layedit;
+	  layedit.build('demo2'); //建立编辑器
+	});	
+	</script>
+</body>
+</html>
