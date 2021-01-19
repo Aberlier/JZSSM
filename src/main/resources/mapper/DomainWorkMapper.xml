@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainWorkMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainWork">
+    <constructor>
+      <idArg column="work_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="work_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="work_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="work_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    work_id, work_name, work_type, work_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work
+    where work_id = #{workId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_work
+    where work_id = #{workId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainWork">
+    insert into tb_work (work_id, work_name, work_type, 
+      work_desc)
+    values (#{workId,jdbcType=INTEGER}, #{workName,jdbcType=VARCHAR}, #{workType,jdbcType=VARCHAR}, 
+      #{workDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainWork">
+    insert into tb_work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="workName != null">
+        work_name,
+      </if>
+      <if test="workType != null">
+        work_type,
+      </if>
+      <if test="workDesc != null">
+        work_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="workName != null">
+        #{workName,jdbcType=VARCHAR},
+      </if>
+      <if test="workType != null">
+        #{workType,jdbcType=VARCHAR},
+      </if>
+      <if test="workDesc != null">
+        #{workDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainWork">
+    update tb_work
+    <set>
+      <if test="workName != null">
+        work_name = #{workName,jdbcType=VARCHAR},
+      </if>
+      <if test="workType != null">
+        work_type = #{workType,jdbcType=VARCHAR},
+      </if>
+      <if test="workDesc != null">
+        work_desc = #{workDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where work_id = #{workId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainWork">
+    update tb_work
+    set work_name = #{workName,jdbcType=VARCHAR},
+      work_type = #{workType,jdbcType=VARCHAR},
+      work_desc = #{workDesc,jdbcType=VARCHAR}
+    where work_id = #{workId,jdbcType=INTEGER}
+  </update>
+</mapper>

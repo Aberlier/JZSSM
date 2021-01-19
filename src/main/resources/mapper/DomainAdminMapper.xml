@@ -10,16 +10,24 @@
       <arg column="admin_createtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="admin_updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="admin_role" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="admin_telnum" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    admin_id, admin_name, admin_pwd, admin_sex, admin_createtime, admin_updatetime, admin_role
+    admin_id, admin_name, admin_pwd, admin_sex, admin_createtime, admin_updatetime, admin_role, 
+    admin_telnum
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_admin
     where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTelNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_admin
+    where admin_telnum = #{adminTelnum,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_admin
@@ -28,10 +36,10 @@
   <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainAdmin">
     insert into tb_admin (admin_id, admin_name, admin_pwd, 
       admin_sex, admin_createtime, admin_updatetime, 
-      admin_role)
+      admin_role, admin_telnum)
     values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
       #{adminSex,jdbcType=VARCHAR}, #{adminCreatetime,jdbcType=TIMESTAMP}, #{adminUpdatetime,jdbcType=TIMESTAMP}, 
-      #{adminRole,jdbcType=INTEGER})
+      #{adminRole,jdbcType=INTEGER}, #{adminTelnum,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainAdmin">
     insert into tb_admin
@@ -57,6 +65,9 @@
       <if test="adminRole != null">
         admin_role,
       </if>
+      <if test="adminTelnum != null">
+        admin_telnum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="adminId != null">
@@ -79,6 +90,9 @@
       </if>
       <if test="adminRole != null">
         #{adminRole,jdbcType=INTEGER},
+      </if>
+      <if test="adminTelnum != null">
+        #{adminTelnum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -103,6 +117,9 @@
       <if test="adminRole != null">
         admin_role = #{adminRole,jdbcType=INTEGER},
       </if>
+      <if test="adminTelnum != null">
+        admin_telnum = #{adminTelnum,jdbcType=VARCHAR},
+      </if>
     </set>
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
@@ -113,7 +130,8 @@
       admin_sex = #{adminSex,jdbcType=VARCHAR},
       admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP},
       admin_updatetime = #{adminUpdatetime,jdbcType=TIMESTAMP},
-      admin_role = #{adminRole,jdbcType=INTEGER}
+      admin_role = #{adminRole,jdbcType=INTEGER},
+      admin_telnum = #{adminTelnum,jdbcType=VARCHAR}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
 </mapper>

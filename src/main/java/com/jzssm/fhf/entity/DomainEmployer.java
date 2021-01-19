@@ -5,7 +5,7 @@ public class DomainEmployer {
 
     private String employerName;
 
-    private Integer employerPwd;
+    private String employerPwd;
 
     private String employerAge;
 
@@ -13,7 +13,7 @@ public class DomainEmployer {
 
     private String employerAddress;
 
-    private Integer employerTelnum;
+    private String employerTelnum;
 
     private String employerPostname;
 
@@ -23,7 +23,7 @@ public class DomainEmployer {
 
     private Integer employerRole;
 
-    public DomainEmployer(Integer employerId, String employerName, Integer employerPwd, String employerAge, String employerIdcard, String employerAddress, Integer employerTelnum, String employerPostname, String employerField, String employerDesc, Integer employerRole) {
+    public DomainEmployer(Integer employerId, String employerName, String employerPwd, String employerAge, String employerIdcard, String employerAddress, String employerTelnum, String employerPostname, String employerField, String employerDesc, Integer employerRole) {
         this.employerId = employerId;
         this.employerName = employerName;
         this.employerPwd = employerPwd;
@@ -57,11 +57,11 @@ public class DomainEmployer {
         this.employerName = employerName == null ? null : employerName.trim();
     }
 
-    public Integer getEmployerPwd() {
+    public String getEmployerPwd() {
         return employerPwd;
     }
 
-    public void setEmployerPwd(Integer employerPwd) {
+    public void setEmployerPwd(String employerPwd) {
         this.employerPwd = employerPwd;
     }
 
@@ -89,12 +89,12 @@ public class DomainEmployer {
         this.employerAddress = employerAddress == null ? null : employerAddress.trim();
     }
 
-    public Integer getEmployerTelnum() {
+    public String getEmployerTelnum() {
         return employerTelnum;
     }
 
-    public void setEmployerTelnum(Integer employerTelnum) {
-        this.employerTelnum = employerTelnum;
+    public void setEmployerTelnum(String employerTelnum) {
+        this.employerTelnum = employerTelnum == null ? null : employerTelnum.trim();
     }
 
     public String getEmployerPostname() {

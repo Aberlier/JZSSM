@@ -67,7 +67,7 @@ public class DomainUser {
     }
 
     public void setUserTelnum(String userTelnum) {
-        this.userTelnum = userTelnum;
+        this.userTelnum = userTelnum == null ? null : userTelnum.trim();
     }
 
     public String getUserDemand() {

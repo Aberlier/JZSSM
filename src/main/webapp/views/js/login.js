@@ -11,8 +11,10 @@ layui.define(['element'], function (exports) {
             $parent.removeClass('field-focus');
         }
     });
-
-    $('.login-button').on('click', function () {
+$('#regist_button').on('click',function(){
+    window.document.location.href = "regist_page";
+});
+    $('#login-button').on('click', function () {
         var loginId;
         var token;
         myajax = $.ajax({
@@ -64,6 +66,6 @@ layui.define(['element'], function (exports) {
 
     });
 
-    exports('login');
+    exports('regist');
 
 });

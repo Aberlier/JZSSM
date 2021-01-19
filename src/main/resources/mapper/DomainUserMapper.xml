@@ -158,4 +158,6 @@
       user_other_desc = #{userOtherDesc,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

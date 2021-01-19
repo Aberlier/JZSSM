@@ -14,4 +14,6 @@ public interface DomainAdminMapper {
     int updateByPrimaryKeySelective(DomainAdmin record);
 
     int updateByPrimaryKey(DomainAdmin record);
+
+    DomainAdmin selectByTelNum(String telnum);
 }

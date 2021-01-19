@@ -1,5 +1,6 @@
 package com.jzssm.fhf.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class DomainAdmin {
@@ -17,7 +18,9 @@ public class DomainAdmin {
 
     private Integer adminRole;
 
-    public DomainAdmin(Integer adminId, String adminName, String adminPwd, String adminSex, Date adminCreatetime, Date adminUpdatetime, Integer adminRole) {
+    private String adminTelnum;
+
+    public DomainAdmin(Integer adminId, String adminName, String adminPwd, String adminSex, Date adminCreatetime, Date adminUpdatetime, Integer adminRole, String adminTelnum) {
         this.adminId = adminId;
         this.adminName = adminName;
         this.adminPwd = adminPwd;
@@ -25,6 +28,7 @@ public class DomainAdmin {
         this.adminCreatetime = adminCreatetime;
         this.adminUpdatetime = adminUpdatetime;
         this.adminRole = adminRole;
+        this.adminTelnum = adminTelnum;
     }
 
     public DomainAdmin() {
@@ -85,5 +89,13 @@ public class DomainAdmin {
 
     public void setAdminRole(Integer adminRole) {
         this.adminRole = adminRole;
+    }
+
+    public String getAdminTelnum() {
+        return adminTelnum;
+    }
+
+    public void setAdminTelnum(String adminTelnum) {
+        this.adminTelnum = adminTelnum == null ? null : adminTelnum.trim();
     }
 }

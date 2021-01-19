@@ -14,4 +14,6 @@ public interface DomainEmployerMapper {
     int updateByPrimaryKeySelective(DomainEmployer record);
 
     int updateByPrimaryKey(DomainEmployer record);
+
+    DomainEmployer selectByTelNum(String telnum);
 }

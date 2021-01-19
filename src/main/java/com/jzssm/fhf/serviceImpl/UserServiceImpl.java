@@ -3,10 +3,9 @@ package com.jzssm.fhf.serviceImpl;
 import com.jzssm.fhf.dao.DomainUserMapper;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author ：Angular
@@ -29,12 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insert(DomainUser record) {
-        return 0;
+        return domainUserMapper.insert(record);
     }
 
     @Override
     public int insertSelective(DomainUser record) {
-        return 0;
+        return domainUserMapper.insertSelective(record);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public DomainUser selectByTelNum(String telnum) {
+    public DomainUser selectByTelNum(@Param("telnum") String telnum) {
         return domainUserMapper.selectByTelNum(telnum);
     }
 

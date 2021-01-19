@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainPkStarMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainPkStar">
+    <constructor>
+      <idArg column="pk_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pk_star_num" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pk_emp_namer" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pk_emp_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pk_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pk_give_star_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pk_give_star_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pk_give_star_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, pk_star_num, pk_emp_namer, pk_emp_id, pk_update_time, pk_give_star_role, pk_give_star_name, 
+    pk_give_star_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pkstar
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_pkstar
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainPkStar">
+    insert into tb_pkstar (pk_id, pk_star_num, pk_emp_namer, 
+      pk_emp_id, pk_update_time, pk_give_star_role, 
+      pk_give_star_name, pk_give_star_id)
+    values (#{pkId,jdbcType=INTEGER}, #{pkStarNum,jdbcType=VARCHAR}, #{pkEmpNamer,jdbcType=VARCHAR}, 
+      #{pkEmpId,jdbcType=INTEGER}, #{pkUpdateTime,jdbcType=TIMESTAMP}, #{pkGiveStarRole,jdbcType=VARCHAR}, 
+      #{pkGiveStarName,jdbcType=VARCHAR}, #{pkGiveStarId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainPkStar">
+    insert into tb_pkstar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="pkStarNum != null">
+        pk_star_num,
+      </if>
+      <if test="pkEmpNamer != null">
+        pk_emp_namer,
+      </if>
+      <if test="pkEmpId != null">
+        pk_emp_id,
+      </if>
+      <if test="pkUpdateTime != null">
+        pk_update_time,
+      </if>
+      <if test="pkGiveStarRole != null">
+        pk_give_star_role,
+      </if>
+      <if test="pkGiveStarName != null">
+        pk_give_star_name,
+      </if>
+      <if test="pkGiveStarId != null">
+        pk_give_star_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="pkStarNum != null">
+        #{pkStarNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pkEmpNamer != null">
+        #{pkEmpNamer,jdbcType=VARCHAR},
+      </if>
+      <if test="pkEmpId != null">
+        #{pkEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="pkUpdateTime != null">
+        #{pkUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pkGiveStarRole != null">
+        #{pkGiveStarRole,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGiveStarName != null">
+        #{pkGiveStarName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGiveStarId != null">
+        #{pkGiveStarId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainPkStar">
+    update tb_pkstar
+    <set>
+      <if test="pkStarNum != null">
+        pk_star_num = #{pkStarNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pkEmpNamer != null">
+        pk_emp_namer = #{pkEmpNamer,jdbcType=VARCHAR},
+      </if>
+      <if test="pkEmpId != null">
+        pk_emp_id = #{pkEmpId,jdbcType=INTEGER},
+      </if>
+      <if test="pkUpdateTime != null">
+        pk_update_time = #{pkUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pkGiveStarRole != null">
+        pk_give_star_role = #{pkGiveStarRole,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGiveStarName != null">
+        pk_give_star_name = #{pkGiveStarName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkGiveStarId != null">
+        pk_give_star_id = #{pkGiveStarId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainPkStar">
+    update tb_pkstar
+    set pk_star_num = #{pkStarNum,jdbcType=VARCHAR},
+      pk_emp_namer = #{pkEmpNamer,jdbcType=VARCHAR},
+      pk_emp_id = #{pkEmpId,jdbcType=INTEGER},
+      pk_update_time = #{pkUpdateTime,jdbcType=TIMESTAMP},
+      pk_give_star_role = #{pkGiveStarRole,jdbcType=VARCHAR},
+      pk_give_star_name = #{pkGiveStarName,jdbcType=VARCHAR},
+      pk_give_star_id = #{pkGiveStarId,jdbcType=INTEGER}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

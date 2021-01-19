@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainRequireUserMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainRequireUser">
+    <constructor>
+      <idArg column="req_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="req_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_check_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_check_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_check_role_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_do_emp_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_do_emp_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="req_do_emp_postname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    req_id, req_type, req_desc, req_time, req_check_name, req_check_role, req_check_role_id, 
+    req_do_emp_name, req_do_emp_id, req_do_emp_postname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_require_user
+    where req_id = #{reqId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_require_user
+    where req_id = #{reqId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainRequireUser">
+    insert into tb_require_user (req_id, req_type, req_desc, 
+      req_time, req_check_name, req_check_role, 
+      req_check_role_id, req_do_emp_name, req_do_emp_id, 
+      req_do_emp_postname)
+    values (#{reqId,jdbcType=INTEGER}, #{reqType,jdbcType=VARCHAR}, #{reqDesc,jdbcType=VARCHAR}, 
+      #{reqTime,jdbcType=VARCHAR}, #{reqCheckName,jdbcType=VARCHAR}, #{reqCheckRole,jdbcType=VARCHAR}, 
+      #{reqCheckRoleId,jdbcType=VARCHAR}, #{reqDoEmpName,jdbcType=VARCHAR}, #{reqDoEmpId,jdbcType=VARCHAR}, 
+      #{reqDoEmpPostname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainRequireUser">
+    insert into tb_require_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reqId != null">
+        req_id,
+      </if>
+      <if test="reqType != null">
+        req_type,
+      </if>
+      <if test="reqDesc != null">
+        req_desc,
+      </if>
+      <if test="reqTime != null">
+        req_time,
+      </if>
+      <if test="reqCheckName != null">
+        req_check_name,
+      </if>
+      <if test="reqCheckRole != null">
+        req_check_role,
+      </if>
+      <if test="reqCheckRoleId != null">
+        req_check_role_id,
+      </if>
+      <if test="reqDoEmpName != null">
+        req_do_emp_name,
+      </if>
+      <if test="reqDoEmpId != null">
+        req_do_emp_id,
+      </if>
+      <if test="reqDoEmpPostname != null">
+        req_do_emp_postname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reqId != null">
+        #{reqId,jdbcType=INTEGER},
+      </if>
+      <if test="reqType != null">
+        #{reqType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDesc != null">
+        #{reqDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="reqTime != null">
+        #{reqTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckName != null">
+        #{reqCheckName,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckRole != null">
+        #{reqCheckRole,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckRoleId != null">
+        #{reqCheckRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpName != null">
+        #{reqDoEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpId != null">
+        #{reqDoEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpPostname != null">
+        #{reqDoEmpPostname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainRequireUser">
+    update tb_require_user
+    <set>
+      <if test="reqType != null">
+        req_type = #{reqType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDesc != null">
+        req_desc = #{reqDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="reqTime != null">
+        req_time = #{reqTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckName != null">
+        req_check_name = #{reqCheckName,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckRole != null">
+        req_check_role = #{reqCheckRole,jdbcType=VARCHAR},
+      </if>
+      <if test="reqCheckRoleId != null">
+        req_check_role_id = #{reqCheckRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpName != null">
+        req_do_emp_name = #{reqDoEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpId != null">
+        req_do_emp_id = #{reqDoEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDoEmpPostname != null">
+        req_do_emp_postname = #{reqDoEmpPostname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where req_id = #{reqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainRequireUser">
+    update tb_require_user
+    set req_type = #{reqType,jdbcType=VARCHAR},
+      req_desc = #{reqDesc,jdbcType=VARCHAR},
+      req_time = #{reqTime,jdbcType=VARCHAR},
+      req_check_name = #{reqCheckName,jdbcType=VARCHAR},
+      req_check_role = #{reqCheckRole,jdbcType=VARCHAR},
+      req_check_role_id = #{reqCheckRoleId,jdbcType=VARCHAR},
+      req_do_emp_name = #{reqDoEmpName,jdbcType=VARCHAR},
+      req_do_emp_id = #{reqDoEmpId,jdbcType=VARCHAR},
+      req_do_emp_postname = #{reqDoEmpPostname,jdbcType=VARCHAR}
+    where req_id = #{reqId,jdbcType=INTEGER}
+  </update>
+</mapper>

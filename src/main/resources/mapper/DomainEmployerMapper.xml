@@ -5,11 +5,11 @@
     <constructor>
       <idArg column="employer_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="employer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="employer_pwd" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="employer_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_age" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_address" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="employer_telnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="employer_telnum" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_postname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_field" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="employer_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -26,6 +26,12 @@
     from tb_employer
     where employer_id = #{employerId,jdbcType=INTEGER}
   </select>
+  <select id="selectByTelNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_employer
+    where employer_telnum = #{employerTelnum,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_employer
     where employer_id = #{employerId,jdbcType=INTEGER}
@@ -35,9 +41,9 @@
       employer_age, employer_idcard, employer_address, 
       employer_telnum, employer_postname, employer_field, 
       employer_desc, employer_role)
-    values (#{employerId,jdbcType=INTEGER}, #{employerName,jdbcType=VARCHAR}, #{employerPwd,jdbcType=INTEGER}, 
+    values (#{employerId,jdbcType=INTEGER}, #{employerName,jdbcType=VARCHAR}, #{employerPwd,jdbcType=VARCHAR},
       #{employerAge,jdbcType=VARCHAR}, #{employerIdcard,jdbcType=VARCHAR}, #{employerAddress,jdbcType=VARCHAR}, 
-      #{employerTelnum,jdbcType=INTEGER}, #{employerPostname,jdbcType=VARCHAR}, #{employerField,jdbcType=VARCHAR}, 
+      #{employerTelnum,jdbcType=VARCHAR}, #{employerPostname,jdbcType=VARCHAR}, #{employerField,jdbcType=VARCHAR}, 
       #{employerDesc,jdbcType=VARCHAR}, #{employerRole,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainEmployer">
@@ -85,7 +91,7 @@
         #{employerName,jdbcType=VARCHAR},
       </if>
       <if test="employerPwd != null">
-        #{employerPwd,jdbcType=INTEGER},
+        #{employerPwd,jdbcType=VARCHAR},
       </if>
       <if test="employerAge != null">
         #{employerAge,jdbcType=VARCHAR},
@@ -97,7 +103,7 @@
         #{employerAddress,jdbcType=VARCHAR},
       </if>
       <if test="employerTelnum != null">
-        #{employerTelnum,jdbcType=INTEGER},
+        #{employerTelnum,jdbcType=VARCHAR},
       </if>
       <if test="employerPostname != null">
         #{employerPostname,jdbcType=VARCHAR},
@@ -120,7 +126,7 @@
         employer_name = #{employerName,jdbcType=VARCHAR},
       </if>
       <if test="employerPwd != null">
-        employer_pwd = #{employerPwd,jdbcType=INTEGER},
+        employer_pwd = #{employerPwd,jdbcType=VARCHAR},
       </if>
       <if test="employerAge != null">
         employer_age = #{employerAge,jdbcType=VARCHAR},
@@ -132,7 +138,7 @@
         employer_address = #{employerAddress,jdbcType=VARCHAR},
       </if>
       <if test="employerTelnum != null">
-        employer_telnum = #{employerTelnum,jdbcType=INTEGER},
+        employer_telnum = #{employerTelnum,jdbcType=VARCHAR},
       </if>
       <if test="employerPostname != null">
         employer_postname = #{employerPostname,jdbcType=VARCHAR},
@@ -152,11 +158,11 @@
   <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainEmployer">
     update tb_employer
     set employer_name = #{employerName,jdbcType=VARCHAR},
-      employer_pwd = #{employerPwd,jdbcType=INTEGER},
+      employer_pwd = #{employerPwd,jdbcType=VARCHAR},
       employer_age = #{employerAge,jdbcType=VARCHAR},
       employer_idcard = #{employerIdcard,jdbcType=VARCHAR},
       employer_address = #{employerAddress,jdbcType=VARCHAR},
-      employer_telnum = #{employerTelnum,jdbcType=INTEGER},
+      employer_telnum = #{employerTelnum,jdbcType=VARCHAR},
       employer_postname = #{employerPostname,jdbcType=VARCHAR},
       employer_field = #{employerField,jdbcType=VARCHAR},
       employer_desc = #{employerDesc,jdbcType=VARCHAR},

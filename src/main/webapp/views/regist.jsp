@@ -21,14 +21,32 @@
 </head>
 <body class="login-wrap">
 <div class="login-container">
-    <form class="login-form" id="form">
+    <form class="login-form" id="registform">
         <div class="input-group">
             <center>基于SSM的家政服务管理平台</center>
         </div>
-        <div class="input-group">
+        <div class="input-group" >
+            <select id="rolename" name = "rolename" class="input-field"  class="input-field">
+                <option value="">请选择角色</option>
+                <option value="1">管理人员</option>
+                <option value="3">普通用户</option>
+                <option value="2">从业人员</option>
+            </select>
             <input type="text" id="telnum" name = "telnum" class="input-field">
             <label for="telnum" class="input-label">
                 <span class="label-title">手机号</span>
+            </label>
+        </div>
+        <div class="input-group">
+            <input type="text" id="username" name = "username" class="input-field">
+            <label for="username" class="input-label">
+                <span class="label-title">用户名</span>
+            </label>
+        </div>
+        <div class="input-group">
+            <input type="text" id="age" name="age" class="input-field">
+            <label for="age" class="input-label">
+                <span class="label-title">年龄</span>
             </label>
         </div>
         <div class="input-group">
@@ -38,12 +56,11 @@
             </label>
         </div>
         <span id="msg" style="font-size:14px;color:red"></span><br />
-        <button type="submit" class="login-button" id="login-button">登录<i class="ai ai-enter"></i></button></br>
-        <button type="button" class="login-button" id="regist_button">注册<i class="ai ai-enter"></i></button>
+        <button class="login-button" id="regist_button">注册<i class="ai ai-enter"></i></button>
     </form>
 </div>
 </body>
 <script src="<%=basePath%>views/assets/jquery-1.9.1.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.js"></script>
-<script src="<%=basePath%>views/js/login.js" data-main="login"></script>
+<script src="<%=basePath%>views/js/regist.js" data-main="regist"></script>
 </html>

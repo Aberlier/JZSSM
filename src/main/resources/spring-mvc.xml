@@ -41,6 +41,10 @@
             <mvc:exclude-mapping path="/views/lay/**" />
             <mvc:exclude-mapping path="/register" />
             <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/login_page" />
+            <mvc:exclude-mapping path="/regist" />
+            <mvc:exclude-mapping path="/regist_page"/>
+
             <!--<mvc:exclude-mapping path="/home/**" />-->
             <bean class="com.jzssm.fhf.utils.TokenIntercepter"></bean>
         </mvc:interceptor>

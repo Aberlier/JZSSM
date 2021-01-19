@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainMsgMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainMsg">
+    <constructor>
+      <idArg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="msg_respon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="respon_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="respon_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    msg_id, user_id, msg_content, create_time, msg_respon, respon_id, respon_role
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_msg
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_msg
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    insert into tb_msg (msg_id, user_id, msg_content, 
+      create_time, msg_respon, respon_id, 
+      respon_role)
+    values (#{msgId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{msgContent,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{msgRespon,jdbcType=VARCHAR}, #{responId,jdbcType=INTEGER}, 
+      #{responRole,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    insert into tb_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="msgRespon != null">
+        msg_respon,
+      </if>
+      <if test="responId != null">
+        respon_id,
+      </if>
+      <if test="responRole != null">
+        respon_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgRespon != null">
+        #{msgRespon,jdbcType=VARCHAR},
+      </if>
+      <if test="responId != null">
+        #{responId,jdbcType=INTEGER},
+      </if>
+      <if test="responRole != null">
+        #{responRole,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    update tb_msg
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgRespon != null">
+        msg_respon = #{msgRespon,jdbcType=VARCHAR},
+      </if>
+      <if test="responId != null">
+        respon_id = #{responId,jdbcType=INTEGER},
+      </if>
+      <if test="responRole != null">
+        respon_role = #{responRole,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    update tb_msg
+    set user_id = #{userId,jdbcType=INTEGER},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      msg_respon = #{msgRespon,jdbcType=VARCHAR},
+      respon_id = #{responId,jdbcType=INTEGER},
+      respon_role = #{responRole,jdbcType=VARCHAR}
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+</mapper>
