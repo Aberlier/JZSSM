@@ -125,6 +125,19 @@ public class AdminController {
 
     }
 
+    @RequestMapping(value = "/updateUserBefore", method = POST)
+    @ResponseBody
+    @ApiOperation(value = "修改用户信息跳转修改页", httpMethod = "POST", notes = "修改用户信息跳转修改页")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public ModelAndView updateUserBefore(@RequestParam String id) {
+        DomainUser domainUser = userService.selectByPrimaryKey(Integer.parseInt(id));
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("domainUser", domainUser);
+        modelAndView.setViewName("addEmp");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = "/deleteUser", method = POST)
     @ResponseBody

@@ -37,29 +37,32 @@
             <p>用户管理 > <span>用户列表</span></p>
         </div>
         <div class="mbrt layui-col-xs6 layui-col-md6">
-            <a href="05发布职位1.html" class="layui-btn layui-btn-normal">发布职位</a>
+            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加用户需求</a>
         </div>
     </div>
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
+
             <div class="sortbox layui-form">
+
                 <div class="layui-form-item">
-                <div class="layui-table-cell laytable-cell-1-0-10">
-                    <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
-                </div>
+
                     <label class="layui-form-label">按需求筛选</label>
                     <div class="layui-input-inline">
                         <select name="interest" lay-filter="aihao">
                             <option value=""></option>
-                            <option value="0">河南白象</option>
-                            <option value="1" selected="">蜜雪冰城</option>
-                            <option value="2">河南卓聘企业信息咨询有限公司</option>
-                            <option value="3">音乐</option>
-                            <option value="4">旅行</option>
+                            <option value="保安">保安</option>
+                            <option value="1" selected="">保洁</option>
+                            <option value="2">保镖</option>
+                            <option value="3">护工</option>
+                            <option value="4">月嫂</option>
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class="layui-table-cell laytable-cell-1-2-3">
+                <a class="layui-btn layui-btn-danger layui-btn-xs delete" onclick="deleteAll('<%=loginId%>','<%=param%>')">批量删除</a>
             </div>
             <div class="table-responsive">
 
@@ -91,7 +94,7 @@
                             <td>${user.user_id}</td>
                             <td>${user.user_name}</td>
                             <td>${user.user_telnum}</td>
-                            <td>${user.user_demand}</td>
+                            <td name="aihao">${user.user_demand}</td>
                            <%-- <td class="layui-form">
                                 <input id = "switch" type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
                             </td>--%>
@@ -121,7 +124,7 @@
                             <td>
                                 <div class="layui-table-cell laytable-cell-1-0-10">
                                     <a href="<%=basePath%>/views/pages/userDetail.jsp" class="layui-btn layui-btn-xs">查看</a>
-                                    <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs" onclick="updateUser(${user.user_id})">修改</a>
                                     <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne" onclick="deleteOne(${user.user_id})">删除</a>
                                 </div>
                             </td>

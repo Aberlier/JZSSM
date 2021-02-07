@@ -1,5 +1,7 @@
 layui.use(['laypage', 'layer','form'], function () {
     var limit = 10;
+    var loginId;
+    var token;
     var total;
     var page = 1;
     var element = layui.element;
@@ -63,7 +65,7 @@ $('#fabu').on('click', function () {
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'addUser.jsp',
+            content: 'views/pages/addUser.jsp',
             end: function () {
                 location.reload();
             }
@@ -71,25 +73,39 @@ $('#fabu').on('click', function () {
     });
 })
 
-
+//删除单条信息
 function deleteOne(id) {
     layer.confirm('确定要删除该用户信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
-        alert(id);
-    $.ajax({
-        type:'post',
-        url:'${pageContext.request.contextPath}/accessory/deleteList.action',
-        data:{"arrays":myArray,"fruitId":fruitId},//数据为id数组
-        traditional:true,
-        success:function(data){
-            //成功后刷新界面
-            alert("删除成功！");
-            location.reload();
-        }
-    });
-}, function () {
+        $.ajax({
+            type:'post',
+            url:'${pageContext.request.contextPath}/accessory/deleteList.action',
+            data:id,//数据为id数组
+            traditional:true,
+            success:function(data){
+                //成功后刷新界面
+                alert("删除成功！");
+                location.reload();
+            }
+        });
+    }, function () {
         layer.msg('已取消', {icon: 2});
+    });
+}
+//修改信息
+function updateUser(id) {
+    layer.alert('确定要修改用户信息？', function () {
+        $.ajax({
+            type:'post',
+            url:'${pageContext.request.contextPath}/adminController/updateUserBefore',
+            data:id,//数据为id数组
+            traditional:true,
+            success:function(data){
+                //成功后刷新界面
+                location.reload();
+            }
+        });
     });
 }
 //获取所有要删除的数据
@@ -101,54 +117,60 @@ function checkAll(obj) {
     }
 }
 //判断弹框
-$(".delete").click(function () {
-    layer.confirm('确定要删除该用户信息？', {
-        btn: ['是', '否'] //按钮
-    }, function () {
-        if ($('#table tbody tr').length === 1) {
-            layer.msg('只有一条不允许删除。', {
-                time : 2000
-            });
-        } else {
-            var myArray=new Array();
-            var len=0;
-            var fruitId=document.getElementById("aFruitId").value;
-            var arrays=document.getElementsByName("arrays");//获取所有check选项
-            for(var i=0;i<arrays.length;i++){
-                if(arrays[i].checked){
-                    myArray[len++]=arrays[i].value;
-                }
-            }
-            $.ajax({
-                url: "${pageContext.request.contextPath}/adminController/deleteUser?loginId=<%=loginId%>&token=<%=param%>",
-                type: "post",
-                data:{"arrays":myArray},//数据为id数组
-                dataType: "json",
-                cache: false,
-                traditional:true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                beforeSend: function () {
-                },
-                complete: function () {
-                },
-                success: function (result) {
-                    if (result.code == 200) {
-                        ayer.msg('已删除', {icon: 1});
-                    } else {
-                        ayer("删除失败！错误代码："+result.message,{icon: 2});
+var deleteAll = function (loginId,token) {
+    var loginId = loginId;
+    var token = token;
+    var myArray=new Array();
+    var len=0;
+    var arrays=document.getElementsByName("arrays");//获取所有check
+    if(arrays[0].checked){
+        layer.confirm('确定要删除该用户信息？', {
+            btn: ['是', '否'] //按钮
+        }, function () {
+            if ($('#table tbody tr').length === 1) {
+                layer.msg('只有一条不允许删除。', {
+                    time : 2000
+                });
+            } else {
+                for(var i=0;i<arrays.length;i++){
+                    if(arrays[i].checked){
+                        myArray[len++]=arrays[i].value;
                     }
-                }, error: function (result) {
-                    alert("网络连接失败！" + result.resultCode);
                 }
-            });
-        }
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/adminController/deleteUser?loginId="+loginId+"&token="+token,
+                    type: "post",
+                    data:{"arrays":myArray},//数据为id数组
+                    dataType: "json",
+                    cache: false,
+                    traditional:true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function () {
+                    },
+                    complete: function () {
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            layer.msg('已删除', {icon: 1});
+                        } else {
+                            layer("删除失败！错误代码："+result.message,{icon: 2});
+                        }
+                    }, error: function (result) {
+                        alert("网络连接失败！" + result.resultCode);
+                    }
+                });
+            }
 
-    }, function () {
-        layer.msg('已取消', {icon: 2});
-    });
-})
+        }, function () {
+            layer.msg('已取消', {icon: 2});
+        });
+    }else {
+        layer.msg("请选择要删除的信息!",{icon: 2});
+    }
+
+}
 
 layui.use('form', function () {
     var form = layui.form;
