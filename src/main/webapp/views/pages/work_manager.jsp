@@ -105,7 +105,7 @@
                         <td><a class="layui-btn layui-btn-primary layui-btn-xs">取消置顶</a></td>
                         <td>
                             <div class="layui-table-cell laytable-cell-1-0-10">
-                                <a href="07职位管理-详情.html" class="layui-btn  layui-btn-xs">查看</a>
+                                <a href="workDetail.jsp" class="layui-btn  layui-btn-xs">查看</a>
                                 <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
                                 <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
                             </div>
@@ -151,7 +151,7 @@
                 shadeClose: true,
                 shade: 0.8,
                 area: ['660px', '420px'],
-                content: '02任务发布-发布任务.html',
+                content: 'addWork.jsp',
                 end: function () {
                     location.reload();
                 }

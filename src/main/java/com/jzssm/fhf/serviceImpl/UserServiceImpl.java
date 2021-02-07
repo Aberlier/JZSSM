@@ -1,11 +1,16 @@
 package com.jzssm.fhf.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.dao.DomainUserMapper;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ：Angular
@@ -21,14 +26,15 @@ public class UserServiceImpl implements UserService {
     DomainUserMapper domainUserMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer userId) {
-
-        return 0;
+    public Boolean deleteByPrimaryKey(String userId) {
+        int index = domainUserMapper.deleteByPrimaryKey(userId);
+        return index > 0 ? true : false;
     }
 
     @Override
-    public int insert(DomainUser record) {
-        return domainUserMapper.insert(record);
+    public Boolean insert(DomainUser record) {
+        int index = domainUserMapper.insert(record);
+        return index > 0 ? true : false;
     }
 
     @Override
@@ -52,7 +58,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateByPrimaryKey(DomainUser record) {
+    public Boolean updateByPrimaryKey(DomainUser record) {
+        int index = domainUserMapper.updateByPrimaryKey(record);
+        return index > 0 ? true : false;
+    }
+
+
+    @Override
+    public long counts() {
         return 0;
     }
+
+    @Override
+    public PageInfo<DomainUser> finds(Params params) {
+
+        //查询
+        int pageNo = params.getPageNo();
+        int pageSize = params.getPageSize();
+
+        PageHelper.startPage(pageNo, pageSize);
+        List<DomainUser> blogs = domainUserMapper.selectAllUserData();
+        //用PageInfo对结果进行包装
+        PageInfo<DomainUser> pageInfo = new PageInfo<DomainUser>(blogs);
+
+        return pageInfo;
+
+    }
+
+
 }

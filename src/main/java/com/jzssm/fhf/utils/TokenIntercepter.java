@@ -18,17 +18,18 @@ import java.io.PrintWriter;
  * @version: v1.0.0$
  */
 public class TokenIntercepter implements HandlerInterceptor {
+    //第一个函数是预处理函数，比如而欧美让你用于拦截登陆时亚视第一个工作的
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
         //从原来的headers里改到普通
 //        String token = request.getHeader("token");
         String token = request.getParameter("token");
+        String loginId = request.getParameter("loginId");
         ResponseData responseData = ResponseData.ok();
-        //token不存在
+        //token存在
         if(null != token) {
             DomainUser domainUser = JWT.unsign(token, DomainUser.class);
-            String loginId = request.getParameter("loginId");
             //解密token后的loginId与用户传来的loginId不一致，一般都是token过期
             if(null != loginId && null != domainUser) {
                 if(Integer.parseInt(loginId) == domainUser.getUserId()) {

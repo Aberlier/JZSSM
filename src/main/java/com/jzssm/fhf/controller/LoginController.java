@@ -63,6 +63,9 @@ public class LoginController {
             String token = JWT.sign(loginUser, 60L * 1000L * 30L);
             //封装成对象返回给客户端
             session.setAttribute("user",loginUser);
+            session.setAttribute("loginId", loginUser.getUserId());
+            session.setAttribute("token", token);
+            
             responseData.putDataValue("loginId", loginUser.getUserId());
             responseData.putDataValue("token", token);
             responseData.putDataValue("user", loginUser);
@@ -149,8 +152,8 @@ public class LoginController {
                 user.setUserPwd(MD5Util.getMD5String(password));
                 user.setUserRole(roleName + "");
                 user.setUserTelnum(telnum);
-                int index = userService.insert(user);
-                if (index > 0) {
+                Boolean index = userService.insert(user);
+                if (index) {
                     responseData.putDataValue("code", 200);
                     responseData.putDataValue("msg", "注册成功");
                 } else {

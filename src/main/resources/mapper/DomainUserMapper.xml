@@ -31,7 +31,7 @@
     from tb_user
     where user_telnum = #{userTelnum,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
@@ -159,5 +159,18 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-
+  <select id="selectAllUserData" resultType="java.util.HashMap" parameterType="com.jzssm.fhf.entity.DomainUser">
+    select
+    <include refid="Base_Column_List" />
+    from tb_user
+  </select>
+  <!--  <if test="user_telnum != null">
+        where user_telnum = #{userTelnum,jdbcType=VARCHAR}
+      </if>
+      <if test="userDemand != null">
+        and user_demand = #{userDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="userUrgent != null">
+        and user_urgent = #{userUrgent,jdbcType=VARCHAR}
+      </if>-->
 </mapper>

@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
+<%
+    String param = (String)session.getAttribute("token");
+    Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -62,7 +66,7 @@
                         <em>用户管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>views/pages/user_manager.jsp">用户列表</a></dd>
+                        <dd><a href="<%=basePath%>userController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>
                         <dd><a href="<%=basePath%>views/pages/05发布职位1.html">发布职位</a></dd>
                         <dd><a href="<%=basePath%>views/pages/07职位管理.html">职位管理</a></dd>
                     </dl>

@@ -1,5 +1,7 @@
 package com.jzssm.fhf.service;
 
+import com.github.pagehelper.PageInfo;
+import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.entity.DomainUser;
 
 /**
@@ -10,9 +12,9 @@ import com.jzssm.fhf.entity.DomainUser;
  * @version: v1.0.0$
  */
 public interface UserService {
-    int deleteByPrimaryKey(Integer userId);
+    Boolean deleteByPrimaryKey(String userId);
 
-    int insert(DomainUser record);
+    Boolean insert(DomainUser record);
 
     int insertSelective(DomainUser record);
 
@@ -22,5 +24,14 @@ public interface UserService {
 
     int updateByPrimaryKeySelective(DomainUser record);
 
-    int updateByPrimaryKey(DomainUser record);
+    Boolean updateByPrimaryKey(DomainUser record);
+
+    /**
+     2      * 分页查询
+     3      * @param params 分页参数 pageNo（页码），pageSize（每页查询数目）
+     4      * @return
+     5      */
+    public PageInfo<DomainUser> finds(Params params);
+
+    long counts();
 }

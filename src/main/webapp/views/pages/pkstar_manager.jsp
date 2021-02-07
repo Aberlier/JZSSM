@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
+<%
+    String s2 = (String)request.getParameter("pageInfo");//获取后台参数给s2变量，<%%>表示这范围内是服务器解析的语言
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
