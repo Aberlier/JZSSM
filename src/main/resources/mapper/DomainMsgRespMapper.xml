@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzssm.fhf.dao.DomainMsgRespMapper">
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainMsgResp">
+    <constructor>
+      <idArg column="res_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="res_msg" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="res_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="res_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    res_id, res_msg, res_role, res_time, msg_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_msg_response
+    where res_id = #{resId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_msg_response
+    where res_id = #{resId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
+    insert into tb_msg_response (res_id, res_msg, res_role, 
+      res_time, msg_id)
+    values (#{resId,jdbcType=INTEGER}, #{resMsg,jdbcType=VARCHAR}, #{resRole,jdbcType=VARCHAR}, 
+      #{resTime,jdbcType=TIMESTAMP}, #{msgId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
+    insert into tb_msg_response
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resId != null">
+        res_id,
+      </if>
+      <if test="resMsg != null">
+        res_msg,
+      </if>
+      <if test="resRole != null">
+        res_role,
+      </if>
+      <if test="resTime != null">
+        res_time,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resId != null">
+        #{resId,jdbcType=INTEGER},
+      </if>
+      <if test="resMsg != null">
+        #{resMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="resRole != null">
+        #{resRole,jdbcType=VARCHAR},
+      </if>
+      <if test="resTime != null">
+        #{resTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
+    update tb_msg_response
+    <set>
+      <if test="resMsg != null">
+        res_msg = #{resMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="resRole != null">
+        res_role = #{resRole,jdbcType=VARCHAR},
+      </if>
+      <if test="resTime != null">
+        res_time = #{resTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where res_id = #{resId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
+    update tb_msg_response
+    set res_msg = #{resMsg,jdbcType=VARCHAR},
+      res_role = #{resRole,jdbcType=VARCHAR},
+      res_time = #{resTime,jdbcType=TIMESTAMP},
+      msg_id = #{msgId,jdbcType=VARCHAR}
+    where res_id = #{resId,jdbcType=INTEGER}
+  </update>
+</mapper>

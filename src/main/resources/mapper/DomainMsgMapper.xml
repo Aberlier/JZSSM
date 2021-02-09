@@ -4,6 +4,86 @@
   <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainMsg">
     <constructor>
       <idArg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_name" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    msg_id, msg_name, msg_content, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_msg
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_msg
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    insert into tb_msg (msg_id, msg_name, msg_content, 
+      create_time)
+    values (#{msgId,jdbcType=INTEGER}, #{msgName,jdbcType=INTEGER}, #{msgContent,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    insert into tb_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="msgName != null">
+        msg_name,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgId != null">
+        #{msgId,jdbcType=INTEGER},
+      </if>
+      <if test="msgName != null">
+        #{msgName,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    update tb_msg
+    <set>
+      <if test="msgName != null">
+        msg_name = #{msgName,jdbcType=INTEGER},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainMsg">
+    update tb_msg
+    set msg_name = #{msgName,jdbcType=INTEGER},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where msg_id = #{msgId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.jzssm.fhf.entity.DomainMsg">
+    <constructor>
+      <idArg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="msg_content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />

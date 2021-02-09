@@ -5,26 +5,17 @@ import java.util.Date;
 public class DomainMsg {
     private Integer msgId;
 
-    private Integer userId;
+    private Integer msgName;
 
     private String msgContent;
 
     private Date createTime;
 
-    private String msgRespon;
-
-    private Integer responId;
-
-    private String responRole;
-
-    public DomainMsg(Integer msgId, Integer userId, String msgContent, Date createTime, String msgRespon, Integer responId, String responRole) {
+    public DomainMsg(Integer msgId, Integer msgName, String msgContent, Date createTime) {
         this.msgId = msgId;
-        this.userId = userId;
+        this.msgName = msgName;
         this.msgContent = msgContent;
         this.createTime = createTime;
-        this.msgRespon = msgRespon;
-        this.responId = responId;
-        this.responRole = responRole;
     }
 
     public DomainMsg() {
@@ -39,12 +30,12 @@ public class DomainMsg {
         this.msgId = msgId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getMsgName() {
+        return msgName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setMsgName(Integer msgName) {
+        this.msgName = msgName;
     }
 
     public String getMsgContent() {
@@ -61,29 +52,5 @@ public class DomainMsg {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public String getMsgRespon() {
-        return msgRespon;
-    }
-
-    public void setMsgRespon(String msgRespon) {
-        this.msgRespon = msgRespon == null ? null : msgRespon.trim();
-    }
-
-    public Integer getResponId() {
-        return responId;
-    }
-
-    public void setResponId(Integer responId) {
-        this.responId = responId;
-    }
-
-    public String getResponRole() {
-        return responRole;
-    }
-
-    public void setResponRole(String responRole) {
-        this.responRole = responRole == null ? null : responRole.trim();
     }
 }

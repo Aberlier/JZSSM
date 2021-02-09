@@ -103,9 +103,10 @@ public class UserController {
         return map;
     }*/
 
-    private String checkStringIsEmpty(String param){
-        return param==null?null:(param.equals("")?null:"%"+param+"%");
+    private String checkStringIsEmpty(String param) {
+        return param == null ? null : (param.equals("") ? null : "%" + param + "%");
     }
+
     /**
      * ajax请求 的 分页查询
      *
