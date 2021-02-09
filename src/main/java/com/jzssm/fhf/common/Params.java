@@ -14,7 +14,7 @@ package com.jzssm.fhf.common;
 public class Params {
 
     private Integer pageSize = 10;
-    private Integer pageNo = 0;
+    private Integer pageNo = 1;
 
 
     public Integer getPageNo() {

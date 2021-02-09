@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/"; %>
 <%
-    String param = (String)session.getAttribute("token");
+    String param = (String) session.getAttribute("token");
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
 %>
 <!DOCTYPE html>
@@ -62,7 +62,9 @@
                 </div>
             </div>
             <div class="layui-table-cell laytable-cell-1-2-3">
-                <a class="layui-btn layui-btn-danger layui-btn-xs delete" onclick="deleteAll('<%=loginId%>','<%=param%>')">批量删除</a>
+                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
+                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
+                   onclick="deleteAll('<%=loginId%>','<%=param%>')">批量删除</a>
             </div>
             <div class="table-responsive">
 
@@ -86,78 +88,98 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${userlist}" var="user">
-                    <form class="layui-form" action="">
-                        <tr>
-                            <td class="layui-input-block">
-                                <input type="checkbox" name="arrays" lay-skin="primary" title=""  value="${user.user_id}">
-                            </td>
-                            <td>${user.user_id}</td>
-                            <td>${user.user_name}</td>
-                            <td>${user.user_telnum}</td>
-                            <td name="aihao">${user.user_demand}</td>
-                           <%-- <td class="layui-form">
-                                <input id = "switch" type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                            </td>--%>
+                        <form class="layui-form" action="">
+                            <tr>
+                                <td class="layui-input-block">
+                                    <input type="checkbox" name="arrays" lay-skin="primary" title=""
+                                           value="${user.user_id}">
+                                </td>
+                                <td>${user.user_id}</td>
+                                <td>${user.user_name}</td>
+                                <td>${user.user_telnum}</td>
 
-                            <c:if test="${user.user_urgent == 1 }">
-                                <td class="layui-form">
-                                    <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                </td>
-                            </c:if>
-                            <c:if test="${user.user_urgent == 0 }">
-                                <td class="layui-form">
-                                    <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                </td>
-                            </c:if>
-                            <td>${user.user_address}</td>
-                            <td>${user.user_dispatch_address}</td>
-                            <c:if test="${user.user_role == 3 }">
-                                <td>平台用户</td>
-                            </c:if><c:if test="${user.user_role == 2 }">
+                                <td><c:if test="${user.user_demand==1}">
+                                    <option value="1">保安</option>
+                                </c:if>
+                                    <c:if test="${user.user_demand==2}">
+                                        <option value="2">保洁</option>
+                                    </c:if>
+                                    <c:if test="${user.user_demand==3}">
+                                        <option value="3">保镖</option>
+                                    </c:if>
+                                    <c:if test="${user.user_demand==4}">
+                                        <option value="4">护工</option>
+                                    </c:if>
+                                    <c:if test="${user.user_demand==5}">
+                                        <option value="5">月嫂</option>
+                                    </c:if></td>
+                                    <%-- <td class="layui-form">
+                                         <input id = "switch" type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+                                     </td>--%>
+
+                                <c:if test="${user.user_urgent == 1 }">
+                                    <td class="layui-form">
+                                        <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest"
+                                               lay-text="ON|OFF">
+                                    </td>
+                                </c:if>
+                                <c:if test="${user.user_urgent == 2 }">
+                                    <td class="layui-form">
+                                        <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest"
+                                               lay-text="ON|OFF">
+                                    </td>
+                                </c:if>
+                                <td>${user.user_address}</td>
+                                <td>${user.user_dispatch_address}</td>
+                                <c:if test="${user.user_role == 3 }">
+                                    <td>平台用户</td>
+                                </c:if><c:if test="${user.user_role == 2 }">
                                 <td>从业职工</td>
                             </c:if><c:if test="${user.user_role == 1 }">
                                 <td>管理员</td>
                             </c:if>
 
-                            <td>${user.user_other_desc}</td>
-                          <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
-                            <td>
-                                <div class="layui-table-cell laytable-cell-1-0-10">
-                                    <a href="<%=basePath%>/views/pages/userDetail.jsp" class="layui-btn layui-btn-xs">查看</a>
-                                    <a class="layui-btn layui-btn-normal layui-btn-xs" onclick="updateUser(${user.user_id})">修改</a>
-                                    <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne" onclick="deleteOne(${user.user_id})">删除</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </form>
+                                <td>${user.user_other_desc}</td>
+                                    <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
+                                <td>
+                                    <div class="layui-table-cell laytable-cell-1-0-10">
+                                        <a href="<%=basePath%>/views/pages/userDetail.jsp"
+                                           class="layui-btn layui-btn-xs">查看</a>
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                           onclick="updateUser('${user.user_id}','<%=loginId%>','<%=param%>')">修改</a>
+                                        <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
+                                           onclick="deleteOne(${user.user_id},'<%=loginId%>','<%=param%>')">删除</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
                     </c:forEach>
 
-<%--
-                    <tr>
-                        <td class="layui-form">
-                            <input type="checkbox" name="" lay-skin="primary" title="">
-                        </td>
-                        <td>人事专员</td>
-                        <td>河南卓聘企业信息咨询有限公司</td>
-                        <td>5</td>
-                        <td>2000</td>
-                        <td>2019-11-29</td>
-                        <td class="layui-form">
-                            <input type="checkbox" name="close" lay-skin="switch" lay-filter="switchTest">
-                        </td>
-                        <td><a class="layui-btn layui-btn-primary layui-btn-xs">取消置顶</a></td>
-                        <td>
-                            <div class="layui-table-cell laytable-cell-1-0-10">
-                                <a href="07职位管理-详情.html" class="layui-btn  layui-btn-xs">查看</a>
-                                <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
-                                <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
-                            </div>
-                        </td>
-                    </tr>--%>
+                    <%--
+                                        <tr>
+                                            <td class="layui-form">
+                                                <input type="checkbox" name="" lay-skin="primary" title="">
+                                            </td>
+                                            <td>人事专员</td>
+                                            <td>河南卓聘企业信息咨询有限公司</td>
+                                            <td>5</td>
+                                            <td>2000</td>
+                                            <td>2019-11-29</td>
+                                            <td class="layui-form">
+                                                <input type="checkbox" name="close" lay-skin="switch" lay-filter="switchTest">
+                                            </td>
+                                            <td><a class="layui-btn layui-btn-primary layui-btn-xs">取消置顶</a></td>
+                                            <td>
+                                                <div class="layui-table-cell laytable-cell-1-0-10">
+                                                    <a href="07职位管理-详情.html" class="layui-btn  layui-btn-xs">查看</a>
+                                                    <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
+                                                    <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
+                                                </div>
+                                            </td>
+                                        </tr>--%>
                     </tbody>
                 </table>
             </div>
-
 
 
             <!--分页-->

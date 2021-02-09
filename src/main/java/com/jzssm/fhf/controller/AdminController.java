@@ -6,6 +6,7 @@ import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.AdminService;
 import com.jzssm.fhf.service.UserService;
+import com.jzssm.fhf.utils.MD5Util;
 import com.jzssm.fhf.utils.UuidTools;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -18,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -82,11 +85,11 @@ public class AdminController {
     @ResponseBody
     @ApiOperation(value = "添加用户信息", httpMethod = "POST", notes = "添加用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertUser(@RequestBody DomainUser domainUser) {
+    public Object insertUser( DomainUser domainUser) {
         domainUser.setUserId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainUser.setUserPwd(this.checkStringIsEmpty(domainUser.getUserPwd()));
+        domainUser.setUserPwd(this.checkStringIsEmpty(MD5Util.getMD5String(domainUser.getUserPwd())));
         domainUser.setUserAddress(this.checkStringIsEmpty(domainUser.getUserAddress()));
-        domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserAddress()));
+        domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserDemand()));
         domainUser.setUserDispatchAddress(this.checkStringIsEmpty(domainUser.getUserDispatchAddress()));
         domainUser.setUserName(this.checkStringIsEmpty(domainUser.getUserName()));
         domainUser.setUserOtherDesc(this.checkStringIsEmpty(domainUser.getUserOtherDesc()));
@@ -94,9 +97,9 @@ public class AdminController {
         domainUser.setUserTelnum(this.checkStringIsEmpty(domainUser.getUserTelnum()));
         domainUser.setUserUrgent(this.checkStringIsEmpty(domainUser.getUserUrgent()));
         if (userService.insert(domainUser)) {
-            return ResultUtil.success("修改成功！");
+            return ResultUtil.success("添加成功！");
         } else {
-            return ResultUtil.success("修改失败！");
+            return ResultUtil.success("添加失败！");
         }
     }
 
@@ -106,11 +109,11 @@ public class AdminController {
     @ApiOperation(value = "修改用户信息", httpMethod = "POST", notes = "修改用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateUser(@RequestBody DomainUser domainUser) {
+    public Object updateUser(DomainUser domainUser) {
         domainUser.setUserId(domainUser.getUserId());
-        domainUser.setUserPwd(this.checkStringIsEmpty(domainUser.getUserPwd()));
+        domainUser.setUserPwd(this.checkStringIsEmpty(MD5Util.getMD5String(domainUser.getUserPwd())));
         domainUser.setUserAddress(this.checkStringIsEmpty(domainUser.getUserAddress()));
-        domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserAddress()));
+        domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserDemand()));
         domainUser.setUserDispatchAddress(this.checkStringIsEmpty(domainUser.getUserDispatchAddress()));
         domainUser.setUserName(this.checkStringIsEmpty(domainUser.getUserName()));
         domainUser.setUserOtherDesc(this.checkStringIsEmpty(domainUser.getUserOtherDesc()));
@@ -125,17 +128,18 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "/updateUserBefore", method = POST)
+    @RequestMapping(value = "/updateUserBefore", method = GET)
     @ResponseBody
-    @ApiOperation(value = "修改用户信息跳转修改页", httpMethod = "POST", notes = "修改用户信息跳转修改页")
+    @ApiOperation(value = "修改用户信息跳转修改页", httpMethod = "GET", notes = "修改用户信息跳转修改页")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public ModelAndView updateUserBefore(@RequestParam String id) {
+    public Object updateUserBefore(@RequestParam String id, HttpSession session) {
         DomainUser domainUser = userService.selectByPrimaryKey(Integer.parseInt(id));
+        session.setAttribute("domainUser",domainUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("domainUser", domainUser);
-        modelAndView.setViewName("addEmp");
-        return modelAndView;
+        modelAndView.setViewName("views/pages/updateUser.jsp");
+        return ResultUtil.success(modelAndView);
     }
 
 
@@ -143,23 +147,31 @@ public class AdminController {
     @ResponseBody
     @ApiOperation(value = "删除用户信息", httpMethod = "POST", notes = "删除用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object deleteUser(@RequestParam String id, @RequestParam String[] arrays) {
+    public Object deleteUser(String id, String[] arrays) {
         Boolean index = null;
-        if (id != null && "".equals(id)) {
+        if (id != null && !"".equals(id)) {
             index = userService.deleteByPrimaryKey(id);
-        }
-        if (arrays.length > 0) {
+            if(index){
+                return ResultUtil.success("删除成功！");
+            }
+        } else {
             for (String str : arrays) {
                 index = userService.deleteByPrimaryKey(str);
+                if(index){
+                    return ResultUtil.success("删除成功！");
+                }
             }
         }
-        return ResultUtil.success("删除成功！");
+        return null;
     }
 
 
     private String checkStringIsEmpty(String param) {
-        return param == null ? null : (param.equals("") ? null : "%" + param + "%");
+        return param == null ? null : (param.equals("") ? null :param);
     }
+    /* private String checkStringIsEmpty(String param) {
+        return param == null ? null : (param.equals("") ? null : "%" + param + "%");
+    }*/
 
 
 }

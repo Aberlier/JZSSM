@@ -1,7 +1,7 @@
 package com.jzssm.fhf.common;
 
 public enum ResultCodeEnum {
-    FAIL(2,"失败"),SUCCESS(1,"成功");
+    FAIL(500,"失败"),SUCCESS(200,"成功");
     private Integer code;
     private String msg;
 

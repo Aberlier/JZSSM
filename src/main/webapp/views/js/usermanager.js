@@ -74,13 +74,13 @@ $('#fabu').on('click', function () {
 })
 
 //删除单条信息
-function deleteOne(id) {
+function deleteOne(id,loginId,token) {
     layer.confirm('确定要删除该用户信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
             type:'post',
-            url:'${pageContext.request.contextPath}/accessory/deleteList.action',
+            url:"adminController/deleteUser?loginId="+loginId+"&token="+token+"&id="+id,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){
@@ -94,16 +94,34 @@ function deleteOne(id) {
     });
 }
 //修改信息
-function updateUser(id) {
+function updateUser(id,loginId,token) {
     layer.alert('确定要修改用户信息？', function () {
         $.ajax({
-            type:'post',
-            url:'${pageContext.request.contextPath}/adminController/updateUserBefore',
-            data:id,//数据为id数组
+            type:'get',
+            url:'adminController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token,
+          /*  data:id,//数据为id数组*/
             traditional:true,
-            success:function(data){
-                //成功后刷新界面
-                location.reload();
+            success:function(result) {
+                if (result.code == 200) {
+                    var domainUser = result.data.model.domainUser
+                    var layer = layui.layer;
+                    layer.open({
+                        type: 2,
+                        title: '修改用户',
+                        fix: false,
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['660px', '420px'],
+                        content: result.data.viewName,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                    /* //成功后刷新界面
+                     location.reload();*/
+                }else {
+                    alert("修改失败！错误代码："+result.message,{icon: 2});
+                }
             }
         });
     });
@@ -117,7 +135,8 @@ function checkAll(obj) {
     }
 }
 //判断弹框
-var deleteAll = function (loginId,token) {
+
+function deleteAll (loginId,token) {
     var loginId = loginId;
     var token = token;
     var myArray=new Array();
@@ -138,7 +157,7 @@ var deleteAll = function (loginId,token) {
                     }
                 }
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/adminController/deleteUser?loginId="+loginId+"&token="+token,
+                    url: "adminController/deleteUser?loginId="+loginId+"&token="+token,
                     type: "post",
                     data:{"arrays":myArray},//数据为id数组
                     dataType: "json",

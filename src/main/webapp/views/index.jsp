@@ -66,7 +66,8 @@
                         <em>用户管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>userController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>
+<%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
+                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>
                         <dd><a href="<%=basePath%>views/pages/05发布职位1.html">发布职位</a></dd>
                         <dd><a href="<%=basePath%>views/pages/07职位管理.html">职位管理</a></dd>
                     </dl>
@@ -118,11 +119,12 @@
         </div>
     </div>
     <div class="layui-footer">
-        <p>© 2019 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+        <p>网络工程专业：<a href="http://www.mycodes.net/" target="_blank">冯贺飞</a></p>
     </div>
     <div class="mobile-mask"></div>
 </div>
 <script src="<%=basePath%>views/assets/layui.js"></script>
 <script src="<%=basePath%>views/js/home.js" data-main="home"></script>
+<script src="<%=basePath%>views/js/pageJs.js"></script>
 </body>
 </html>
