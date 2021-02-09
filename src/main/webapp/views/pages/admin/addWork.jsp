@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>发布职位1</title>
-    <link rel="stylesheet" href="../assets/css/layui.css">    
-    <link rel="stylesheet" href="../assets/css/view.css"/>
-    <link rel="stylesheet" href="../assets/css/admin.css"/>  
-    <link rel="stylesheet" href="../assets/css/style.css"/> 
+    <link rel="stylesheet" href="../../assets/css/layui.css">
+    <link rel="stylesheet" href="../../assets/css/view.css"/>
+    <link rel="stylesheet" href="../../assets/css/admin.css"/>
+    <link rel="stylesheet" href="../../assets/css/style.css"/>
 </head>
 <body class="layui-view-body">
     <div class="layui-content">
@@ -227,14 +227,14 @@
 					<div class="layui-form-item">
 					    <div class="layui-input-block">
 					    	<a href="javascript:;" class="layui-btn layui-btn-primary">清空重置</a>
-					        <a href="06发布职位2.html" class="layui-btn layui-btn-normal" >保存,下一步</a>
+					        <a href="../06发布职位2.html" class="layui-btn layui-btn-normal" >保存,下一步</a>
 					    </div>
 					  </div>
             </div>   
 		</div>
     </div>
-    <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/layui.all.js"></script>   
+    <script src="../../assets/jquery.min.js"></script>
+    <script src="../../assets/layui.all.js"></script>
     <script>
 	layui.use('layedit', function(){
 	  var layedit = layui.layedit;

@@ -67,17 +67,18 @@ public class AdminController {
 
         modelAndView.addObject("userlist", userlist);
         //当前页
-        modelAndView.addObject("pageNum", pageInfo.getPageNum());
+        modelAndView.addObject("currentPage", pageInfo.getPageNum());
         //每页的数量
         modelAndView.addObject("pageSize", pageInfo.getPageSize());
         //当前页的数量
-        modelAndView.addObject("size", pageInfo.getSize());
+        modelAndView.addObject("startPage", pageInfo.getSize());
         //总记录数
-        modelAndView.addObject("total", pageInfo.getTotal());
+        modelAndView.addObject("countNumber", pageInfo.getTotal());
+        //int sumPageNumber=countNumber%pageSize==0?(countNumber/pageSize):((countNumber/pageSize)+1);
         //总页数
-        modelAndView.addObject("pages", pageInfo.getPages());
+        modelAndView.addObject("sumPageNumber", pageInfo.getPages());
         modelAndView.addObject("couts", couts);
-        modelAndView.setViewName("views/pages/user_manager");
+        modelAndView.setViewName("views/pages/admin/user_manager");
         return modelAndView;
     }
 
@@ -138,7 +139,7 @@ public class AdminController {
         session.setAttribute("domainUser",domainUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("domainUser", domainUser);
-        modelAndView.setViewName("views/pages/updateUser.jsp");
+        modelAndView.setViewName("views/pages/admin/updateUser.jsp");
         return ResultUtil.success(modelAndView);
     }
 

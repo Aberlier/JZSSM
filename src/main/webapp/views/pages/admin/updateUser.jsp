@@ -161,7 +161,7 @@
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/updateuser.js"></script>
+<script src="<%=basePath%>views/js/admin/user/updateuser.js"></script>
 <script>
     layui.use('layedit', function () {
         var layedit = layui.layedit;

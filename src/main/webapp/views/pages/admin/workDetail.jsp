@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>职位管理</title>
-    <link rel="stylesheet" href="../assets/css/layui.css">    
-    <link rel="stylesheet" href="../assets/css/view.css"/>
-    <link rel="stylesheet" href="../assets/css/admin.css"/> 
-    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <link rel="stylesheet" href="../../assets/css/layui.css">
+    <link rel="stylesheet" href="../../assets/css/view.css"/>
+    <link rel="stylesheet" href="../../assets/css/admin.css"/>
+    <link rel="stylesheet" href="../../assets/css/style.css"/>
     <style type="text/css">
     	.layui-elem-quote{ font-size: 18px; margin-bottom: 20px;}
     	.layui-input-block img{ max-height: 160px; width: auto;}
@@ -169,7 +169,7 @@
 							    <div class="layui-inline">
 							        <label class="layui-form-label">企业logo</label>
 							        <div class="layui-input-block">
-							      		  <img src="../assets/images/banner01.png"/>
+							      		  <img src="../../assets/images/banner01.png"/>
 							        </div>
 							      </div>
 						  </div>
@@ -219,16 +219,16 @@
 					    <div class="layui-form-mid layui-word-aux">可选择多张图片上传</div>
 					    <div class="layui-input-block">						    	
 					       <div class="layui-upload">
-								  <img src="../assets/images/banner01.png" />
-								  <img src="../assets/images/banner02.png" />
+								  <img src="../../assets/images/banner01.png" />
+								  <img src="../../assets/images/banner02.png" />
 							</div>
 					    </div>							    
 					</div>				
 			</div>           
         </div>
     </div>
-    <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/layui.all.js"></script>    
+    <script src="../../assets/jquery.min.js"></script>
+    <script src="../../assets/layui.all.js"></script>
     <script>   	
 		layui.use('form', function(){
 		  var form = layui.form; 

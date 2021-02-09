@@ -33,7 +33,7 @@
             <p>职位管理 > <span>职位管理</span></p>
         </div>
         <div class="mbrt layui-col-xs6 layui-col-md6">
-            <a href="05发布职位1.html" class="layui-btn layui-btn-normal">发布职位</a>
+            <a href="../05发布职位1.html" class="layui-btn layui-btn-normal">发布职位</a>
         </div>
     </div>
     <!--面包屑导航-->
@@ -87,7 +87,7 @@
                         <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>
                         <td>
                             <div class="layui-table-cell laytable-cell-1-0-10">
-                                <a href="07职位管理-详情.html" class="layui-btn layui-btn-xs">查看</a>
+                                <a href="../07职位管理-详情.html" class="layui-btn layui-btn-xs">查看</a>
                                 <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
                                 <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
                             </div>
@@ -108,7 +108,7 @@
                         <td><a class="layui-btn layui-btn-primary layui-btn-xs">取消置顶</a></td>
                         <td>
                             <div class="layui-table-cell laytable-cell-1-0-10">
-                                <a href="07职位管理-详情.html" class="layui-btn  layui-btn-xs">查看</a>
+                                <a href="../07职位管理-详情.html" class="layui-btn  layui-btn-xs">查看</a>
                                 <a class="layui-btn layui-btn-normal layui-btn-xs">修改</a>
                                 <a class="layui-btn layui-btn-danger layui-btn-xs delete">删除</a>
                             </div>

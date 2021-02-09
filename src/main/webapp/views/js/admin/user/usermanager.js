@@ -65,7 +65,7 @@ $('#fabu').on('click', function () {
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/addUser.jsp',
+            content: 'views/pages/admin/addUser.jsp',
             end: function () {
                 location.reload();
             }
@@ -172,7 +172,7 @@ function deleteAll (loginId,token) {
                     },
                     success: function (result) {
                         if (result.code == 200) {
-                            layer.msg('已删除', {icon: 1});
+                            layer.msg('已删除', {icon: 1});s
                         } else {
                             layer("删除失败！错误代码："+result.message,{icon: 2});
                         }

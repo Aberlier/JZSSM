@@ -106,7 +106,7 @@
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/adduser.js"></script>
+<script src="<%=basePath%>views/js/admin/user/adduser.js"></script>
 <script>
     layui.use('layedit', function () {
         var layedit = layui.layedit;

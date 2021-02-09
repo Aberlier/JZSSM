@@ -1,85 +1,68 @@
 
-//加载完成
-// $(function(){
-//     getUserList(1,10,urll);//获取用户列表
-// });
-
-
-
-//自己封装获取数据方法s
-function getUserList(crr,lmt,urll){
-    //获取人才列表
-    $.ajax({
-        url: urll,
-        type: "post",
-        data:{
-            "pageNo":1,
-            "pageSize":10
-        },
-        dataType: "json",
-        cache: false,
-        xhrFields: {
-            withCredentials: true
-        },
-        success:function(res){
-            if(res.code==200){
-                console.log(res);
-                count=res.data.totalElements;//总记录
-                curr=res.data.number; //当前页
-                limit=res.data.size; //每页几个
-                var rclist=res.data.content;
-                var html='';
-                var len=rclist.length;
-
-                for (var i=0; i<len; i++){
-                    var htmlbuf='<tr>'+
-                        '<td style="text-align:center">'+rclist[i].name+'</td>'+
-                        '<td style="text-align:center">'+rclist[i].edu+'</td>'+
-                        '<td style="text-align:center">'+rclist[i].skill+'</td>'+
-                        '<td style="text-align:center">'+rclist[i].exp+'</td>'+
-                        '<td style="text-align:center">'+rclist[i].add+'</td>'+
-                        '<td style="text-align:center">'+rclist[i].tel+'</td>'+
-                        '</tr>';
-                    html=html+htmlbuf;
-                }
-
-                $("#rcktb").html(html);
-                //调用分页方法
-                getPageList(count,curr,limit,searchKey);
-
-            }else {
-                layer.alert(res.message);
-            }
-        },
-        error:function(){
-            layer.msg("网络故障");
-        }
-    })
+    function changeStatus(){
+        var status=document.getElementById("indexStatus").valueOf();
+        document.getElementById("status").value=status;
+    }
+function init(){
+    var countNumber=document.getElementById("countNumber").value;
+    var sumPage=document.getElementById("sumPageNumber").value;
+    var currentPage=document.getElementById("currentPage").value;
+    var info="一共<font color='blue'>"+countNumber+"</font>条数据，"+"共<font color='blue'>"+sumPage+"</font>页，"+
+        "当前第<font color='blue'>"+currentPage+"</font>页，";
+    document.getElementById("pageInfo").innerHTML=info;
+}
+//上一页
+function toPrePage(){
+    var currentPageObject=document.getElementById("currentPage");
+    var currentPage=parseInt(currentPageObject.value);
+    if(currentPage==1){
+        alert("数据已经到顶！");
+    }else{
+        currentPageObject.value=currentPage-1;
+        var PageSize=parseInt(document.getElementById("pageSize").value);
+        var startPageObject=document.getElementById("startPage");
+        startPageObject.value=parseInt(startPageObject.value)-PageSize;
+        document.getElementById("listForm").submit();
+    }
+}
+function toNextPage(){
+    var currentPageObject=document.getElementById("currentPage");
+    var currentPage=parseInt(currentPageObject.value);
+    var sumPage=parseInt(document.getElementById("sumPageNumber").value);
+    if(currentPage>=sumPage){
+        alert("数据已经到底！");
+    }else{
+        currentPageObject.value=currentPage+1;
+        var pageSize=parseInt(document.getElementById("pageSize").value);
+        var startPageObject=document.getElementById("startPage");
+        startPageObject.value=parseInt(startPageObject.value)+pageSize;
+        document.getElementById("listForm").submit();
+    }
 }
 
-
-//自己封装分页方法
-function getPageList(count,curr,limit,searchKey){
-    //分页方法
-    layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage
-            ,layer = layui.layer;
-        //完整功能
-        laypage.render({
-            elem: 'page',
-            count: count||0,
-            theme: '#009587',
-            limit : limit||3,
-            limits:[5, 10, 20, 30, 40],
-            curr : curr||1,
-            layout: ['count', 'prev', 'page', 'next',  'refresh', 'skip'],
-            jump: function(obj,first){
-                //debugger;
-                if(!first){
-                    //window.location.href = "?curr="+obj.curr+"&pageSize="+obj.limit+"&enterId="+'${enterId}';
-                    getPeopleList (obj.curr,obj.limit,searchKey);
-                }
+function toLocationPage(){
+    var pageNumber=document.getElementById("pageNumber").value;
+    var currentPageObject=document.getElementById("currentPage");
+    var currentPage=currentPageObject.value;
+    if(pageNumber==null||pageNumber==""){
+        alert("请输入需要跳转得页数！");
+    }else{
+        pageNumber=parseInt(pageNumber);
+        var sumPage=parseInt(document.getElementById("sumPageNumber").value);
+        if(pageNumber<1){
+            alert("数据已经到顶！");
+        }else if(pageNumber>sumPage){
+            alert("数据已经到底！");
+        }else{
+            currentPageObject.value=pageNumber;
+            var pageSize=parseInt(document.getElementById("pageSize").value);
+            var startPageObject=document.getElementById("startPage");
+            if(pageNumber>currentPage){
+                startPageObject.value=parseInt(startPageObject.value)+pageSize;
+            }else if(pageNumber<currentPage){
+                startPageObject.value=parseInt(startPageObject.value)-pageSize;
             }
-        });
-    });
+            document.getElementById("listForm").submit();
+        }
+    }
 }

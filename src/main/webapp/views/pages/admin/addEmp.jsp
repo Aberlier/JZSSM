@@ -246,7 +246,7 @@
 					<div class="layui-form-item">
 					    <div class="layui-input-block">
 					    	<a href="javascript:;" class="layui-btn layui-btn-primary">清空重置</a>
-					        <a href="06发布职位2.html" class="layui-btn layui-btn-normal" >保存,下一步</a>
+					        <a href="../06发布职位2.html" class="layui-btn layui-btn-normal" >保存,下一步</a>
 					    </div>
 					  </div>
             </div>   

@@ -2,7 +2,6 @@ package com.jzssm.fhf.controller;
 
 
 import com.github.pagehelper.PageInfo;
-import com.jzssm.fhf.common.AthoCommon;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.UserService;
@@ -12,10 +11,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
@@ -25,8 +22,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author ：Angular
@@ -92,7 +87,7 @@ public class UserController {
         //总页数
         modelAndView.addObject("pages", pageInfo.getPages());
         modelAndView.addObject("couts", couts);
-        modelAndView.setViewName("views/pages/user_manager");
+        modelAndView.setViewName("views/pages/admin/user_manager");
         return modelAndView;
     }
 
