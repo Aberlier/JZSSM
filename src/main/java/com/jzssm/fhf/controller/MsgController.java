@@ -4,9 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainMsg;
-import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.MsgService;
-import com.jzssm.fhf.utils.MD5Util;
 import com.jzssm.fhf.utils.UuidTools;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -86,13 +84,11 @@ public class MsgController {
     @ResponseBody
     @ApiOperation(value = "添加留言信息", httpMethod = "POST", notes = "添加留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertMsg(DomainMsg domainMsg) {
+    public Object insertMsg(DomainMsg domainMsg, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        domainMsg.setUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getUserId().toString())));
-        domainMsg.setResponRole(this.checkStringIsEmpty(domainMsg.getResponRole()));
-        domainMsg.setResponId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getResponId().toString())));
-        domainMsg.setMsgRespon(this.checkStringIsEmpty(domainMsg.getMsgRespon()));
         domainMsg.setMsgId(Integer.parseInt(UuidTools.getUuidNum()));
+        domainMsg.setMsgName(session.getAttribute("userName").toString());
+        domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
         domainMsg.setCreateTime(new Date());
         if (msgService.insert(domainMsg)) {
@@ -108,12 +104,11 @@ public class MsgController {
     @ApiOperation(value = "修改留言信息", httpMethod = "POST", notes = "修改留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsg(DomainMsg domainMsg) {
+    public Object updateMsg(DomainMsg domainMsg,HttpSession session) {
         domainMsg.setUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getUserId().toString())));
-        domainMsg.setResponRole(this.checkStringIsEmpty(domainMsg.getResponRole()));
-        domainMsg.setResponId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getResponId().toString())));
-        domainMsg.setMsgRespon(this.checkStringIsEmpty(domainMsg.getMsgRespon()));
-        domainMsg.setMsgId(Integer.parseInt(UuidTools.getUuidNum()));
+        domainMsg.setMsgName(session.getAttribute("userName").toString());
+        domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
+        domainMsg.setMsgId(domainMsg.getMsgId());
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
         domainMsg.setCreateTime(new Date());
         if (msgService.updateByPrimaryKey(domainMsg)) {

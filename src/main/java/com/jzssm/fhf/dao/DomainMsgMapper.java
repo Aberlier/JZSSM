@@ -1,7 +1,6 @@
 package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainMsg;
-import com.jzssm.fhf.entity.DomainUser;
 
 import java.util.List;
 

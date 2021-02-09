@@ -2,9 +2,7 @@ package com.jzssm.fhf.service;
 
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
-import com.jzssm.fhf.entity.DomainAdmin;
 import com.jzssm.fhf.entity.DomainMsg;
-import com.jzssm.fhf.entity.DomainUser;
 
 /**
  * @author ：Angular

@@ -2,11 +2,8 @@ package com.jzssm.fhf.serviceImpl;
 
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
-import com.jzssm.fhf.dao.DomainMsgMapper;
 import com.jzssm.fhf.dao.DomainPkStarMapper;
-import com.jzssm.fhf.entity.DomainMsg;
 import com.jzssm.fhf.entity.DomainPkStar;
-import com.jzssm.fhf.service.MsgService;
 import com.jzssm.fhf.service.PkstarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

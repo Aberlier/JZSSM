@@ -78,7 +78,7 @@
                         <em>留言管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>views/pages/msg_manager.jsp">留言列表</a></dd>
+                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>">留言列表</a></dd>
                         <dd><a href="">接收简历</a></dd>
                         <dd><a href="<%=basePath%>views/pages/10人才流转.html">人才流转</a></dd>
                     </dl>

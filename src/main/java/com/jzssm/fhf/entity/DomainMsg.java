@@ -5,17 +5,23 @@ import java.util.Date;
 public class DomainMsg {
     private Integer msgId;
 
-    private Integer msgName;
+    private String msgName;
 
     private String msgContent;
 
     private Date createTime;
 
-    public DomainMsg(Integer msgId, Integer msgName, String msgContent, Date createTime) {
+    private Integer userId;
+
+    private Integer userRole;
+
+    public DomainMsg(Integer msgId, String msgName, String msgContent, Date createTime, Integer userId,Integer userRole) {
         this.msgId = msgId;
         this.msgName = msgName;
         this.msgContent = msgContent;
         this.createTime = createTime;
+        this.userId = userId;
+        this.userRole = userRole;
     }
 
     public DomainMsg() {
@@ -30,12 +36,12 @@ public class DomainMsg {
         this.msgId = msgId;
     }
 
-    public Integer getMsgName() {
+    public String getMsgName() {
         return msgName;
     }
 
-    public void setMsgName(Integer msgName) {
-        this.msgName = msgName;
+    public void setMsgName(String msgName) {
+        this.msgName = msgName == null ? null : msgName.trim();
     }
 
     public String getMsgContent() {
@@ -52,5 +58,21 @@ public class DomainMsg {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
     }
 }

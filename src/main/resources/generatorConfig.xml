@@ -54,11 +54,11 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="tb_msg_response" domainObjectName="DomainMsgResp"
+       <!-- <table tableName="tb_msg_response" domainObjectName="DomainMsgResp"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-        </table>
+        </table>-->
 <!--
         <table tableName="tb_msg" domainObjectName="DomainMsg"
                enableCountByExample="false" enableUpdateByExample="false"
