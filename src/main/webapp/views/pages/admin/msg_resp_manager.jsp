@@ -57,31 +57,40 @@
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
-                        <th>类型编号</th>
-                        <th>职责名称</th>
-                        <th>相关描述</th>
+                        <th>编号</th>
+                        <th>留言编号</th>
+                        <th>回复内容</th>
+                        <th>回复人角色</th>
+                        <th>回复人编号</th>
+                        <th>回复时间</th>
+                        <th>留言标题</th>
+                        <th>留言人</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${worklist}" var="worklist">
+                    <c:forEach items="${msgResplist}" var="msgResplist">
                         <form class="layui-form" action="">
                             <tr>
                                 <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${worklist.workId}">
+                                           value="${msgResplist.resId}">
                                 </td>
-                                <td>${worklist.workType}</td>
-                                <td>${worklist.workName}</td>
-
-                                <td>${worklist.workDesc}</td>
+                                <td>${msgResplist.resId}</td>
+                                <td>${msgResplist.msgId}</td>
+                                <td>${msgResplist.resMsg}</td>
+                                <td>${msgResplist.resRole}</td>
+                                <td>${msgResplist.resUserId}</td>
+                                <td>${msgResplist.resTime}</td>
+                                <td>xxx</td>
+                                <td>xxxx</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
                                         <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
                                            class="layui-btn layui-btn-xs">查看</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateWork('${msgResplist.resId}','<%=loginId%>','<%=param%>')">修改</a>
+                                           onclick="updateMsgResp('${msgResplist.resId}','<%=loginId%>','<%=param%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne($${msgResplist.resId},'<%=loginId%>','<%=param%>')">删除</a>
                                     </div>
@@ -131,12 +140,14 @@
                 <!--分页-->
             </div>
 
+
+
         </div>
     </div>
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/admin/work/workmanager.js"></script>
+<script src="<%=basePath%>views/js/admin/resp/msgrespmanager.js"></script>
 <script src="<%=basePath%>views/js/pageJs.js"></script>
 </body>
 </html>

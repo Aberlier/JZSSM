@@ -54,11 +54,11 @@
                         <i class="layui-icon">&#xe665;</i>
                         <em>首页管理</em>
                     </a>
-                    <dl class="layui-nav-child">
+                   <%-- <dl class="layui-nav-child">
                         <dd><a href="<%=basePath%>views/pages/01轮播图.jsp">轮播图</a></dd>
                         <dd><a href="<%=basePath%>views/pages/02任务发布.html">任务发布</a></dd>
                         <dd><a href="<%=basePath%>views/pages/03消息发布.html">消息发布</a></dd>
-                    </dl>
+                    </dl>--%>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
@@ -68,8 +68,6 @@
                     <dl class="layui-nav-child">
 <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
                         <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/05发布职位1.html">发布职位</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/07职位管理.html">职位管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -79,8 +77,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>">留言列表</a></dd>
-                        <dd><a href="">接收简历</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/10人才流转.html">人才流转</a></dd>
+                        <dd><a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>">回复列表</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -89,11 +86,7 @@
                         <em>评星管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>views/pages/pkstar_manager.jsp">评星列表</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/11换购商品.html">上传商品</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/12兑换信息.html">兑换信息</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/13提现账号.html">提现账号</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/14提现通知.html">提现通知</a></dd>
+                        <dd><dd><a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>">评星列表</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -102,11 +95,7 @@
                         <em>工作职位管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>views/pages/work_manager.jsp">职位列表</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/15帮助中心-简介.html">公司简介</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/15帮助中心-帮助中心.html">帮助中心</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/15帮助中心-合作共赢.html">合作共赢</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/15帮助中心-网站导航.html">网站导航</a></dd>
+                        <dd><a href="<%=basePath%>workController/findAllWorkData?loginId=<%=loginId%>&token=<%=param%>">职位列表</a></dd>
                     </dl>
                 </li>
             </ul>

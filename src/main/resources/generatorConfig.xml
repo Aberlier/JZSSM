@@ -37,19 +37,19 @@
                          targetProject="./src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <!--生成Dao类存放位置-->
+   <!--     &lt;!&ndash;生成Dao类存放位置&ndash;&gt;
         <javaClientGenerator targetPackage="com.jzssm.fhf.dao"
                              targetProject="./src/main/java"
                              type="XMLMAPPER">
-            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            &lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;
             <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
+        </javaClientGenerator>-->
 
        <!--  <table tableName="tb_user" domainObjectName="DomainUser"
                 enableCountByExample="false" enableUpdateByExample="false"
                 enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false"/>-->
-        <table tableName="tb_msg" domainObjectName="DomainMsg"
+        <table tableName="tb_msg_response" domainObjectName="DomainMsgResp"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

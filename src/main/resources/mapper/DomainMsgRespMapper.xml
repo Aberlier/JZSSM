@@ -7,11 +7,12 @@
       <arg column="res_msg" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="res_role" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="res_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="res_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    res_id, res_msg, res_role, res_time, msg_id
+    res_id, res_msg, res_role, res_time, msg_id, res_user_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,9 +26,11 @@
   </delete>
   <insert id="insert" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
     insert into tb_msg_response (res_id, res_msg, res_role, 
-      res_time, msg_id)
+      res_time, msg_id, res_user_id
+      )
     values (#{resId,jdbcType=INTEGER}, #{resMsg,jdbcType=VARCHAR}, #{resRole,jdbcType=VARCHAR}, 
-      #{resTime,jdbcType=TIMESTAMP}, #{msgId,jdbcType=VARCHAR})
+      #{resTime,jdbcType=TIMESTAMP}, #{msgId,jdbcType=INTEGER}, #{resUserId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainMsgResp">
     insert into tb_msg_response
@@ -47,6 +50,9 @@
       <if test="msgId != null">
         msg_id,
       </if>
+      <if test="resUserId != null">
+        res_user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="resId != null">
@@ -62,7 +68,10 @@
         #{resTime,jdbcType=TIMESTAMP},
       </if>
       <if test="msgId != null">
-        #{msgId,jdbcType=VARCHAR},
+        #{msgId,jdbcType=INTEGER},
+      </if>
+      <if test="resUserId != null">
+        #{resUserId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,7 +88,10 @@
         res_time = #{resTime,jdbcType=TIMESTAMP},
       </if>
       <if test="msgId != null">
-        msg_id = #{msgId,jdbcType=VARCHAR},
+        msg_id = #{msgId,jdbcType=INTEGER},
+      </if>
+      <if test="resUserId != null">
+        res_user_id = #{resUserId,jdbcType=INTEGER},
       </if>
     </set>
     where res_id = #{resId,jdbcType=INTEGER}
@@ -89,7 +101,11 @@
     set res_msg = #{resMsg,jdbcType=VARCHAR},
       res_role = #{resRole,jdbcType=VARCHAR},
       res_time = #{resTime,jdbcType=TIMESTAMP},
-      msg_id = #{msgId,jdbcType=VARCHAR}
+      msg_id = #{msgId,jdbcType=INTEGER},
+      res_user_id = #{resUserId,jdbcType=INTEGER}
     where res_id = #{resId,jdbcType=INTEGER}
   </update>
+  <select id="selectAllMsgRespData" resultMap="BaseResultMap">
+    select * from tb_msg_response
+  </select>
 </mapper>

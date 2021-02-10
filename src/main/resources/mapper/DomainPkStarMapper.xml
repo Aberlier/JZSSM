@@ -128,4 +128,8 @@
       pk_give_star_id = #{pkGiveStarId,jdbcType=INTEGER}
     where pk_id = #{pkId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllPkstarData" resultMap="BaseResultMap">
+    select * from tb_pkstar
+  </select>
 </mapper>

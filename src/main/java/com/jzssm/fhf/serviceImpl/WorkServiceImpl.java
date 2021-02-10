@@ -1,5 +1,6 @@
 package com.jzssm.fhf.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.dao.DomainPkStarMapper;
@@ -10,6 +11,8 @@ import com.jzssm.fhf.service.PkstarService;
 import com.jzssm.fhf.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ：Angular
@@ -62,7 +65,15 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public PageInfo<DomainWork> finds(Params params) {
-        return null;
+        //查询
+        int pageNo = params.getPageNo();
+        int pageSize = params.getPageSize();
+
+        PageHelper.startPage(pageNo, pageSize);
+        List<DomainWork> blogs = domainWorkMapper.selectAllWorkData();
+        //用PageInfo对结果进行包装
+        PageInfo<DomainWork> pageInfo = new PageInfo<DomainWork>(blogs);
+        return pageInfo;
     }
 
     @Override

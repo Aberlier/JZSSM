@@ -100,10 +100,10 @@
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/userDetail.jsp"
+                                        <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
                                            class="layui-btn layui-btn-xs">查看</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateUser('${msg.msgId}','<%=loginId%>','<%=param%>')">修改</a>
+                                           onclick="updatemsg('${msg.msgId}','<%=loginId%>','<%=param%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne($${msg.msgId},'<%=loginId%>','<%=param%>')">删除</a>
                                     </div>
@@ -141,25 +141,26 @@
                                         </tr>--%>
                     </tbody>
                 </table>
+                <div style="margin-top:10px;">
+                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
+                    <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
+                    <input type="text" id="pageNumber" style="width:50px"/>
+                    <button onclick="toLocationPage()">go</button>
+                    <div id="pageInfo"></div>
+                </div>
             </div>
 
 
             <!--分页-->
             <%--<div id="page"></div>--%>
-            <div style="margin-top:10px;">
-                共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
-                <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
-                <input type="text" id="pageNumber" style="width:50px"/>
-                <button onclick="toLocationPage()">go</button>
-                <div id="pageInfo"></div>
-            </div>
+
             <!--分页-->
         </div>
     </div>
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/admin/user/usermanager.js"></script>
+<script src="<%=basePath%>views/js/admin/user/msgmanager.js"></script>
 <script src="<%=basePath%>views/js/pageJs.js"></script>
 </body>
 </html>

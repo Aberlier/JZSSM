@@ -11,14 +11,17 @@ public class DomainMsgResp {
 
     private Date resTime;
 
-    private String msgId;
+    private Integer msgId;
 
-    public DomainMsgResp(Integer resId, String resMsg, String resRole, Date resTime, String msgId) {
+    private Integer resUserId;
+
+    public DomainMsgResp(Integer resId, String resMsg, String resRole, Date resTime, Integer msgId, Integer resUserId) {
         this.resId = resId;
         this.resMsg = resMsg;
         this.resRole = resRole;
         this.resTime = resTime;
         this.msgId = msgId;
+        this.resUserId = resUserId;
     }
 
     public DomainMsgResp() {
@@ -57,11 +60,19 @@ public class DomainMsgResp {
         this.resTime = resTime;
     }
 
-    public String getMsgId() {
+    public Integer getMsgId() {
         return msgId;
     }
 
-    public void setMsgId(String msgId) {
-        this.msgId = msgId == null ? null : msgId.trim();
+    public void setMsgId(Integer msgId) {
+        this.msgId = msgId;
+    }
+
+    public Integer getResUserId() {
+        return resUserId;
+    }
+
+    public void setResUserId(Integer resUserId) {
+        this.resUserId = resUserId;
     }
 }

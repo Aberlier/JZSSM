@@ -60,11 +60,11 @@ public class PkstarController {
         params.setPageNo(1);
         params.setPageSize(10);
         PageInfo<DomainPkStar> pageInfo = pkstarService.finds(params);
-        List<DomainPkStar> msglist = pageInfo.getList();
+        List<DomainPkStar> pkstarlist = pageInfo.getList();
         //查询数量
         //long couts = msgService.counts();
 
-        modelAndView.addObject("msglist", msglist);
+        modelAndView.addObject("pkstarlist", pkstarlist);
         //当前页
         modelAndView.addObject("currentPage", pageInfo.getPageNum());
         //每页的数量
@@ -81,11 +81,11 @@ public class PkstarController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/insertMsg", method = POST)
+    @RequestMapping(value = "/insertPkstar", method = POST)
     @ResponseBody
     @ApiOperation(value = "添加星标员工", httpMethod = "POST", notes = "添加星标员工")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertMsg(DomainPkStar domainPkStar) {
+    public Object insertPkstar(DomainPkStar domainPkStar) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainPkStar.setPkId(Integer.parseInt(UuidTools.getUuidNum()));
         domainPkStar.setPkEmpId(Integer.parseInt(this.checkStringIsEmpty(domainPkStar.getPkEmpId().toString())));
@@ -103,12 +103,12 @@ public class PkstarController {
     }
 
 
-    @RequestMapping(value = "/updateMsg", method = POST)
+    @RequestMapping(value = "/updatePkstar", method = POST)
     @ResponseBody
     @ApiOperation(value = "修改星级员工信息", httpMethod = "POST", notes = "修改星级员工信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsg(DomainPkStar domainPkStar) {
+    public Object updatePkstar(DomainPkStar domainPkStar) {
         domainPkStar.setPkId(Integer.parseInt(UuidTools.getUuidNum()));
         domainPkStar.setPkEmpId(Integer.parseInt(this.checkStringIsEmpty(domainPkStar.getPkEmpId().toString())));
         domainPkStar.setPkEmpNamer(this.checkStringIsEmpty(domainPkStar.getPkEmpNamer().toString()));
@@ -125,12 +125,12 @@ public class PkstarController {
 
     }
 
-    @RequestMapping(value = "/updateMsgBefore", method = GET)
+    @RequestMapping(value = "/updatePkstarBefore", method = GET)
     @ResponseBody
     @ApiOperation(value = "修改留言信息跳转修改页", httpMethod = "GET", notes = "修改留言信息跳转修改页")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsgBefore(@RequestParam String id, HttpSession session) {
+    public Object updatePkstarBefore(@RequestParam String id, HttpSession session) {
         DomainPkStar domainPkStar = pkstarService.selectByPrimaryKey(Integer.parseInt(id));
         session.setAttribute("domainPkStar", domainPkStar);
         ModelAndView modelAndView = new ModelAndView();
@@ -140,7 +140,7 @@ public class PkstarController {
     }
 
 
-    @RequestMapping(value = "/deleteMsg", method = POST)
+    @RequestMapping(value = "/deletePkstar", method = POST)
     @ResponseBody
     @ApiOperation(value = "删除星级职工信息", httpMethod = "POST", notes = "删除星级职工信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})

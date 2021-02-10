@@ -65,7 +65,7 @@ $('#fabu').on('click', function () {
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/admin/addmsg.jsp',
+            content: 'views/pages/admin/addpkstar.jsp',
             end: function () {
                 location.reload();
             }
@@ -80,7 +80,7 @@ function deleteOne(id,loginId,token) {
     }, function () {
         $.ajax({
             type:'post',
-            url:"adminController/deleteMsg?loginId="+loginId+"&token="+token+"&id="+id,
+            url:"pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&id="+id,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){
@@ -94,11 +94,11 @@ function deleteOne(id,loginId,token) {
     });
 }
 //修改信息
-function updateMsg(id,loginId,token) {
+function updatePkstar(id,loginId,token) {
     layer.alert('确定要修改用户信息？', function () {
         $.ajax({
             type:'get',
-            url:'adminController/updateMsgBefore?id='+id+"&loginId="+loginId+"&token="+token,
+            url:'pkstarController/updatePkstarBefore?id='+id+"&loginId="+loginId+"&token="+token,
           /*  data:id,//数据为id数组*/
             traditional:true,
             success:function(result) {
@@ -157,7 +157,7 @@ function deleteAll (loginId,token) {
                     }
                 }
                 $.ajax({
-                    url: "adminController/deleteMsg?loginId="+loginId+"&token="+token,
+                    url: "pkstarController/deletePkstar?loginId="+loginId+"&token="+token,
                     type: "post",
                     data:{"arrays":myArray},//数据为id数组
                     dataType: "json",

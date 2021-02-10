@@ -2,6 +2,8 @@ package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainPkStar;
 
+import java.util.List;
+
 public interface DomainPkStarMapper {
     int deleteByPrimaryKey(Integer pkId);
 
@@ -14,4 +16,6 @@ public interface DomainPkStarMapper {
     int updateByPrimaryKeySelective(DomainPkStar record);
 
     int updateByPrimaryKey(DomainPkStar record);
+
+    List<DomainPkStar> selectAllPkstarData();
 }

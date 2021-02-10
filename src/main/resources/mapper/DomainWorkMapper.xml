@@ -81,4 +81,8 @@
       work_desc = #{workDesc,jdbcType=VARCHAR}
     where work_id = #{workId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllWorkData" resultMap="BaseResultMap">
+    select * from tb_work
+  </select>
 </mapper>

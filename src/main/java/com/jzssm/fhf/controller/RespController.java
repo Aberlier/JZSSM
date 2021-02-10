@@ -3,10 +3,10 @@ package com.jzssm.fhf.controller;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.common.ResultUtil;
-import com.jzssm.fhf.entity.DomainPkStar;
-import com.jzssm.fhf.entity.DomainWork;
-import com.jzssm.fhf.service.PkstarService;
-import com.jzssm.fhf.service.WorkService;
+import com.jzssm.fhf.entity.DomainMsg;
+import com.jzssm.fhf.entity.DomainMsgResp;
+import com.jzssm.fhf.service.MsgRespService;
+import com.jzssm.fhf.service.MsgService;
 import com.jzssm.fhf.utils.UuidTools;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,38 +35,37 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @Package: com.jzssm.fhf.controller
  * @ClassName: MsgController
  * @date ：Created in 2021/2/9 12:18
- * @description：工作管理
+ * @description：留言回复管理
  * @modified By：
  * @version: v1.0.0$
  */
 @Controller
-@RequestMapping("workController")
-@Api(value = "workController", tags = "工作管理操作接口", description = "工作管理操作接口")
-public class WorkController {
+@RequestMapping("respController")
+@Api(value = "respController", tags = "留言回复操作操作接口", description = "留言回复操作操作接口")
+public class RespController {
 
     @Autowired
-    WorkService workService;
+    MsgRespService msgRespService;
     /**
      * 首页，并且分页查询
      *
      * @return
      */
-    @RequestMapping(value = "/findAllWorkData")
-    @ApiOperation(value = "工作类型查询列表", httpMethod = "GET", notes = "工作类型查询列表")
+    @RequestMapping(value = "/findAllMsgRespData")
+    @ApiOperation(value = "分页查询留言回复列表", httpMethod = "GET", notes = "分页查询留言回复列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public ModelAndView index(@ApiIgnore Params params, HttpServletRequest request) {
-
         ModelAndView modelAndView = new ModelAndView();
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainWork> pageInfo = workService.finds(params);
-        List<DomainWork> worklist = pageInfo.getList();
+        PageInfo<DomainMsgResp> pageInfo = msgRespService.finds(params);
+        List<DomainMsgResp> msgResplist = pageInfo.getList();
         //查询数量
         //long couts = msgService.counts();
 
-        modelAndView.addObject("worklist", worklist);
+        modelAndView.addObject("msgResplist", msgResplist);
         //当前页
         modelAndView.addObject("currentPage", pageInfo.getPageNum());
         //每页的数量
@@ -79,21 +78,22 @@ public class WorkController {
         //总页数
         modelAndView.addObject("sumPageNumber", pageInfo.getPages());
         //modelAndView.addObject("couts", couts);
-        modelAndView.setViewName("views/pages/admin/work_manager");
+        modelAndView.setViewName("views/pages/admin/msg_resp_manager");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/insertWork", method = POST)
+    @RequestMapping(value = "/insertMsgResp", method = POST)
     @ResponseBody
-    @ApiOperation(value = "添加工作类型", httpMethod = "POST", notes = "添加工作类型")
+    @ApiOperation(value = "添加留言信息", httpMethod = "POST", notes = "添加留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertWork(DomainWork domainWork) {
+    public Object insertMsgResp(DomainMsgResp domainMsgResp, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        domainWork.setWorkId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
-        domainWork.setWorkType(this.checkStringIsEmpty(domainWork.getWorkType()));
-        domainWork.setWorkDesc(this.checkStringIsEmpty(domainWork.getWorkDesc()));
-        if (workService.insert(domainWork)) {
+        domainMsgResp.setMsgId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getMsgId().toString())));
+        domainMsgResp.setResUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getResUserId().toString())));
+        domainMsgResp.setResId(Integer.parseInt(UuidTools.getUuidNum()));
+        domainMsgResp.setResMsg(this.checkStringIsEmpty(domainMsgResp.getResMsg()));
+        domainMsgResp.setResTime(new Date());
+        if (msgRespService.insert(domainMsgResp)) {
             return ResultUtil.success("添加成功！");
         } else {
             return ResultUtil.success("添加失败！");
@@ -101,17 +101,18 @@ public class WorkController {
     }
 
 
-    @RequestMapping(value = "/updateWork", method = POST)
+    @RequestMapping(value = "/updateMsgResp", method = POST)
     @ResponseBody
-    @ApiOperation(value = "修改工作种类信息", httpMethod = "POST", notes = "修改工作种类信息")
+    @ApiOperation(value = "修改留言回复信息", httpMethod = "POST", notes = "修改留言回复信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsg(DomainWork domainWork) {
-        domainWork.setWorkId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
-        domainWork.setWorkType(this.checkStringIsEmpty(domainWork.getWorkType()));
-        domainWork.setWorkDesc(this.checkStringIsEmpty(domainWork.getWorkDesc()));
-        if (workService.updateByPrimaryKey(domainWork)) {
+    public Object updateMsgResp(DomainMsgResp domainMsgResp,HttpSession session) {
+        domainMsgResp.setMsgId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getMsgId().toString())));
+        domainMsgResp.setResUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getResUserId().toString())));
+        domainMsgResp.setResId(Integer.parseInt(UuidTools.getUuidNum()));
+        domainMsgResp.setResMsg(this.checkStringIsEmpty(domainMsgResp.getResMsg()));
+        domainMsgResp.setResTime(new Date());
+        if (msgRespService.updateByPrimaryKey(domainMsgResp)) {
             return ResultUtil.success("修改成功！");
         } else {
             return ResultUtil.success("修改失败！");
@@ -119,35 +120,35 @@ public class WorkController {
 
     }
 
-    @RequestMapping(value = "/updateWorkBefore", method = GET)
+    @RequestMapping(value = "/updateMsgRespBefore", method = GET)
     @ResponseBody
     @ApiOperation(value = "修改留言信息跳转修改页", httpMethod = "GET", notes = "修改留言信息跳转修改页")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object updateMsgBefore(@RequestParam String id, HttpSession session) {
-        DomainWork domainWork = workService.selectByPrimaryKey(Integer.parseInt(id));
-        session.setAttribute("domainWork", domainWork);
+        DomainMsgResp domainMsgResp = msgRespService.selectByPrimaryKey(Integer.parseInt(id));
+        session.setAttribute("domainMsgResp", domainMsgResp);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("domainWork", domainWork);
-        modelAndView.setViewName("views/pages/admin/updateWork.jsp");
+        modelAndView.addObject("domainMsgResp", domainMsgResp);
+        modelAndView.setViewName("views/pages/admin/updateMsgResp.jsp");
         return ResultUtil.success(modelAndView);
     }
 
 
-    @RequestMapping(value = "/deleteWork", method = POST)
+    @RequestMapping(value = "/deleteMsgResp", method = POST)
     @ResponseBody
-    @ApiOperation(value = "删除工作种类信息", httpMethod = "POST", notes = "删除工作种类信息")
+    @ApiOperation(value = "删除留言回复信息", httpMethod = "POST", notes = "删除留言回复信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object deleteMsg(String id, String[] arrays) {
+    public Object deleteMsgResp(String id, String[] arrays) {
         Boolean index = null;
         if (id != null && !"".equals(id)) {
-            index = workService.deleteByPrimaryKey(id);
+            index = msgRespService.deleteByPrimaryKey(id);
             if (index) {
                 return ResultUtil.success("删除成功！");
             }
         } else {
             for (String str : arrays) {
-                index = workService.deleteByPrimaryKey(str);
+                index = msgRespService.deleteByPrimaryKey(str);
                 if (index) {
                     return ResultUtil.success("删除成功！");
                 }
