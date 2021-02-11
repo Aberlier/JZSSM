@@ -20,10 +20,19 @@
     <title>管理后台</title>
 </head>
 <body class="login-wrap">
+<span name="errorMsg" id="errorMsg"></span>
 <div class="login-container">
     <form class="login-form" id="form">
         <div class="input-group">
             <center>基于SSM的家政服务管理平台</center>
+        </div>
+        <div class="input-group" >
+        <select id="rolename" name = "rolename" class="input-field"  class="input-field" style="border: 1px solid #29adeb">
+            <option value="">请选择角色</option>
+            <option value="1">管理人员</option>
+            <option value="3">普通用户</option>
+            <option value="2">从业人员</option>
+        </select>
         </div>
         <div class="input-group">
             <input type="text" id="telnum" name = "telnum" class="input-field">

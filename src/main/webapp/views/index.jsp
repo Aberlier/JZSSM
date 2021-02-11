@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.jzssm.fhf.entity.DomainUser" %><%--
   Created by IntelliJ IDEA.
   User: Angular
   Date: 2021/1/10
@@ -9,6 +9,8 @@
 <%String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
 <%
     String param = (String)session.getAttribute("token");
+    String userName = (String)session.getAttribute("userName");
+    String role = (String)session.getAttribute("role");
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
 %>
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
         <p class="datexians">基于SSM的家政服务管理平台</p>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">admin</a>
+                <a href="javascript:;"><%=role%> | <%=userName%></a>
                 <dl class="layui-nav-child">
                     <dd><a href="">帮助中心</a></dd>
                     <dd><a href="views/login.jsp">退出</a></dd>

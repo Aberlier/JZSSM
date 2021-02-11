@@ -3,6 +3,9 @@ package com.jzssm.fhf.service;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.entity.DomainUser;
+import org.apache.poi.ss.formula.functions.T;
+
+import java.util.Map;
 
 /**
  * @author ：Angular
@@ -19,6 +22,8 @@ public interface UserService {
     int insertSelective(DomainUser record);
 
     DomainUser selectByPrimaryKey(Integer userId);
+
+    Map<String,Object> selectByTelRoleLogin(String telnum, String role);
 
     DomainUser selectByTelNum(String telnum);
 

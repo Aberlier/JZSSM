@@ -25,11 +25,28 @@
     from tb_user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <select id="selectByTelRoleLogin" parameterType="java.lang.String" resultType="java.util.Map">
+    select
+    *
+    from
+    <if test="role != null and role == 3">
+      tb_user
+      where user_telnum = #{telnum,jdbcType=VARCHAR} and user_role = #{role,jdbcType=VARCHAR}
+    </if>
+    <if test="role != null and role == 2">
+      tb_employer
+      where employer_telnum = #{telnum,jdbcType=VARCHAR} and employer_role = #{role,jdbcType=VARCHAR}
+    </if>
+    <if test="role != null and role == 1">
+      tb_admin
+      where admin_telnum = #{telnum,jdbcType=VARCHAR} and admin_role = #{role,jdbcType=VARCHAR}
+    </if>
+  </select>
   <select id="selectByTelNum" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_user
-    where user_telnum = #{userTelnum,jdbcType=VARCHAR}
+    where user_telnum = #{telnum,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_user

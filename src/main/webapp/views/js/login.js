@@ -40,7 +40,7 @@ $('#regist_button').on('click',function(){
                     alert("登陆失败请重新登录！错误代码："+result.message);
                 }
             }, error: function (result) {
-                alert("网络连接失败！" + result.resultCode);
+                alert("网络连接失败！" + result.code);
             }
         });
 
