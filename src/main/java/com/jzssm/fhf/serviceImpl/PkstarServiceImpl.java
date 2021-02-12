@@ -46,8 +46,8 @@ public class PkstarServiceImpl implements PkstarService {
     }
 
     @Override
-    public DomainPkStar selectByPrimaryKey(Integer userId) {
-        return domainPkStarMapper.selectByPrimaryKey(userId);
+    public DomainPkStar selectByPrimaryKey(Integer pkId,Integer pkEmpId) {
+        return domainPkStarMapper.selectByPrimaryKey(pkId,pkEmpId);
     }
 
     @Override

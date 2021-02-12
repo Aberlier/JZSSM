@@ -131,7 +131,7 @@ public class PkstarController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object updatePkstarBefore(@RequestParam String id, HttpSession session) {
-        DomainPkStar domainPkStar = pkstarService.selectByPrimaryKey(Integer.parseInt(id));
+        DomainPkStar domainPkStar = pkstarService.selectByPrimaryKey(Integer.parseInt(id),null);
         session.setAttribute("domainPkStar", domainPkStar);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("domainPkStar", domainPkStar);

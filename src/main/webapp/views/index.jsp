@@ -74,7 +74,7 @@
                     <dl class="layui-nav-child">
                         <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
                         <dd>
-                            <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
+                            <a href="<%=basePath%>userController/findUserByLoginId?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
                         </dd>
                     </dl>
                 </li>

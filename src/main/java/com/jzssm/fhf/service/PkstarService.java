@@ -21,7 +21,7 @@ public interface PkstarService {
 
     int insertSelective(DomainPkStar record);
 
-    DomainPkStar selectByPrimaryKey(Integer userId);
+    DomainPkStar selectByPrimaryKey(Integer index,Integer userId);
 
     DomainPkStar selectByTelNum(String telnum);
 

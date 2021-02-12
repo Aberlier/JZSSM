@@ -49,27 +49,41 @@
 			</fieldset>
 			<form class="layui-form" action="">
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="col-red">*</span>姓名</label>
+					<label class="layui-form-label">编号: </label>
 					<div class="layui-input-block">
-						${user}
+						${user.userId}
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">月薪范围</label>
+					<label class="layui-form-label"><span class="col-red">*</span>姓名：</label>
 					<div class="layui-input-inline">
-						4000-6000
+						${user.userName}
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">最低学历</label>
+					<label class="layui-form-label"><span class="col-red">*</span>角色：</label>
 					<div class="layui-input-block">
-						大专
+						<c:if test="${user.userRole==1}">
+							管理员
+						</c:if>
+						<c:if test="${user.userRole==2}">
+							家政职工
+						</c:if>
+						<c:if test="${user.userRole==3}">
+							用户
+						</c:if>
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">工作区域</label>
+					<label class="layui-form-label"><span class="col-red">*</span>密码：</label>
+					<div class="layui-input-block">
+						${user.userPwd}
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label"><span class="col-red">*</span>手机：</label>
 					<div class="layui-input-inline">
-						河南省-郑州市-二七区
+						${user.userTelnum}
 					</div>
 				</div>
 
@@ -79,36 +93,53 @@
 			</fieldset>
 			<form  class="layui-form" action="">
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="col-red">*</span>所需人数</label>
+					<label class="layui-form-label"><span class="col-red">*</span>所需职位</label>
 					<div class="layui-input-block">
-						5人
+						<td><c:if test="${user.userDemand==1}">
+							<a href="javascript:;" class="layui-btn">保安</a>
+						</c:if>
+							<c:if test="${user.userDemand==2}">
+								<a href="javascript:;" class="layui-btn">保洁</a>
+							</c:if>
+							<c:if test="${user.userDemand==3}">
+								<a href="javascript:;" class="layui-btn">保镖</a>
+							</c:if>
+							<c:if test="${user.userDemand==4}">
+								<a href="javascript:;" class="layui-btn">护工</a>
+							</c:if>
+							<c:if test="${user.userDemand==5}">
+								<a href="javascript:;" class="layui-btn">月嫂</a>
+							</c:if></td>
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-inline">
-						<label class="layui-form-label">年龄要求</label>
+						<label class="layui-form-label">是否加急</label>
 						<div class="layui-input-inline" style="width: 100px;">
-							18-32岁
+							<c:if test="${user.userUrgent==1}">
+								是
+							</c:if>
+							<c:if test="${user.userUrgent==2}">
+								否
+							</c:if>
 						</div>
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">性别要求</label>
+					<label class="layui-form-label">家庭地址</label>
 					<div class="layui-input-block">
-						不限
+						${user.userAddress}
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">雇佣地址</label>
+					<div class="layui-input-block">
+						${user.userDispatchAddress}
 					</div>
 				</div>
 			</form>
-			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-				<legend>需求项目</legend>
-			</fieldset>
 			<div class="fuldy">
-				<a href="javascript:;" class="layui-btn">月嫂</a>
-				<a href="javascript:;" class="layui-btn">保洁</a>
-				<a href="javascript:;" class="layui-btn">保镖</a>
-				<a href="javascript:;" class="layui-btn">保安</a>
-				<a href="javascript:;" class="layui-btn">护工</a>
-				<a href="javascript:;" class="layui-btn">其他</a>
+
 			</div>
 			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 				<legend>补充说明</legend>
@@ -117,40 +148,47 @@
 				<div class="layui-form-item layui-form-text">
 					<label class="layui-form-label">补充说明</label>
 					<div class="layui-input-block">
-						倾向于有工作经验的
+						${user.userOtherDesc}
 					</div>
 				</div>
 			</form>
+
+
+			<c:if test="${pkstar!=null}">
 			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-				<legend>积分设置</legend>
+				<legend>星级设置</legend>
 			</fieldset>
 			<form  class="layui-form" action="">
-				<div class="layui-form-mid layui-word-aux" style="padding: 0 0 10px 110px!important;">请根据员工品质与职位紧急程度合理设定悬赏金额</div>
+				<div class="layui-form-mid layui-word-aux" style="padding: 0 0 10px 110px!important;">请根据员工品质与职位紧急程度合理设定星级数量</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="col-red">*</span>奖金设置</label>
+					<label class="layui-form-label"><span class="col-red">*</span>获得星数：</label>
 					<div class="layui-input-inline">
-						100
+							${pkstar.pkStarNum}/颗星
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label">悬赏类型</label>
+						<label class="layui-form-label">评星人</label>
 						<div class="layui-input-inline">
-							审核通过
+								${pkstar.pkGiveStarName}
 						</div>
 					</div>
 				</div>
-				<%--<div class="layui-form-item">
-					<label class="layui-form-label"><span class="col-red">*</span>积分设置</label>
-					<div class="layui-input-inline">
-						2000
-					</div>
-					<div class="layui-inline">
-						<label class="layui-form-label">悬赏类型</label>
-						<div class="layui-input-inline">
-							面试通过
-						</div>
-					</div>--%>
-				</div>
-			</form>
+					<%--<div class="layui-form-item">
+                        <label class="layui-form-label"><span class="col-red">*</span>积分设置</label>
+                        <div class="layui-input-inline">
+                            2000
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">悬赏类型</label>
+                            <div class="layui-input-inline">
+                                面试通过
+                            </div>
+                        </div>--%>
+		</div>
+		</form>
+
+			</c:if>
+
+
 
 
 		</div>

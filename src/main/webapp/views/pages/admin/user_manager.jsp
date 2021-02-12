@@ -188,7 +188,8 @@
                 <!--分页-->
                 <%--<div id="page"></div>--%>
                 <div style="margin-top:10px;">
-                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
+                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span
+                        value="">${currentPage}</span>页&nbsp&nbsp
                     <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
                     <input type="text" id="pageNumber" style="width:50px"/>
                     <button onclick="toLocationPage()">go</button>

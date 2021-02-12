@@ -21,7 +21,13 @@
     select 
     <include refid="Base_Column_List" />
     from tb_pkstar
-    where pk_id = #{pkId,jdbcType=INTEGER}
+    <if test="pkId != null">
+      where pk_id = #{pkId,jdbcType=INTEGER}
+    </if>
+    <if test="pkEmpId != null">
+      where pk_emp_id = #{pkEmpId,jdbcType=INTEGER}
+    </if>
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_pkstar

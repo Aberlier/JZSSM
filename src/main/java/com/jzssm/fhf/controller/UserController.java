@@ -3,7 +3,9 @@ package com.jzssm.fhf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
+import com.jzssm.fhf.entity.DomainPkStar;
 import com.jzssm.fhf.entity.DomainUser;
+import com.jzssm.fhf.service.PkstarService;
 import com.jzssm.fhf.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
@@ -41,6 +44,8 @@ public class UserController {
     private HttpServletRequest request;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PkstarService pkstarService;
 
     /**
      * @Title: getHeader @Description: TODO @param @return @return String @throws
@@ -88,6 +93,28 @@ public class UserController {
         modelAndView.addObject("pages", pageInfo.getPages());
         modelAndView.addObject("couts", couts);
         modelAndView.setViewName("views/pages/admin/user_manager");
+        return modelAndView;
+    }
+
+
+    /**
+     * 根据登录ID查询用户信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/findUserByLoginId")
+    @ApiOperation(value = "根据登录ID查询用户信息", httpMethod = "GET", notes = "根据登录ID查询用户信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public ModelAndView findUserByLoginId(@RequestParam String loginId,@ApiIgnore Params params, HttpServletRequest request) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        DomainUser pageInfo = userService.selectByPrimaryKey(Integer.parseInt(loginId));
+        DomainPkStar pkInfo = pkstarService.selectByPrimaryKey(null,Integer.parseInt(loginId));
+
+        modelAndView.addObject("pkstar", pkInfo);
+        modelAndView.addObject("user", pageInfo);
+        modelAndView.setViewName("views/pages/user/userDetail");
         return modelAndView;
     }
 
