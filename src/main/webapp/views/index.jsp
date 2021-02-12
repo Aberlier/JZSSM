@@ -6,11 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
+<%String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/"; %>
 <%
-    String param = (String)session.getAttribute("token");
-    String userName = (String)session.getAttribute("userName");
-    String role = (String)session.getAttribute("role");
+    String param = (String) session.getAttribute("token");
+    String userName = (String) session.getAttribute("userName");
+    Integer role = Integer.parseInt(session.getAttribute("role").toString());
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
 %>
 <!DOCTYPE html>
@@ -35,7 +35,8 @@
         <p class="datexians">基于SSM的家政服务管理平台</p>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;"><%=role%> | <%=userName%></a>
+                <a href="javascript:;"><%=role%> | <%=userName%>
+                </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">帮助中心</a></dd>
                     <dd><a href="views/login.jsp">退出</a></dd>
@@ -51,25 +52,44 @@
                 <h1>管理系统</h1>
             </div>
             <ul id="Nav" class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item" >
+                <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="layui-icon">&#xe665;</i>
                         <em>首页管理</em>
                     </a>
-                   <%-- <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>views/pages/01轮播图.jsp">轮播图</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/02任务发布.html">任务发布</a></dd>
-                        <dd><a href="<%=basePath%>views/pages/03消息发布.html">消息发布</a></dd>
-                    </dl>--%>
+                    <%-- <dl class="layui-nav-child">
+                         <dd><a href="<%=basePath%>views/pages/01轮播图.jsp">轮播图</a></dd>
+                         <dd><a href="<%=basePath%>views/pages/02任务发布.html">任务发布</a></dd>
+                         <dd><a href="<%=basePath%>views/pages/03消息发布.html">消息发布</a></dd>
+                     </dl>--%>
                 </li>
+
+                <%
+                    if (role == 3 ) {%>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="layui-icon">&#xe857;</i>
-                        <em>用户管理</em>
+                        <em>个人中心</em>
                     </a>
                     <dl class="layui-nav-child">
-<%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
-                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>
+                        <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
+                        <dd>
+                            <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe653;</i>
+                        <em>需求管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">工种申请</a>
+                        </dd>
+                        <dd>
+                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">需求列表</a>
+                        </dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -78,17 +98,38 @@
                         <em>留言管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>">留言列表</a></dd>
-                        <dd><a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>">回复列表</a></dd>
+                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
+                        </dd>
+                        <dd>
+                            <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">回复列表</a>
+                        </dd>
+                    </dl>
+                </li>
+
+
+                <% }else if(role == 2){%>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe857;</i>
+                        <em>个人中心</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
+                        <dd>
+                            <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
+                        </dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="layui-icon">&#xe653;</i>
-                        <em>评星管理</em>
+                        <em>职位申请</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><dd><a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>">评星列表</a></dd>
+                        <dd>
+                        <dd>
+                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的申请</a>
+                        </dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -97,9 +138,75 @@
                         <em>工作职位管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>workController/findAllWorkData?loginId=<%=loginId%>&token=<%=param%>">职位列表</a></dd>
+                        <dd><a href="<%=basePath%>workController/findAllWorkData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">职位列表</a>
+                        </dd>
                     </dl>
                 </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe663;</i>
+                        <em>留言管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
+                        </dd>
+                        <dd>
+                            <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">回复列表</a>
+                        </dd>
+                    </dl>
+                </li>
+
+                <%}else if(role == 1){%>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe857;</i>
+                        <em>用户管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
+                        <dd>
+                            <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">用户列表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe663;</i>
+                        <em>留言管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
+                        </dd>
+                        <dd>
+                            <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">回复列表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe653;</i>
+                        <em>评星管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                        <dd>
+                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">评星列表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe631;</i>
+                        <em>工作职位管理</em>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="<%=basePath%>workController/findAllWorkData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">职位列表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <%}
+                %>
+
             </ul>
         </div>
     </div>

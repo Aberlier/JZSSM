@@ -17,6 +17,7 @@ $('#regist_button').on('click',function(){
     $('#login-button').on('click', function () {
         var loginId;
         var token;
+        var role;
         myajax = $.ajax({
             url: "http://localhost:7512/JZSSM/login",
             type: "post",
@@ -34,7 +35,8 @@ $('#regist_button').on('click',function(){
                 if (result.code == 200) {
                     loginId = result.data.loginId;
                     token = result.data.token;
-                    window.location.href = "home/index?loginId="+loginId+"&token="+token;
+                    role = result.data.role;
+                    window.location.href = "home/index?loginId="+loginId+"&token="+token+"&role="+role;
 
                 } else {
                     alert("登陆失败请重新登录！错误代码："+result.message);

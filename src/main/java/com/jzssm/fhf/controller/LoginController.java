@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 /**
  * @author ：Angular
  * @date ：Created in 2021/1/3 20:08
@@ -54,7 +56,7 @@ public class LoginController {
     }
 
     //处理登录
-    @RequestMapping(value = "/login", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/login")
     @ResponseBody
     public ResponseData login(@RequestParam("telnum") String telnum,
                               @RequestParam("rolename") String role,
@@ -85,11 +87,11 @@ public class LoginController {
                 break;
             case "2":
                 employerMap = userService.selectByTelRoleLogin(telnum, role);
-                loginEmployer = JSON.parseObject(JSON.toJSONString(userMap),DomainEmployer.class);
+                loginEmployer = JSON.parseObject(JSON.toJSONString(employerMap),DomainEmployer.class);
                 break;
             case "1":
                 adminMap = userService.selectByTelRoleLogin(telnum, role);
-                loginAdmin = JSON.parseObject(JSON.toJSONString(userMap),DomainAdmin.class);
+                loginAdmin = JSON.parseObject(JSON.toJSONString(adminMap),DomainAdmin.class);
                 break;
             default:
                 return null;
@@ -105,13 +107,14 @@ public class LoginController {
             session.setAttribute("token", token);
 
             responseData.putDataValue("loginId", loginUser.getUserId());
+            responseData.putDataValue("role", loginUser.getUserRole());
             responseData.putDataValue("token", token);
             responseData.putDataValue("user", loginUser);
             responseData.putDataValue("code", 200);
             responseData.putDataValue("msg", "登陆成功");
         } else if(null != loginEmployer && MD5Util.checkPassword(password, loginEmployer.getEmployerPwd())) {
             //给用户jwt加密生成token
-            String token = JWT.sign(loginUser, 60L * 1000L * 30L);
+            String token = JWT.sign(loginEmployer, 60L * 1000L * 30L);
             //封装成对象返回给客户端
             session.setAttribute("user", loginEmployer);
             session.setAttribute("userName", loginEmployer.getEmployerName());
@@ -120,21 +123,23 @@ public class LoginController {
             session.setAttribute("token", token);
 
             responseData.putDataValue("loginId", loginEmployer.getEmployerId());
+            responseData.putDataValue("role", loginEmployer.getEmployerRole());
             responseData.putDataValue("token", token);
             responseData.putDataValue("user", loginEmployer);
             responseData.putDataValue("code", 200);
             responseData.putDataValue("msg", "登陆成功");
         }else if(null != loginAdmin && MD5Util.checkPassword(password, loginAdmin.getAdminPwd())) {
             //给用户jwt加密生成token
-            String token = JWT.sign(loginUser, 60L * 1000L * 30L);
+            String token = JWT.sign(loginAdmin, 60L * 1000L * 30L);
             //封装成对象返回给客户端
-            session.setAttribute("user", loginUser);
+            session.setAttribute("user", loginAdmin);
             session.setAttribute("userName", loginAdmin.getAdminName());
             session.setAttribute("role", loginAdmin.getAdminRole());
             session.setAttribute("loginId", loginAdmin.getAdminId());
             session.setAttribute("token", token);
 
             responseData.putDataValue("loginId", loginAdmin.getAdminId());
+            responseData.putDataValue("role", loginAdmin.getAdminRole());
             responseData.putDataValue("token", token);
             responseData.putDataValue("user", loginAdmin);
             responseData.putDataValue("code", 200);
