@@ -12,6 +12,7 @@
     String param = (String) session.getAttribute("token");
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
     DomainUser domainUser = (DomainUser) session.getAttribute("domainUser");
+    Integer role = Integer.parseInt(session.getAttribute("role").toString());
 %>
 
 <!DOCTYPE html>
@@ -155,7 +156,7 @@
 </div>
 <div class=" tkbtnfxd">
     <button type="button" class="layui-btn  layui-btn-normal float-right"
-            onclick="updateUser('<%=loginId%>','<%=param%>')">确定
+            onclick="updateUser('<%=loginId%>','<%=param%>','<%=role%>')">确定
     </button>
     <button type="button" class="layui-btn layui-btn-primary float-right">取消</button>
 </div>

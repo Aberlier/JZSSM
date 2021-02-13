@@ -1,6 +1,6 @@
-function addWork(loginId, token) {
+function addWork(loginId, token,role) {
     $.ajax({
-        url: "workController/insertWork?loginId=" + loginId + "&token=" + token,
+        url: "workController/insertWork?loginId=" + loginId + "&token=" + token+ "&role=" + role,
         type: "post",
         data: $("#form").serialize(),
         dataType: "json",
@@ -15,7 +15,7 @@ function addWork(loginId, token) {
         success: function (result) {
             if (result.code == 200) {
                 alert("新增留言成功！");
-                parent.location.href = "workController/findAllWorkData?loginId=" + loginId + "&token=" + token;
+                parent.location.href = "workController/findAllWorkData?loginId=" + loginId + "&token=" + token+ "&role=" + role;
             } else {
                 alert("新增留言失败！错误代码：" + result.message);
             }

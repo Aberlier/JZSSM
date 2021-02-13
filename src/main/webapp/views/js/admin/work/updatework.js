@@ -1,6 +1,6 @@
-function updateWork(loginId, token) {
+function updateWork(loginId, token,role) {
     $.ajax({
-        url: "workController/updateWork?loginId=" + loginId + "&token=" + token,
+        url: "workController/updateWork?loginId=" + loginId + "&token=" + token+ "&role=" + role,
         type: "post",
         data: $("#form").serialize(),
         dataType: "json",
@@ -15,7 +15,7 @@ function updateWork(loginId, token) {
         success: function (result) {
             if (result.code == 200) {
                 alert("修改用户成功！");
-                parent.location.href = "workController/findAllWorkData?loginId=" + loginId + "&token=" + token;
+                parent.location.href = "workController/findAllWorkData?loginId=" + loginId + "&token=" + token+ "&role=" + role;
                 location.reload();
             } else {
                 alert("修改用户失败！错误代码：" + result.message);

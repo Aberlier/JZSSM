@@ -11,6 +11,7 @@
 <%
 	String param = (String)session.getAttribute("token");
 	Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
+	Integer role = Integer.parseInt(session.getAttribute("role").toString());
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -33,7 +34,7 @@
 	<div class="mianb">
 		<div class="mblf layui-col-xs6 layui-col-md6">
 			<i class="layui-icon">&#xe656;</i>
-			<p>用户管理> <a href="<%=basePath%>userController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a> ><span>用户详情</span></p>
+			<p>用户管理> <a href="<%=basePath%>userController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">用户列表</a> ><span>用户详情</span></p>
 		</div>
 	</div>
 	<!--面包屑导航-->

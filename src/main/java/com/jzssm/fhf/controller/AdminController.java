@@ -139,7 +139,7 @@ public class AdminController {
         session.setAttribute("domainUser", domainUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("domainUser", domainUser);
-        modelAndView.setViewName("views/pages/admin/updatemsg.jsp");
+        modelAndView.setViewName("views/pages/admin/updateUser.jsp");
         return ResultUtil.success(modelAndView);
     }
 

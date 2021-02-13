@@ -2,6 +2,7 @@ layui.use(['laypage', 'layer','form'], function () {
     var limit = 10;
     var loginId;
     var token;
+    var role;
     var total;
     var page = 1;
     var element = layui.element;
@@ -74,13 +75,13 @@ $('#fabu').on('click', function () {
 })
 
 //删除单条信息
-function deleteOne(id,loginId,token) {
+function deleteOne(id,loginId,token,role) {
     layer.confirm('确定要删除该用户信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
             type:'post',
-            url:"pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&id="+id,
+            url:"pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){
@@ -94,11 +95,11 @@ function deleteOne(id,loginId,token) {
     });
 }
 //修改信息
-function updatePkstar(id,loginId,token) {
+function updatePkstar(id,loginId,token,role) {
     layer.alert('确定要修改用户信息？', function () {
         $.ajax({
             type:'get',
-            url:'pkstarController/updatePkstarBefore?id='+id+"&loginId="+loginId+"&token="+token,
+            url:'pkstarController/updatePkstarBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role=" +role,
           /*  data:id,//数据为id数组*/
             traditional:true,
             success:function(result) {
@@ -136,7 +137,7 @@ function checkAll(obj) {
 }
 //判断弹框
 
-function deleteAll (loginId,token) {
+function deleteAll (loginId,token,role) {
     var loginId = loginId;
     var token = token;
     var myArray=new Array();
@@ -157,7 +158,7 @@ function deleteAll (loginId,token) {
                     }
                 }
                 $.ajax({
-                    url: "pkstarController/deletePkstar?loginId="+loginId+"&token="+token,
+                    url: "pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&role=" +role,
                     type: "post",
                     data:{"arrays":myArray},//数据为id数组
                     dataType: "json",

@@ -11,6 +11,7 @@
 <%
 	String param = (String)session.getAttribute("token");
 	Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
+	Integer role = Integer.parseInt(session.getAttribute("role").toString());
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -39,7 +40,7 @@
 	<!--面包屑导航-->
 	<blockquote class="layui-elem-quote">
 		平台用户
-		<a class="layui-btn layui-btn-normal float-right">修改</a>
+		<a class="layui-btn layui-btn-normal float-right" onclick="updateUser('${user.userId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
 	</blockquote>
 	<!--岗位标题-->
 	<div class="layui-row">
@@ -201,6 +202,39 @@
 		var form = layui.form;
 		form.render();
 	});
+	//修改信息
+	function updateUser(id,loginId,token,role) {
+		layer.alert('确定要修改用户信息？', function () {
+			$.ajax({
+				type:'get',
+				url:'adminController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
+				/*  data:id,//数据为id数组*/
+				traditional:true,
+				success:function(result) {
+					if (result.code == 200) {
+						var domainUser = result.data.model.domainUser
+						var layer = layui.layer;
+						layer.open({
+							type: 2,
+							title: '修改用户',
+							fix: false,
+							shadeClose: true,
+							shade: 0.8,
+							area: ['660px', '420px'],
+							content: result.data.viewName,
+							end: function () {
+								location.reload();
+							}
+						});
+						/* //成功后刷新界面
+                         location.reload();*/
+					}else {
+						alert("修改失败！错误代码："+result.message,{icon: 2});
+					}
+				}
+			});
+		});
+	}
 </script>
 
 </body>

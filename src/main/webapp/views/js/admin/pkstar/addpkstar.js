@@ -1,6 +1,6 @@
-function addmsg(loginId, token) {
+function addmsg(loginId, token,role) {
     $.ajax({
-        url: "adminController/insertMsg?loginId=" + loginId + "&token=" + token,
+        url: "adminController/insertMsg?loginId=" + loginId + "&token=" + token+"&role=" +role,
         type: "post",
         data: $("#form").serialize(),
         dataType: "json",
@@ -15,7 +15,7 @@ function addmsg(loginId, token) {
         success: function (result) {
             if (result.code == 200) {
                 alert("新增留言成功！");
-                parent.location.href = "adminController/findAllMsgData?loginId=" + loginId + "&token=" + token;
+                parent.location.href = "adminController/findAllMsgData?loginId=" + loginId + "&token=" + token+"&role=" +role;
             } else {
                 alert("新增留言失败！错误代码：" + result.message);
             }

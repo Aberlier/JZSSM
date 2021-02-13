@@ -11,6 +11,7 @@
 <%
     String param = (String) session.getAttribute("token");
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
+    Integer role = Integer.parseInt(session.getAttribute("role").toString());
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -64,7 +65,7 @@
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"
-                   onclick="deleteAll('<%=loginId%>','<%=param%>')">批量删除</a>
+                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
             </div>
             <div class="table-responsive">
 
@@ -103,9 +104,9 @@
                                         <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
                                            class="layui-btn layui-btn-xs">查看</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updatemsg('${msg.msgId}','<%=loginId%>','<%=param%>')">修改</a>
+                                           onclick="updatemsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne($${msg.msgId},'<%=loginId%>','<%=param%>')">删除</a>
+                                           onclick="deleteOne($${msg.msgId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                     </div>
                                 </td>
                             </tr>
