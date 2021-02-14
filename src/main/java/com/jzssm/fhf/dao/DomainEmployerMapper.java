@@ -2,6 +2,8 @@ package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainEmployer;
 
+import java.util.List;
+
 public interface DomainEmployerMapper {
     int deleteByPrimaryKey(Integer employerId);
 
@@ -16,4 +18,6 @@ public interface DomainEmployerMapper {
     int updateByPrimaryKey(DomainEmployer record);
 
     DomainEmployer selectByTelNum(String telnum);
+
+    List<DomainEmployer> selectAllEmpData();
 }

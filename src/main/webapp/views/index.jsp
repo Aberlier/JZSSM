@@ -85,10 +85,10 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">工种申请</a>
+                            <a href="<%=basePath%>empController/findAllEmpData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">人员选择</a>
                         </dd>
                         <dd>
-                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">需求列表</a>
+                            <a href="<%=basePath%>requireController/findAllReqData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">需求列表</a>
                         </dd>
                     </dl>
                 </li>

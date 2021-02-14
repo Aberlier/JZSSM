@@ -1,10 +1,16 @@
 package com.jzssm.fhf.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.dao.DomainEmployerMapper;
 import com.jzssm.fhf.entity.DomainEmployer;
+import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ：Angular
@@ -55,5 +61,25 @@ public class EmployerServiceImpl implements EmployerService {
     @Override
     public int updateByPrimaryKey(DomainEmployer record) {
         return domainEmployerMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public PageInfo<DomainEmployer> finds(Params params) {
+        //查询
+        int pageNo = params.getPageNo();
+        int pageSize = params.getPageSize();
+
+        PageHelper.startPage(pageNo, pageSize);
+        List<DomainEmployer> blogs = domainEmployerMapper.selectAllEmpData();
+        //用PageInfo对结果进行包装
+        PageInfo<DomainEmployer> pageInfo = new PageInfo<DomainEmployer>(blogs);
+
+        return pageInfo;
+
+    }
+
+    @Override
+    public long counts() {
+        return 0;
     }
 }

@@ -2,6 +2,9 @@ package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainRequireUser;
 
+import java.util.List;
+import java.util.Map;
+
 public interface DomainRequireUserMapper {
     int deleteByPrimaryKey(Integer reqId);
 
@@ -14,4 +17,10 @@ public interface DomainRequireUserMapper {
     int updateByPrimaryKeySelective(DomainRequireUser record);
 
     int updateByPrimaryKey(DomainRequireUser record);
+
+    List<DomainRequireUser> selectAllReqData(Integer loginId);
+
+    DomainRequireUser selectByTelNum(String telnum);
+
+    Map<String, Object> selectByTelRoleLogin(String telnum, String role);
 }

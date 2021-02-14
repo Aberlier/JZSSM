@@ -49,7 +49,7 @@
                 enableCountByExample="false" enableUpdateByExample="false"
                 enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false"/>-->
-        <table tableName="tb_msg_response" domainObjectName="DomainMsgResp"
+        <table tableName="tb_require_user" domainObjectName="DomainRequireUser"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

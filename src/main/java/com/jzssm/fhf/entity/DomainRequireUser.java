@@ -21,7 +21,11 @@ public class DomainRequireUser {
 
     private String reqDoEmpPostname;
 
-    public DomainRequireUser(Integer reqId, String reqType, String reqDesc, String reqTime, String reqCheckName, String reqCheckRole, String reqCheckRoleId, String reqDoEmpName, String reqDoEmpId, String reqDoEmpPostname) {
+    private Integer reqUserId;
+
+    private String reqUserName;
+
+    public DomainRequireUser(Integer reqId, String reqType, String reqDesc, String reqTime, String reqCheckName, String reqCheckRole, String reqCheckRoleId, String reqDoEmpName, String reqDoEmpId, String reqDoEmpPostname, Integer reqUserId, String reqUserName) {
         this.reqId = reqId;
         this.reqType = reqType;
         this.reqDesc = reqDesc;
@@ -32,6 +36,8 @@ public class DomainRequireUser {
         this.reqDoEmpName = reqDoEmpName;
         this.reqDoEmpId = reqDoEmpId;
         this.reqDoEmpPostname = reqDoEmpPostname;
+        this.reqUserId = reqUserId;
+        this.reqUserName = reqUserName;
     }
 
     public DomainRequireUser() {
@@ -116,5 +122,21 @@ public class DomainRequireUser {
 
     public void setReqDoEmpPostname(String reqDoEmpPostname) {
         this.reqDoEmpPostname = reqDoEmpPostname == null ? null : reqDoEmpPostname.trim();
+    }
+
+    public Integer getReqUserId() {
+        return reqUserId;
+    }
+
+    public void setReqUserId(Integer reqUserId) {
+        this.reqUserId = reqUserId;
+    }
+
+    public String getReqUserName() {
+        return reqUserName;
+    }
+
+    public void setReqUserName(String reqUserName) {
+        this.reqUserName = reqUserName == null ? null : reqUserName.trim();
     }
 }

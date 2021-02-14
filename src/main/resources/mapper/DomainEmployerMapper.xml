@@ -169,4 +169,9 @@
       employer_role = #{employerRole,jdbcType=INTEGER}
     where employer_id = #{employerId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllEmpData" resultMap="BaseResultMap">
+    select * from tb_employer
+
+  </select>
 </mapper>

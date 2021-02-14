@@ -1,0 +1,91 @@
+package com.jzssm.fhf.serviceImpl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jzssm.fhf.common.Params;
+import com.jzssm.fhf.dao.DomainRequireUserMapper;
+import com.jzssm.fhf.entity.DomainRequireUser;
+import com.jzssm.fhf.service.RequireUserService;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author ：Angular
+ * @ProjectName: JZSSM
+ * @Package: com.jzssm.fhf.serviceImpl
+ * @ClassName: RequireUserServiceImpl
+ * @date ：Created in 2021/2/14 10:15
+ * @description：需求接口实现类
+ * @modified By：
+ * @version: $
+ */
+@Service
+public class RequireUserServiceImpl implements RequireUserService {
+    @Autowired
+    DomainRequireUserMapper domainRequireUserMapper;
+
+    @Override
+    public Boolean deleteByPrimaryKey(String userId) {
+        int index = domainRequireUserMapper.deleteByPrimaryKey(Integer.parseInt(userId));
+        return index > 0 ? true : false;
+    }
+
+    @Override
+    public Boolean insert(DomainRequireUser record) {
+        int index = domainRequireUserMapper.insert(record);
+        return index > 0 ? true : false;
+    }
+
+    @Override
+    public int insertSelective(DomainRequireUser record) {
+        return domainRequireUserMapper.insertSelective(record);
+    }
+
+    @Override
+    public DomainRequireUser selectByPrimaryKey(Integer userId) {
+        return domainRequireUserMapper.selectByPrimaryKey(userId);
+    }
+
+
+    @Override
+    public DomainRequireUser selectByTelNum(@Param("telnum") String telnum) {
+        return domainRequireUserMapper.selectByTelNum(telnum);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(DomainRequireUser record) {
+        return 0;
+    }
+
+    @Override
+    public Boolean updateByPrimaryKey(DomainRequireUser record) {
+        int index = domainRequireUserMapper.updateByPrimaryKey(record);
+        return index > 0 ? true : false;
+    }
+
+
+    @Override
+    public long counts() {
+        return 0;
+    }
+
+    @Override
+    public PageInfo<DomainRequireUser> finds(Params params,Integer loginId) {
+
+        //查询
+        int pageNo = params.getPageNo();
+        int pageSize = params.getPageSize();
+
+        PageHelper.startPage(pageNo, pageSize);
+        List<DomainRequireUser> blogs = domainRequireUserMapper.selectAllReqData(loginId);
+        //用PageInfo对结果进行包装
+        PageInfo<DomainRequireUser> pageInfo = new PageInfo<DomainRequireUser>(blogs);
+
+        return pageInfo;
+
+    }
+
+}

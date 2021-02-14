@@ -1,7 +1,10 @@
 package com.jzssm.fhf.service;
 
+import com.github.pagehelper.PageInfo;
+import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.entity.DomainAdmin;
 import com.jzssm.fhf.entity.DomainEmployer;
+import com.jzssm.fhf.entity.DomainUser;
 
 /**
  * @author ：Angular
@@ -27,4 +30,8 @@ public interface EmployerService {
     int updateByPrimaryKeySelective(DomainEmployer record);
 
     int updateByPrimaryKey(DomainEmployer record);
+
+    PageInfo<DomainEmployer> finds(Params params);
+
+    long counts();
 }
