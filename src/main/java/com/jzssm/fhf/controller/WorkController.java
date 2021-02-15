@@ -106,7 +106,7 @@ public class WorkController {
     @ApiOperation(value = "修改工作种类信息", httpMethod = "POST", notes = "修改工作种类信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsg(DomainWork domainWork) {
+    public Object updateWork(DomainWork domainWork) {
         domainWork.setWorkId(Integer.parseInt(UuidTools.getUuidNum()));
         domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
         domainWork.setWorkType(this.checkStringIsEmpty(domainWork.getWorkType()));
@@ -118,6 +118,7 @@ public class WorkController {
         }
 
     }
+
 
     @RequestMapping(value = "/updateWorkBefore", method = GET)
     @ResponseBody

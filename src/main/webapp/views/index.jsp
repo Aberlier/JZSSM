@@ -116,32 +116,27 @@
                     <dl class="layui-nav-child">
                         <%--                        <dd><a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>">用户列表</a></dd>--%>
                         <dd>
-                            <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
+                            <a href="<%=basePath%>empController/findEmpByLoginId?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的信息</a>
                         </dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="layui-icon">&#xe653;</i>
-                        <em>职位申请</em>
+                        <em>工作管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd>
-                        <dd>
-                            <a href="<%=basePath%>pkstarController/findAllPkstarData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的申请</a>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <i class="layui-icon">&#xe631;</i>
-                        <em>工作职位管理</em>
-                    </a>
-                    <dl class="layui-nav-child">
+                        <dl class="layui-nav-child">
+
+                        </dl>
                         <dd><a href="<%=basePath%>workController/findAllWorkData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">职位列表</a>
                         </dd>
+                        <dd>
+                            <a href="<%=basePath%>requireController/findAllReqByEmpIdData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">关联我的需求</a>
+                        </dd>
                     </dl>
                 </li>
+
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="layui-icon">&#xe663;</i>

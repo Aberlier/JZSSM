@@ -170,6 +170,16 @@
     where employer_id = #{employerId,jdbcType=INTEGER}
   </update>
 
+  <update id="updateField" parameterType="java.lang.String">
+    update tb_employer
+    <set>
+    <if test="workType != null">
+      employer_field = #{workType,jdbcType=VARCHAR},
+    </if>
+  </set>
+    where employer_id = #{workId,jdbcType=INTEGER}
+  </update>
+
   <select id="selectAllEmpData" resultMap="BaseResultMap">
     select * from tb_employer
 

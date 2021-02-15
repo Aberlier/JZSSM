@@ -46,7 +46,9 @@ layui.define(['element'], function (exports) {
                 },
                 success: function (result) {
                     if (result.code == 200) {
+                        alert(result.msg);
                         window.location.href = "http://localhost:7512/JZSSM/login_page";
+
                     } else if(result.code == 400){
                         alert("注册失败！" + result.message);
                     }else{

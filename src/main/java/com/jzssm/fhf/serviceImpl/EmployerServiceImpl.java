@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.dao.DomainEmployerMapper;
+import com.jzssm.fhf.dao.DomainWorkMapper;
 import com.jzssm.fhf.entity.DomainEmployer;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.EmployerService;
@@ -27,6 +28,8 @@ public class EmployerServiceImpl implements EmployerService {
 
     @Autowired
     DomainEmployerMapper domainEmployerMapper;
+    @Autowired
+    DomainWorkMapper domainWorkMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer userId) {
@@ -77,7 +80,11 @@ public class EmployerServiceImpl implements EmployerService {
         return pageInfo;
 
     }
-
+    @Override
+    public Boolean updateField(String workId,String wordType) {
+        int index = domainEmployerMapper.updateField(Integer.parseInt(workId),wordType);
+        return index > 0 ? true : false;
+    }
     @Override
     public long counts() {
         return 0;

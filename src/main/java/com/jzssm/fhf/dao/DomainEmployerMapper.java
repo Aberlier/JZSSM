@@ -1,6 +1,7 @@
 package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainEmployer;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface DomainEmployerMapper {
     DomainEmployer selectByTelNum(String telnum);
 
     List<DomainEmployer> selectAllEmpData();
+
+    int updateField(@Param("workId") Integer workId, @Param("workType") String workType);
 }

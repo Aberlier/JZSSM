@@ -127,6 +127,29 @@ function updateWork(id,loginId,token,role) {
         });
     });
 }
+
+
+
+//职工申请相关
+function updateField(workType,loginId,token,role) {
+    layer.alert('确定要申请该职位吗？', function () {
+        $.ajax({
+            type:'get',
+            url:'empController/updateField?workType='+workType+"&loginId="+loginId+"&token="+token+ "&role=" + role,
+          /*  data:id,//数据为id数组*/
+            traditional:true,
+            success:function(result) {
+                if (result.code == 200) {
+                  alert(result.msg);
+                    location.reload();
+                }else {
+                    alert(result.msg);
+                    location.reload();
+                }
+            }
+        });
+    });
+}
 //获取所有要删除的数据
 function checkAll(obj) {
     var isCheck = obj.checked;

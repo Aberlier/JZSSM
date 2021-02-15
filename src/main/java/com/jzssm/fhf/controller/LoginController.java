@@ -156,7 +156,6 @@ public class LoginController {
     @ResponseBody
     public ResponseData regist(@RequestParam("telnum") String telnum,
                                @RequestParam("password") String password,
-                               @RequestParam("role") String role,
                                @RequestParam("rolename") Integer roleName,
                                @RequestParam("username") String username,
                                @RequestParam("age") String age
@@ -166,12 +165,15 @@ public class LoginController {
         //管理员
         if (roleName.equals(1)) {
 //            DomainAdmin adminDomain = adminService.selectByTelNum(telnum);
-            Map<String,Object> adminMap =  userService.selectByTelRoleLogin(telnum, role);
+            Map<String,Object> adminMap =  userService.selectByTelRoleLogin(telnum, String.valueOf(roleName));
             DomainAdmin adminDomain = JSON.parseObject(JSON.toJSONString(adminMap),DomainAdmin.class);
-            if (telnum.equals(adminDomain.getAdminTelnum())) {
-                responseData.putDataValue("code", 400);
-                responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
-            } else {
+            if(adminDomain!=null && !"".equals(adminDomain)){
+                if (telnum.equals(adminDomain.getAdminTelnum())) {
+                    responseData.putDataValue("code", 400);
+                    responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
+                }
+            }
+             else {
                 DomainAdmin admin = new DomainAdmin();
                 /* DomainAdmin admin = JSON.toJavaObject(jsonObject, DomainAdmin.class);*/
                 admin.setAdminId(Integer.parseInt(UuidTools.getUuidNum()));
@@ -195,17 +197,21 @@ public class LoginController {
         //从业者
         else if (roleName.equals(2)) {
 //            DomainEmployer eDomain = employerService.selectByTelNum(telnum);
-            Map<String,Object> eMap =  userService.selectByTelRoleLogin(telnum, role);
+            Map<String,Object> eMap =  userService.selectByTelRoleLogin(telnum,String.valueOf(roleName));
             DomainEmployer eDomain = JSON.parseObject(JSON.toJSONString(eMap),DomainEmployer.class);
-            if (telnum.equals(eDomain.getEmployerTelnum())) {
-                responseData.putDataValue("code", 400);
-                responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
-            } else {
+            if(eDomain!=null && !"".equals(eDomain)){
+                if (telnum.equals(eDomain.getEmployerTelnum())) {
+                    responseData.putDataValue("code", 400);
+                    responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
+                }
+            }
+            else {
                 // DomainEmployer employer = JSON.toJavaObject(jsonObject, DomainEmployer.class);
                 DomainEmployer employer = new DomainEmployer();
                 employer.setEmployerId(Integer.parseInt(UuidTools.getUuidNum()));
                 employer.setEmployerName(username);
                 employer.setEmployerPwd(MD5Util.getMD5String(password));
+                employer.setEmployerAge(age);
                 employer.setEmployerRole(roleName);
                 employer.setEmployerTelnum(telnum);
                 int index = employerService.insert(employer);
@@ -221,12 +227,15 @@ public class LoginController {
         //用户
         else if (roleName.equals(3)) {
 //            DomainUser eDomain = userService.selectByTelNum(telnum);
-            Map<String,Object> uMap =  userService.selectByTelRoleLogin(telnum, role);
-            DomainUser eDomain = JSON.parseObject(JSON.toJSONString(uMap),DomainUser.class);
-            if (telnum.equals(eDomain.getUserTelnum())) {
-                responseData.putDataValue("code", 400);
-                responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
-            } else {
+            Map<String,Object> uMap =  userService.selectByTelRoleLogin(telnum,String.valueOf(roleName));
+            DomainUser userDomain = JSON.parseObject(JSON.toJSONString(uMap),DomainUser.class);
+            if(userDomain!=null && !"".equals(userDomain)){
+                if (telnum.equals(userDomain.getUserTelnum())) {
+                    responseData.putDataValue("code", 400);
+                    responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
+                }
+            }
+           else {
                 DomainUser user = new DomainUser();
                 user.setUserId(Integer.parseInt(UuidTools.getUuidNum()));
                 user.setUserName(username);

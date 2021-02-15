@@ -63,7 +63,40 @@ public class RequireController {
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainRequireUser> pageInfo = requireUserService.finds(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        PageInfo<DomainRequireUser> pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        List<DomainRequireUser> reqList = pageInfo.getList();
+        //查询数量
+        long couts = requireUserService.counts();
+
+        modelAndView.addObject("reqList", reqList);
+        //当前页
+        modelAndView.addObject("currentPage", pageInfo.getPageNum());
+        //每页的数量
+        modelAndView.addObject("pageSize", pageInfo.getPageSize());
+        //当前页的数量
+        modelAndView.addObject("startPage", pageInfo.getSize());
+        //总记录数
+        modelAndView.addObject("countNumber", pageInfo.getTotal());
+        //int sumPageNumber=countNumber%pageSize==0?(countNumber/pageSize):((countNumber/pageSize)+1);
+        //总页数
+        modelAndView.addObject("sumPageNumber", pageInfo.getPages());
+        modelAndView.addObject("couts", couts);
+        modelAndView.setViewName("views/pages/user/req_manager");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/findAllReqByEmpIdData")
+    @ApiOperation(value = "职工查询对应自己的需求信息", httpMethod = "GET", notes = "职工查询对应自己的需求信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public ModelAndView findAllReqByEmpIdData(@ApiIgnore Params params, HttpSession session) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        //一开始第一页，查询10条
+        params.setPageNo(1);
+        params.setPageSize(10);
+        PageInfo<DomainRequireUser> pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
         List<DomainRequireUser> reqList = pageInfo.getList();
         //查询数量
         long couts = requireUserService.counts();

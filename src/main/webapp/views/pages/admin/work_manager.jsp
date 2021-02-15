@@ -35,29 +35,51 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>用户管理 > <span>用户列表</span></p>
+            <p>职位管理 > <span>职位列表</span></p>
         </div>
+        <%
+            if(role==1){
+        %>
+
         <div class="mbrt layui-col-xs6 layui-col-md6">
-            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加用户需求</a>
+            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加工作项目</a>
         </div>
+        <%    }
+        %>
+
     </div>
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
+
+            <%
+                if(role==1){
+            %>
 
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"
                    onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
             </div>
+            <%    }
+            %>
+
+
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
+                        <%
+                            if(role==1){
+                        %>
+
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
+                        <%    }
+                        %>
+
                         <th>类型编号</th>
                         <th>职责名称</th>
                         <th>相关描述</th>
@@ -68,10 +90,15 @@
                     <c:forEach items="${worklist}" var="worklist">
                         <form class="layui-form" action="">
                             <tr>
+                                <%
+                                    if(role==1){
+                                %>
                                 <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
                                            value="${worklist.workId}">
                                 </td>
+                                <%    }
+                                %>
                                 <td>${worklist.workType}</td>
                                 <td>${worklist.workName}</td>
 
@@ -79,12 +106,20 @@
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
+
+                                        <%if(role==2){%>
+                                        <a onclick="updateField('${worklist.workType}','<%=loginId%>','<%=param%>','<%=role%>')"
+                                        class="layui-btn layui-btn-xs">申请</a>
+                                        <%}%>
+
+
+                                        <%if(role==3){%>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
                                            onclick="updateWork('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne($${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                        <%}%>
+
                                     </div>
                                 </td>
                             </tr>

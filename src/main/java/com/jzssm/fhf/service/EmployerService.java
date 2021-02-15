@@ -34,4 +34,6 @@ public interface EmployerService {
     PageInfo<DomainEmployer> finds(Params params);
 
     long counts();
+
+    Boolean updateField(String workId,String wordType);
 }
