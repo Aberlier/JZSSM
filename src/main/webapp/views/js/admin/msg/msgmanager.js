@@ -60,12 +60,12 @@ $('#fabu').on('click', function () {
         var layer = layui.layer;
         layer.open({
             type: 2,
-            title: '添加用户',
+            title: '留言',
             fix: false,
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/admin/addmsg.jsp',
+            content: 'views/pages/admin/addMsg.jsp',
             end: function () {
                 location.reload();
             }

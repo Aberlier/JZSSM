@@ -61,13 +61,13 @@ public class MsgServiceImpl implements MsgService {
     }
 
     @Override
-    public PageInfo<DomainMsg> finds(Params params) {
+    public PageInfo<DomainMsg> finds(Params params,Integer loginId) {
         //查询
         int pageNo = params.getPageNo();
         int pageSize = params.getPageSize();
 
         PageHelper.startPage(pageNo, pageSize);
-        List<DomainMsg> blogs = domainMsgMapper.selectAllMsgData();
+        List<DomainMsg> blogs = domainMsgMapper.selectAllMsgData(loginId);
         //用PageInfo对结果进行包装
         PageInfo<DomainMsg> pageInfo = new PageInfo<DomainMsg>(blogs);
         return pageInfo;

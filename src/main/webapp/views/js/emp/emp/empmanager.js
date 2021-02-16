@@ -38,7 +38,7 @@ layui.use(['laypage', 'layer','form'], function () {
 
 
 //用户添加需求
-function addReqByEmpForYuYue(empname,id,empstarnum) {
+function addReqByEmpForYuYue(empType,empname,id,empstarnum) {
     layui.use('layer', function(){
         var layer = layui.layer;
         layer.open({
@@ -48,7 +48,7 @@ function addReqByEmpForYuYue(empname,id,empstarnum) {
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/user/addReq.jsp?empname='+empname+'&id='+id+'&empstarnum='+empstarnum,
+            content: 'views/pages/user/addReq.jsp?empType='+empType+'&empname='+empname+'&id='+id+'&empstarnum='+empstarnum,
             end: function () {
                 location.reload();
             }

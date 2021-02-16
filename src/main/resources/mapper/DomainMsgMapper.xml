@@ -94,7 +94,10 @@
     where msg_id = #{msgId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAllMsgData" resultMap="BaseResultMap">
-    select * from tb_msg
+  <select id="selectAllMsgData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from tb_msg where
+    <if test="loginId != null">
+    user_id = #{loginId,jdbcType=INTEGER}
+    </if>
   </select>
 </mapper>

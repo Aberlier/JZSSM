@@ -35,7 +35,7 @@ public interface MsgRespService {
      3      * @param params 分页参数 pageNo（页码），pageSize（每页查询数目）
      4      * @return
      5      */
-    public PageInfo<DomainMsgResp> finds(Params params);
+    public PageInfo<DomainMsgResp> finds(Params params,Integer loginId);
 
     long counts();
 }

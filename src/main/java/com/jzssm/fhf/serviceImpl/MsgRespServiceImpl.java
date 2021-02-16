@@ -9,6 +9,7 @@ import com.jzssm.fhf.entity.DomainMsg;
 import com.jzssm.fhf.entity.DomainMsgResp;
 import com.jzssm.fhf.service.MsgRespService;
 import com.jzssm.fhf.service.MsgService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,13 +65,13 @@ public class MsgRespServiceImpl implements MsgRespService {
     }
 
     @Override
-    public PageInfo<DomainMsgResp> finds(Params params) {
+    public PageInfo<DomainMsgResp> finds(Params params, Integer loginId) {
         //查询
         int pageNo = params.getPageNo();
         int pageSize = params.getPageSize();
 
         PageHelper.startPage(pageNo, pageSize);
-        List<DomainMsgResp> blogs = domainMsgRespMapper.selectAllMsgRespData();
+        List<DomainMsgResp> blogs = domainMsgRespMapper.selectAllMsgRespData(loginId);
         //用PageInfo对结果进行包装
         PageInfo<DomainMsgResp> pageInfo = new PageInfo<DomainMsgResp>(blogs);
         return pageInfo;

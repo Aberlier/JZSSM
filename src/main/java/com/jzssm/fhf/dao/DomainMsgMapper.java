@@ -1,6 +1,7 @@
 package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainMsg;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface DomainMsgMapper {
 
     int updateByPrimaryKey(DomainMsg record);
 
-    List<DomainMsg> selectAllMsgData();
+    List<DomainMsg> selectAllMsgData(@Param("loginId") Integer loginId);
 }

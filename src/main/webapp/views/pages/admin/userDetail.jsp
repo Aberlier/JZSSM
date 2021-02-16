@@ -32,10 +32,19 @@
 <div class="layui-content">
 	<!--面包屑导航-->
 	<div class="mianb">
+		<%if(role ==1){%>
 		<div class="mblf layui-col-xs6 layui-col-md6">
 			<i class="layui-icon">&#xe656;</i>
 			<p>用户管理> <a href="<%=basePath%>userController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">用户列表</a> ><span>用户详情</span></p>
 		</div>
+		<%}else if(role==2 || role == 3){%>
+		<div class="mblf layui-col-xs6 layui-col-md6">
+			<i class="layui-icon">&#xe656;</i>
+			<p>个人信息详情</p>
+		</div>
+		<%}%>
+
+
 	</div>
 	<!--面包屑导航-->
 	<blockquote class="layui-elem-quote">

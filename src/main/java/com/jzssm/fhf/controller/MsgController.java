@@ -53,12 +53,20 @@ public class MsgController {
     @ApiOperation(value = "分页查询留言列表", httpMethod = "GET", notes = "分页查询留言列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public ModelAndView index(@ApiIgnore Params params, HttpServletRequest request) {
+    public ModelAndView index(@ApiIgnore Params params, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainMsg> pageInfo = msgService.finds(params);
+        PageInfo<DomainMsg> pageInfo = null;
+        if(Integer.parseInt(session.getAttribute("role").toString())==3){
+            pageInfo = msgService.finds(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }else if(Integer.parseInt(session.getAttribute("role").toString())==2){
+            pageInfo = msgService.finds(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }else if(Integer.parseInt(session.getAttribute("role").toString())==1){
+            pageInfo = msgService.finds(params,null);
+        }
+
         List<DomainMsg> msglist = pageInfo.getList();
         //查询数量
         //long couts = msgService.counts();
@@ -87,8 +95,8 @@ public class MsgController {
     public Object insertMsg(DomainMsg domainMsg, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsg.setMsgId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainMsg.setMsgName(session.getAttribute("userName").toString());
         domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
+        domainMsg.setMsgName(this.checkStringIsEmpty(domainMsg.getMsgName()));
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
         domainMsg.setCreateTime(new Date());
         if (msgService.insert(domainMsg)) {

@@ -136,16 +136,25 @@
 
                                 <td>${emp.employerDesc}</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
-                                <td>
-                                    <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/empDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
-                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="addReqByEmpForYuYue('${emp.employerName}','${emp.employerId}','${emp.employerPostname}','<%=loginId%>','<%=param%>','<%=role%>')">预约</a>
-                                        <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne(${emp.employerId},'<%=loginId%>','<%=param%>','<%=role%>')">点评</a>
-                                    </div>
-                                </td>
+                                <c:if test="${emp.employerField !=null }">
+                                    <td>
+                                        <div class="layui-table-cell laytable-cell-1-0-10">
+                                            <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                               onclick="addReqByEmpForYuYue('${emp.employerField}','${emp.employerName}','${emp.employerId}','${emp.employerPostname}','<%=loginId%>','<%=param%>','<%=role%>')">立即预约</a>
+                                            <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
+                                               onclick="deleteOne(${emp.employerId},'<%=loginId%>','<%=param%>','<%=role%>')">立即点评</a>
+                                        </div>
+                                    </td>
+                                </c:if>
+                                <c:if test="${emp.employerField ==null }">
+                                    <td>
+                                        <div class="layui-table-cell laytable-cell-1-0-10">
+                                            <a class="layui-btn layui-btn-normal layui-btn-xs">不可预约</a>
+                                            <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne">不可点评</a>
+                                        </div>
+                                    </td>
+                                </c:if>
+
                             </tr>
                             <input type="hidden" name="startPage" id="startPage" value="${startPage}"/>
                             <input type="hidden" name="currentPage" id="currentPage" value="${currentPage }"/>

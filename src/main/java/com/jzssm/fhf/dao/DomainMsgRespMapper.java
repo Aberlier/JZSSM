@@ -1,6 +1,7 @@
 package com.jzssm.fhf.dao;
 
 import com.jzssm.fhf.entity.DomainMsgResp;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface DomainMsgRespMapper {
 
     int updateByPrimaryKey(DomainMsgResp record);
 
-    List<DomainMsgResp> selectAllMsgRespData();
+    List<DomainMsgResp> selectAllMsgRespData(@Param("loginId") Integer loginId);
 }

@@ -55,12 +55,20 @@ public class RespController {
     @ApiOperation(value = "分页查询留言回复列表", httpMethod = "GET", notes = "分页查询留言回复列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public ModelAndView index(@ApiIgnore Params params, HttpServletRequest request) {
+    public ModelAndView index(@ApiIgnore Params params, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainMsgResp> pageInfo = msgRespService.finds(params);
+
+        PageInfo<DomainMsgResp> pageInfo = null;
+        if(Integer.parseInt(session.getAttribute("role").toString())==3){
+            pageInfo = msgRespService.finds(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }else if(Integer.parseInt(session.getAttribute("role").toString())==2){
+            pageInfo = msgRespService.finds(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }else if(Integer.parseInt(session.getAttribute("role").toString())==1){
+            pageInfo = msgRespService.finds(params,null);
+        }
         List<DomainMsgResp> msgResplist = pageInfo.getList();
         //查询数量
         //long couts = msgService.counts();

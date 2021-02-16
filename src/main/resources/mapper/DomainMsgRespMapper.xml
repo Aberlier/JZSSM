@@ -105,7 +105,10 @@
       res_user_id = #{resUserId,jdbcType=INTEGER}
     where res_id = #{resId,jdbcType=INTEGER}
   </update>
-  <select id="selectAllMsgRespData" resultMap="BaseResultMap">
+  <select id="selectAllMsgRespData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select * from tb_msg_response
+    <if test="loginId != null">
+    where res_user_id = #{loginId,jdbcType=INTEGER}
+    </if>
   </select>
 </mapper>
