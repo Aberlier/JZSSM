@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -159,8 +161,8 @@ public class LoginController {
                                @RequestParam("rolename") Integer roleName,
                                @RequestParam("username") String username,
                                @RequestParam("age") String age
-    ) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    ) throws ParseException {
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ResponseData responseData = ResponseData.ok();
         //管理员
         if (roleName.equals(1)) {
@@ -181,8 +183,8 @@ public class LoginController {
                 admin.setAdminPwd(MD5Util.getMD5String(password));
                 admin.setAdminRole(roleName);
                 admin.setAdminTelnum(telnum);
-                admin.setAdminUpdatetime(new Date());
-                admin.setAdminCreatetime(new Date());
+                admin.setAdminUpdatetime(dtf.format(new Date()));
+                admin.setAdminCreatetime(dtf.format(new Date()));
                 int index = adminService.insert(admin);
                 if (index > 0) {
                     responseData.putDataValue("code", 200);

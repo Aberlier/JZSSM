@@ -47,30 +47,24 @@
 
             <div class="sortbox layui-form">
 
-                <div class="layui-form-item">
 
-                    <label class="layui-form-label">按需求筛选</label>
-                    <div class="layui-input-inline">
-                        <select name="interest" lay-filter="aihao">
-                            <option value=""></option>
-                            <option value="保安">保安</option>
-                            <option value="1" selected="">保洁</option>
-                            <option value="2">保镖</option>
-                            <option value="3">护工</option>
-                            <option value="4">月嫂</option>
-                        </select>
-                    </div>
-                </div>
             </div>
-
+            <%if(role==1){%>
+            <div class="layui-table-cell laytable-cell-1-2-3">
+                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
+                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
+                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
+            </div>
+            <%}%>
             <div class="table-responsive">
-
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
+                        <%if(role==1){%>
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
+                        <%}%>
                         <th>编号</th>
                         <th>职工姓名</th>
                         <th>职工手机</th>
@@ -87,10 +81,12 @@
                     <c:forEach items="${empList}" var="emp">
                         <form class="layui-form" action="">
                             <tr>
+                                <%if(role==1){%>
                                 <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
                                            value="${emp.employerId}">
                                 </td>
+                                <%}%>
                                 <td>${emp.employerId}</td>
                                 <td>${emp.employerName}</td>
                                 <td>${emp.employerTelnum}</td>

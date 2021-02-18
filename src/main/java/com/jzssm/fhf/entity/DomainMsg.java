@@ -9,13 +9,13 @@ public class DomainMsg {
 
     private String msgContent;
 
-    private Date createTime;
+    private String createTime;
 
     private Integer userId;
 
     private Integer userRole;
 
-    public DomainMsg(Integer msgId, String msgName, String msgContent, Date createTime, Integer userId,Integer userRole) {
+    public DomainMsg(Integer msgId, String msgName, String msgContent, String createTime, Integer userId,Integer userRole) {
         this.msgId = msgId;
         this.msgName = msgName;
         this.msgContent = msgContent;
@@ -52,11 +52,11 @@ public class DomainMsg {
         this.msgContent = msgContent == null ? null : msgContent.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

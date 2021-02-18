@@ -102,4 +102,18 @@ public class RequireUserServiceImpl implements RequireUserService {
 
         return pageInfo;
     }
+
+    @Override
+    public PageInfo<DomainRequireUser> findAllReqByUserIdData(Params params, int loginId) {
+        //查询
+        int pageNo = params.getPageNo();
+        int pageSize = params.getPageSize();
+
+        PageHelper.startPage(pageNo, pageSize);
+        List<DomainRequireUser> blogs = domainRequireUserMapper.findAllReqByUserIdData(loginId);
+        //用PageInfo对结果进行包装
+        PageInfo<DomainRequireUser> pageInfo = new PageInfo<DomainRequireUser>(blogs);
+
+        return pageInfo;
+    }
 }

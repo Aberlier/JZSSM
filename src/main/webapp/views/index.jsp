@@ -96,7 +96,7 @@
                             <a href="<%=basePath%>empController/findAllEmpData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">人员选择</a>
                         </dd>
                         <dd>
-                            <a href="<%=basePath%>requireController/findAllReqData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">需求列表</a>
+                            <a href="<%=basePath%>requireController/findAllReqByEmpIdData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">需求列表</a>
                         </dd>
                     </dl>
                 </li>
@@ -106,10 +106,12 @@
                         <em>留言管理</em>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
+                        <dd><a href="<%=basePath%>msgController/findAllMsg?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
+                        </dd>
+                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的留言</a>
                         </dd>
                         <dd>
-                            <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">回复列表</a>
+                            <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的回复</a>
                         </dd>
                     </dl>
                 </li>

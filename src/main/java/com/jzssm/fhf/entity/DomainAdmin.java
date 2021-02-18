@@ -12,15 +12,15 @@ public class DomainAdmin {
 
     private String adminSex;
 
-    private Date adminCreatetime;
+    private String adminCreatetime;
 
-    private Date adminUpdatetime;
+    private String adminUpdatetime;
 
     private Integer adminRole;
 
     private String adminTelnum;
 
-    public DomainAdmin(Integer adminId, String adminName, String adminPwd, String adminSex, Date adminCreatetime, Date adminUpdatetime, Integer adminRole, String adminTelnum) {
+    public DomainAdmin(Integer adminId, String adminName, String adminPwd, String adminSex, String adminCreatetime, String adminUpdatetime, Integer adminRole, String adminTelnum) {
         this.adminId = adminId;
         this.adminName = adminName;
         this.adminPwd = adminPwd;
@@ -67,19 +67,19 @@ public class DomainAdmin {
         this.adminSex = adminSex == null ? null : adminSex.trim();
     }
 
-    public Date getAdminCreatetime() {
+    public String getAdminCreatetime() {
         return adminCreatetime;
     }
 
-    public void setAdminCreatetime(Date adminCreatetime) {
+    public void setAdminCreatetime(String adminCreatetime) {
         this.adminCreatetime = adminCreatetime;
     }
 
-    public Date getAdminUpdatetime() {
+    public String getAdminUpdatetime() {
         return adminUpdatetime;
     }
 
-    public void setAdminUpdatetime(Date adminUpdatetime) {
+    public void setAdminUpdatetime(String adminUpdatetime) {
         this.adminUpdatetime = adminUpdatetime;
     }
 

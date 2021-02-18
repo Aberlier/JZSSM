@@ -1,6 +1,6 @@
-function addmsg(loginId, token,role) {
+function addMsgResp(loginId, token,role) {
     $.ajax({
-        url: "adminController/insertMsg?loginId=" + loginId + "&token=" + token+"&role=" +role,
+        url: "respController/insertMsgResp?loginId=" + loginId + "&token=" + token+"&role=" +role,
         type: "post",
         data: $("#form").serialize(),
         dataType: "json",
@@ -14,13 +14,13 @@ function addmsg(loginId, token,role) {
         },
         success: function (result) {
             if (result.code == 200) {
-                alert("新增留言成功！");
-                parent.location.href = "adminController/findAllMsgData?loginId=" + loginId + "&token=" + token+"&role=" +role;
+                alert("回复成功！");
+                parent.location.href = "respController/findAllMsgRespData?loginId=" + loginId + "&token=" + token+"&role=" +role;
             } else {
-                alert("新增留言失败！错误代码：" + result.message);
+                alert("回复失败！错误代码：" + result.code);
             }
         }, error: function (result) {
-            alert("网络连接失败！" + result.resultCode);
+            alert("网络连接失败！" + result.code);
         }
     });
 }

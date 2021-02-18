@@ -32,8 +32,20 @@
         select
         <include refid="Base_Column_List"/>
         from tb_require_user
+        <if test="loginId != null">
         where req_do_emp_id = #{loginId,jdbcType=INTEGER}
+        </if>
     </select>
+
+    <select id="findAllReqByUserIdData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_require_user
+        <if test="loginId != null">
+        where req_user_id = #{loginId,jdbcType=INTEGER}
+        </if>
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_require_user
     where req_id = #{reqId,jdbcType=INTEGER}

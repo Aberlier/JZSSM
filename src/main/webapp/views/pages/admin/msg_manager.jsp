@@ -81,17 +81,25 @@
                                 <td>${msg.userId}</td>
                                 <td>${msg.msgName}</td>
                                 <td>${msg.msgContent}</td>
-                                <td>${msg.userRole}</td>
+                                <c:if test="${msg.userRole==null}">
+                                    <td>未知</td>
+                                </c:if>
+                                <c:if test="${msg.userRole==1}">
+                                    <td>管理员</td>
+                                </c:if><c:if test="${msg.userRole==2}">
+                                <td>家政人员</td>
+                            </c:if><c:if test="${msg.userRole==3}">
+                                <td>用户</td>
+                            </c:if>
+
                                 <td>${msg.createTime}</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updatemsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
+                                           onclick="updateMsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne($${msg.msgId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                     </div>
                                 </td>
                             </tr>

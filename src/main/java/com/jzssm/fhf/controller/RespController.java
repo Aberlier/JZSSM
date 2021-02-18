@@ -22,6 +22,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -94,13 +95,13 @@ public class RespController {
     @ResponseBody
     @ApiOperation(value = "添加留言信息", httpMethod = "POST", notes = "添加留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertMsgResp(DomainMsgResp domainMsgResp, HttpSession session) {
+    public Object insertMsgResp(DomainMsgResp domainMsgResp, HttpSession session) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsgResp.setMsgId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getMsgId().toString())));
-        domainMsgResp.setResUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getResUserId().toString())));
+        domainMsgResp.setResUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
         domainMsgResp.setResId(Integer.parseInt(UuidTools.getUuidNum()));
         domainMsgResp.setResMsg(this.checkStringIsEmpty(domainMsgResp.getResMsg()));
-        domainMsgResp.setResTime(new Date());
+        domainMsgResp.setResTime(sdf.format(new Date()));
         if (msgRespService.insert(domainMsgResp)) {
             return ResultUtil.success("添加成功！");
         } else {
@@ -114,12 +115,13 @@ public class RespController {
     @ApiOperation(value = "修改留言回复信息", httpMethod = "POST", notes = "修改留言回复信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsgResp(DomainMsgResp domainMsgResp,HttpSession session) {
+    public Object updateMsgResp(DomainMsgResp domainMsgResp,HttpSession session) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsgResp.setMsgId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getMsgId().toString())));
         domainMsgResp.setResUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsgResp.getResUserId().toString())));
         domainMsgResp.setResId(Integer.parseInt(UuidTools.getUuidNum()));
         domainMsgResp.setResMsg(this.checkStringIsEmpty(domainMsgResp.getResMsg()));
-        domainMsgResp.setResTime(new Date());
+        domainMsgResp.setResTime(sdf.format(new Date()));
         if (msgRespService.updateByPrimaryKey(domainMsgResp)) {
             return ResultUtil.success("修改成功！");
         } else {

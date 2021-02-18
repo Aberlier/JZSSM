@@ -7,7 +7,7 @@
       <arg column="pk_star_num" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pk_emp_namer" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pk_emp_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="pk_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pk_update_time" javaType="java.lang.String" jdbcType="VARCHAR"  />
       <arg column="pk_give_star_role" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pk_give_star_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pk_give_star_id" javaType="java.lang.Integer" jdbcType="INTEGER" />

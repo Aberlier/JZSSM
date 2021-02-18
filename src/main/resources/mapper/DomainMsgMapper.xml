@@ -6,7 +6,7 @@
       <idArg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="msg_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="msg_content" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_time" javaType="java.lang.String" jdbcType="VARCHAR"  />
       <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="user_role" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
@@ -95,9 +95,9 @@
   </update>
 
   <select id="selectAllMsgData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from tb_msg where
+    select * from tb_msg
     <if test="loginId != null">
-    user_id = #{loginId,jdbcType=INTEGER}
+      where user_id = #{loginId,jdbcType=INTEGER}
     </if>
   </select>
 </mapper>

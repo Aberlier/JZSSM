@@ -86,7 +86,10 @@
                     <property name="properties">
                         <value>
                           <!--  dialect=mysql-->
-                            reasonable=true
+                            offsetAsPageNum = true
+                            reasonable = true
+                            rowBoundsWithCount = true
+                            pageSizeZero = true
                         </value>
                     </property>
                 </bean>

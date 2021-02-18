@@ -6,7 +6,7 @@
       <idArg column="res_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="res_msg" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="res_role" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="res_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="res_time" javaType="java.lang.String" jdbcType="VARCHAR"  />
       <arg column="msg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="res_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
@@ -105,10 +105,13 @@
       res_user_id = #{resUserId,jdbcType=INTEGER}
     where res_id = #{resId,jdbcType=INTEGER}
   </update>
-  <select id="selectAllMsgRespData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from tb_msg_response
+  <select id="selectAllMsgRespData" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+    select a.res_id as resId, a.res_msg as resMsg, a.res_role as resRole, a.res_time as resTime, a.msg_id as msgId,
+     a.res_user_id as resUserId,b.msg_name as msgName, c.user_name as userName from tb_msg_response as a
+     left join  tb_msg as b on a.msg_id = b.msg_id
+     left join  tb_user as c on c.user_id = b.user_id
     <if test="loginId != null">
-    where res_user_id = #{loginId,jdbcType=INTEGER}
+    where a.res_user_id = #{loginId,jdbcType=INTEGER}
     </if>
   </select>
 </mapper>

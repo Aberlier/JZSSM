@@ -26,4 +26,6 @@ public interface DomainRequireUserMapper {
     Map<String, Object> selectByTelRoleLogin(String telnum, String role);
 
     List<DomainRequireUser> findAllReqByEmpIdData(@Param("loginId") Integer loginId);
+
+    List<DomainRequireUser> findAllReqByUserIdData(@Param("loginId") Integer loginId);
 }

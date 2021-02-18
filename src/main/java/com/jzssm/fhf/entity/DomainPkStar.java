@@ -11,7 +11,7 @@ public class DomainPkStar {
 
     private Integer pkEmpId;
 
-    private Date pkUpdateTime;
+    private String pkUpdateTime;
 
     private String pkGiveStarRole;
 
@@ -19,7 +19,7 @@ public class DomainPkStar {
 
     private Integer pkGiveStarId;
 
-    public DomainPkStar(Integer pkId, String pkStarNum, String pkEmpNamer, Integer pkEmpId, Date pkUpdateTime, String pkGiveStarRole, String pkGiveStarName, Integer pkGiveStarId) {
+    public DomainPkStar(Integer pkId, String pkStarNum, String pkEmpNamer, Integer pkEmpId, String pkUpdateTime, String pkGiveStarRole, String pkGiveStarName, Integer pkGiveStarId) {
         this.pkId = pkId;
         this.pkStarNum = pkStarNum;
         this.pkEmpNamer = pkEmpNamer;
@@ -66,11 +66,11 @@ public class DomainPkStar {
         this.pkEmpId = pkEmpId;
     }
 
-    public Date getPkUpdateTime() {
+    public String getPkUpdateTime() {
         return pkUpdateTime;
     }
 
-    public void setPkUpdateTime(Date pkUpdateTime) {
+    public void setPkUpdateTime(String pkUpdateTime) {
         this.pkUpdateTime = pkUpdateTime;
     }
 

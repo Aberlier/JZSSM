@@ -20,6 +20,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -88,17 +89,56 @@ public class MsgController {
         return modelAndView;
     }
 
+
+    /**
+     * 首页，并且分页查询
+     *
+     * @return
+     */
+    @RequestMapping(value = "/findAllMsg")
+    @ApiOperation(value = "分页查询留言列表", httpMethod = "GET", notes = "分页查询留言列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public ModelAndView findAllMsg(@ApiIgnore Params params, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        //一开始第一页，查询10条
+        params.setPageNo(1);
+        params.setPageSize(10);
+        PageInfo<DomainMsg> pageInfo = msgService.finds(params,null);
+
+        List<DomainMsg> msglist = pageInfo.getList();
+        //查询数量
+        //long couts = msgService.counts();
+
+        modelAndView.addObject("msglist", msglist);
+        //当前页
+        modelAndView.addObject("currentPage", pageInfo.getPageNum());
+        //每页的数量
+        modelAndView.addObject("pageSize", pageInfo.getPageSize());
+        //当前页的数量
+        modelAndView.addObject("startPage", pageInfo.getSize());
+        //总记录数
+        modelAndView.addObject("countNumber", pageInfo.getTotal());
+        //int sumPageNumber=countNumber%pageSize==0?(countNumber/pageSize):((countNumber/pageSize)+1);
+        //总页数
+        modelAndView.addObject("sumPageNumber", pageInfo.getPages());
+        //modelAndView.addObject("couts", couts);
+        modelAndView.setViewName("views/pages/admin/msg_all_manager");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/insertMsg", method = POST)
     @ResponseBody
     @ApiOperation(value = "添加留言信息", httpMethod = "POST", notes = "添加留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertMsg(DomainMsg domainMsg, HttpSession session) {
+    public Object insertMsg(DomainMsg domainMsg, HttpSession session) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsg.setMsgId(Integer.parseInt(UuidTools.getUuidNum()));
         domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
         domainMsg.setMsgName(this.checkStringIsEmpty(domainMsg.getMsgName()));
+        domainMsg.setUserRole(Integer.parseInt(session.getAttribute("role").toString()));
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
-        domainMsg.setCreateTime(new Date());
+        domainMsg.setCreateTime(sdf.format(new Date()));
         if (msgService.insert(domainMsg)) {
             return ResultUtil.success("添加成功！");
         } else {
@@ -112,13 +152,14 @@ public class MsgController {
     @ApiOperation(value = "修改留言信息", httpMethod = "POST", notes = "修改留言信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsg(DomainMsg domainMsg,HttpSession session) {
+    public Object updateMsg(DomainMsg domainMsg,HttpSession session) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsg.setUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getUserId().toString())));
         domainMsg.setMsgName(session.getAttribute("userName").toString());
         domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
         domainMsg.setMsgId(domainMsg.getMsgId());
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
-        domainMsg.setCreateTime(new Date());
+        domainMsg.setCreateTime(sdf.format(new Date()));
         if (msgService.updateByPrimaryKey(domainMsg)) {
             return ResultUtil.success("修改成功！");
         } else {

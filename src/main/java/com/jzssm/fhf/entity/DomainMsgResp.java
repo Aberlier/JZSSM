@@ -1,5 +1,7 @@
 package com.jzssm.fhf.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class DomainMsgResp {
@@ -9,19 +11,25 @@ public class DomainMsgResp {
 
     private String resRole;
 
-    private Date resTime;
+    private String resTime;
 
     private Integer msgId;
 
     private Integer resUserId;
 
-    public DomainMsgResp(Integer resId, String resMsg, String resRole, Date resTime, Integer msgId, Integer resUserId) {
+    private String msgName;
+
+    private String userName;
+
+    public DomainMsgResp(Integer resId, String resMsg, String resRole, String resTime, Integer msgId, Integer resUserId,String msgName,String userName) {
         this.resId = resId;
         this.resMsg = resMsg;
         this.resRole = resRole;
         this.resTime = resTime;
         this.msgId = msgId;
         this.resUserId = resUserId;
+        this.userName = userName;
+        this.msgName = msgName;
     }
 
     public DomainMsgResp() {
@@ -52,11 +60,11 @@ public class DomainMsgResp {
         this.resRole = resRole == null ? null : resRole.trim();
     }
 
-    public Date getResTime() {
+    public String getResTime() {
         return resTime;
     }
 
-    public void setResTime(Date resTime) {
+    public void setResTime(String resTime) {
         this.resTime = resTime;
     }
 
@@ -74,5 +82,21 @@ public class DomainMsgResp {
 
     public void setResUserId(Integer resUserId) {
         this.resUserId = resUserId;
+    }
+
+    public String getMsgName() {
+        return msgName;
+    }
+
+    public void setMsgName(String msgName) {
+        this.msgName = msgName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

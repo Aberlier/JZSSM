@@ -35,7 +35,7 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>用户管理 > <span>用户列表</span></p>
+            <p>回复列表 > <span>我的回复</span></p>
         </div>
     </div>
     <!--面包屑导航-->
@@ -78,11 +78,24 @@
                                 <td>${msgResplist.resId}</td>
                                 <td>${msgResplist.msgId}</td>
                                 <td>${msgResplist.resMsg}</td>
-                                <td>${msgResplist.resRole}</td>
+                                <td>
+                                <c:if test="${msgResplist.resRole==null}">
+                                    <td>未知</td>
+                                </c:if>
+                                <c:if test="${msgResplist.resRole==1}">
+                                    <td>管理员</td>
+                                </c:if>
+                                <c:if test="${msgResplist.resRole==2}">
+                                <td>家政人员</td>
+                                </c:if>
+                                <c:if test="${msgResplist.resRole==3}">
+                                    用户
+                                </c:if>
+                                </td>
                                 <td>${msgResplist.resUserId}</td>
                                 <td>${msgResplist.resTime}</td>
-                                <td>xxx</td>
-                                <td>xxxx</td>
+                                <td>${msgResplist.msgName}</td>
+                                <td>${msgResplist.userName}</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
@@ -91,7 +104,7 @@
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
                                            onclick="updateMsgResp('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>--%>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne($${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne(${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                     </div>
                                 </td>
                             </tr>

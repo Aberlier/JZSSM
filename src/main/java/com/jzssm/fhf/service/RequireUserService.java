@@ -39,4 +39,6 @@ public interface RequireUserService {
     long counts();
 
     PageInfo<DomainRequireUser> findAllReqByEmpIdData(Params params, int loginId);
+
+    PageInfo<DomainRequireUser> findAllReqByUserIdData(Params params, int loginId);
 }

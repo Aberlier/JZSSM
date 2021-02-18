@@ -78,7 +78,7 @@ $('#fabu').on('click', function () {
 
 //删除单条信息
 function deleteOne(id,loginId,token,role) {
-    layer.confirm('确定要删除该用户信息？', {
+    layer.confirm('确定要删除该需求信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
@@ -98,7 +98,7 @@ function deleteOne(id,loginId,token,role) {
 }
 //修改信息
 function updateReq(id,loginId,token,role) {
-    layer.alert('确定要修改用户信息？', function () {
+    layer.alert('确定要修改需求信息？', function () {
         $.ajax({
             type:'get',
             url:'requireController/updateReqBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
@@ -147,7 +147,7 @@ function deleteAll (loginId,token,role) {
     var len=0;
     var arrays=document.getElementsByName("arrays");//获取所有check
     if(arrays[0].checked){
-        layer.confirm('确定要删除该用户信息？', {
+        layer.confirm('确定要删除需求信息？', {
             btn: ['是', '否'] //按钮
         }, function () {
             if ($('#table tbody tr').length === 1) {

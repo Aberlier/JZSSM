@@ -65,10 +65,8 @@ public class MsgServiceImpl implements MsgService {
         //查询
         int pageNo = params.getPageNo();
         int pageSize = params.getPageSize();
-
-        PageHelper.startPage(pageNo, pageSize);
+        PageHelper.startPage(pageNo, pageSize,true);
         List<DomainMsg> blogs = domainMsgMapper.selectAllMsgData(loginId);
-        //用PageInfo对结果进行包装
         PageInfo<DomainMsg> pageInfo = new PageInfo<DomainMsg>(blogs);
         return pageInfo;
     }

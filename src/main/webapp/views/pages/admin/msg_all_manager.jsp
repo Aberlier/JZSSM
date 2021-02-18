@@ -18,7 +18,7 @@
 <head>
     <base href="<%=basePath%>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>职工管理</title>
+    <title>用户管理</title>
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/view.css"/>
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/admin.css"/>
@@ -35,17 +35,17 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>需求列表 > <span>我的需求</span></p>
+            <p>用户管理 > <span>用户列表</span></p>
+        </div>
+        <div class="mbrt layui-col-xs6 layui-col-md6">
+            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">留言</a>
         </div>
     </div>
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
 
-            <div class="sortbox layui-form">
-
-            </div>
-            <%if(role==1 || role == 3){%>
+            <%if(role==1){%>
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"
@@ -57,99 +57,58 @@
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
-                        <%if(role==1 || role == 3){%>
+                        <%if(role==1){%>
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
                         <%}%>
-                        <th>需求编号</th>
-                        <th>用户编号</th>
-                        <th>用户姓名</th>
-                        <th>需求类型</th>
-                        <th>需求详情</th>
-                        <th>需求创建时间</th>
-                        <th>审核人</th>
-                        <th>审核角色</th>
-                        <th>职工姓名</th>
-                        <th>职工编号</th>
-                        <th>职工等级</th>
-                        <%if(role==1 || role == 3){%>
+                        <th>编号</th>
+                        <th>留言用户</th>
+                        <th>留言标题</th>
+                        <th>留言内容</th>
+                        <th>留言角色</th>
+                        <th>留言时间</th>
                         <th>操作</th>
-                        <%}%>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${reqList}" var="req">
+                    <c:forEach items="${msglist}" var="msg">
                         <form class="layui-form" action="">
                             <tr>
-                                <%if(role==1 || role == 3){%>
+                                <%if(role==1){%>
                                 <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${req.reqId}">
+                                           value="${msg.msgId}">
                                 </td>
                                 <%}%>
-                                <td>${req.reqId}</td>
-                                <td>${req.reqUserId}</td>
-                                <td>${req.reqUserName}</td>
-                                <td><c:if test="${req.reqType==1}">
-                                    <option value="1">保安</option>
+                                <td>${msg.msgId}</td>
+                                <td>${msg.userId}</td>
+                                <td>${msg.msgName}</td>
+                                <td>${msg.msgContent}</td>
+                                <c:if test="${msg.userRole==null}">
+                                    <td>未知</td>
                                 </c:if>
-                                    <c:if test="${req.reqType==2}">
-                                        <option value="2">保洁</option>
-                                    </c:if>
-                                    <c:if test="${req.reqType==3}">
-                                        <option value="3">保镖</option>
-                                    </c:if>
-                                    <c:if test="${req.reqType==4}">
-                                        <option value="4">护工</option>
-                                    </c:if>
-                                    <c:if test="${req.reqType==5}">
-                                        <option value="5">月嫂</option>
-                                    </c:if></td>
-                                <td>${req.reqDesc}</td>
-                                <td>${req.reqTime}</td>
-                                <td>
-                                    <c:if test="${req.reqCheckName == null }">
-                                        暂未审核
-                                    </c:if><c:if test="${req.reqCheckName != null }">
-                                    ${req.reqCheckName}
+                                <c:if test="${msg.userRole==1}">
+                                    <td>管理员</td>
+                                </c:if><c:if test="${msg.userRole==2}">
+                                    <td>家政人员</td>
+                                </c:if><c:if test="${msg.userRole==3}">
+                                    <td>用户</td>
                                 </c:if>
-                                </td>
-                                <td>
-                                    <c:if test="${req.reqCheckRole == null }">
-                                        暂未审核
-                                    </c:if>
-                                    <c:if test="${req.reqCheckRole == 1 }">
-                                        管理员
-                                    </c:if><c:if test="${req.reqCheckRole == 2 }">
-                                    职工
-                                </c:if>
-                                </td>
-                                <td>${req.reqDoEmpName}</td>
-                                <td>${req.reqDoEmpId}</td>
-                                <td>
-                                    <c:if test="${req.reqDoEmpPostname==2}">
-                                        <option value="2">荣获2星专业人员</option>
-                                    </c:if><c:if test="${req.reqDoEmpPostname==3}">
-                                    <option value="3">荣获3星专业人员</option>
-                                </c:if><c:if test="${req.reqDoEmpPostname==4}">
-                                    <option value="4">荣获4星专业人员</option>
-                                </c:if><c:if test="${req.reqDoEmpPostname==5}">
-                                    <option value="5">荣获5星专业人员</option>
-                                </c:if>
-                                </td>
 
-
+                                <td>${msg.createTime}</td>
+                                    <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
-                                    <%if(role==1 || role == 3){%>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateReq('${req.reqId}','<%=loginId%>','<%=param%>','<%=role%>')">编辑</a>
+                                           onclick="respMsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">回复</a>
+                                        <%if(role==1){%>
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                           onclick="updateMsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne(${req.reqId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                        <%}%>
                                     </div>
-                                    <%}%>
-
                                 </td>
                             </tr>
                             <input type="hidden" name="startPage" id="startPage" value="${startPage}"/>
@@ -184,27 +143,26 @@
                                         </tr>--%>
                     </tbody>
                 </table>
-
-                <!--分页-->
-                <%--<div id="page"></div>--%>
                 <div style="margin-top:10px;">
-                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span
-                        value="">${currentPage}</span>页&nbsp&nbsp
+                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
                     <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
                     <input type="text" id="pageNumber" style="width:50px"/>
                     <button onclick="toLocationPage()">go</button>
                     <div id="pageInfo"></div>
                 </div>
-                <!--分页-->
             </div>
 
 
+            <!--分页-->
+            <%--<div id="page"></div>--%>
+
+            <!--分页-->
         </div>
     </div>
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/user/reqmanager.js"></script>
+<script src="<%=basePath%>views/js/admin/msg/msgmanager.js"></script>
 <script src="<%=basePath%>views/js/pageJs.js"></script>
 </body>
 </html>

@@ -96,7 +96,13 @@ public class RequireController {
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainRequireUser> pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        PageInfo<DomainRequireUser> pageInfo =null;
+        if(Integer.parseInt(session.getAttribute("role").toString())==3){
+           pageInfo = requireUserService.findAllReqByUserIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }
+        if(Integer.parseInt(session.getAttribute("role").toString())==2){
+            pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        }
         List<DomainRequireUser> reqList = pageInfo.getList();
         //查询数量
         long couts = requireUserService.counts();
@@ -181,7 +187,7 @@ public class RequireController {
 
     @RequestMapping(value = "/deleteReq", method = POST)
     @ResponseBody
-    @ApiOperation(value = "删除用户信息", httpMethod = "POST", notes = "删除用户信息")
+    @ApiOperation(value = "删除需求信息", httpMethod = "POST", notes = "删除需求信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object deleteReq(String id, String[] arrays) {
         Boolean index = null;

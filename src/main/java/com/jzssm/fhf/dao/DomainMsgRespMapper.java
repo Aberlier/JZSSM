@@ -4,6 +4,7 @@ import com.jzssm.fhf.entity.DomainMsgResp;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DomainMsgRespMapper {
     int deleteByPrimaryKey(Integer resId);
@@ -18,5 +19,5 @@ public interface DomainMsgRespMapper {
 
     int updateByPrimaryKey(DomainMsgResp record);
 
-    List<DomainMsgResp> selectAllMsgRespData(@Param("loginId") Integer loginId);
+    List<Map<String,Object>> selectAllMsgRespData(@Param("loginId") Integer loginId);
 }

@@ -7,8 +7,8 @@
       <arg column="admin_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="admin_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="admin_sex" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="admin_createtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="admin_updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="admin_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="admin_updatetime" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="admin_role" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="admin_telnum" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>

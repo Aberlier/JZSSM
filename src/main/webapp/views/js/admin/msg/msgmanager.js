@@ -73,14 +73,33 @@ $('#fabu').on('click', function () {
     });
 })
 
+//弹框
+function respMsg(id) {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.open({
+            type: 2,
+            title: '留言回复',
+            fix: false,
+            shadeClose: true,
+            shade: 0.8,
+            area: ['660px', '420px'],
+            content: 'views/pages/admin/addMsgResp.jsp?id='+id,
+            end: function () {
+                location.reload();
+            }
+        });
+    });
+}
+
 //删除单条信息
 function deleteOne(id,loginId,token,role) {
-    layer.confirm('确定要删除该用户信息？', {
+    layer.confirm('确定要删除该留言信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
             type:'post',
-            url:"adminController/deleteMsg?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
+            url:"msgController/deleteMsg?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){
@@ -95,10 +114,10 @@ function deleteOne(id,loginId,token,role) {
 }
 //修改信息
 function updateMsg(id,loginId,token,role) {
-    layer.alert('确定要修改用户信息？', function () {
+    layer.alert('确定要修改留言信息？', function () {
         $.ajax({
             type:'get',
-            url:'adminController/updateMsgBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role=" +role,
+            url:'msgController/updateMsgBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role=" +role,
           /*  data:id,//数据为id数组*/
             traditional:true,
             success:function(result) {
@@ -107,7 +126,7 @@ function updateMsg(id,loginId,token,role) {
                     var layer = layui.layer;
                     layer.open({
                         type: 2,
-                        title: '修改用户',
+                        title: '修改留言',
                         fix: false,
                         shadeClose: true,
                         shade: 0.8,

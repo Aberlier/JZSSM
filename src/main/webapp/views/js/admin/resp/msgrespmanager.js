@@ -76,12 +76,12 @@ $('#fabu').on('click', function () {
 
 //删除单条信息
 function deleteOne(id,loginId,token,role) {
-    layer.confirm('确定要删除该用户信息？', {
+    layer.confirm('确定要删除该条信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
             type:'post',
-            url:"respController/deleteResp?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
+            url:"respController/deleteMsgResp?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){

@@ -20,6 +20,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -85,7 +86,7 @@ public class PkstarController {
     @ResponseBody
     @ApiOperation(value = "添加星标员工", httpMethod = "POST", notes = "添加星标员工")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertPkstar(DomainPkStar domainPkStar) {
+    public Object insertPkstar(DomainPkStar domainPkStar) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainPkStar.setPkId(Integer.parseInt(UuidTools.getUuidNum()));
         domainPkStar.setPkEmpId(Integer.parseInt(this.checkStringIsEmpty(domainPkStar.getPkEmpId().toString())));
@@ -94,7 +95,7 @@ public class PkstarController {
         domainPkStar.setPkGiveStarName(this.checkStringIsEmpty(domainPkStar.getPkGiveStarName()));
         domainPkStar.setPkGiveStarRole(this.checkStringIsEmpty(domainPkStar.getPkGiveStarRole()));
         domainPkStar.setPkStarNum(this.checkStringIsEmpty(domainPkStar.getPkStarNum()));
-        domainPkStar.setPkUpdateTime(new Date());
+        domainPkStar.setPkUpdateTime(sdf.format(new Date()));
         if (pkstarService.insert(domainPkStar)) {
             return ResultUtil.success("添加成功！");
         } else {
@@ -108,7 +109,8 @@ public class PkstarController {
     @ApiOperation(value = "修改星级员工信息", httpMethod = "POST", notes = "修改星级员工信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updatePkstar(DomainPkStar domainPkStar) {
+    public Object updatePkstar(DomainPkStar domainPkStar) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainPkStar.setPkId(Integer.parseInt(UuidTools.getUuidNum()));
         domainPkStar.setPkEmpId(Integer.parseInt(this.checkStringIsEmpty(domainPkStar.getPkEmpId().toString())));
         domainPkStar.setPkEmpNamer(this.checkStringIsEmpty(domainPkStar.getPkEmpNamer().toString()));
@@ -116,7 +118,7 @@ public class PkstarController {
         domainPkStar.setPkGiveStarName(this.checkStringIsEmpty(domainPkStar.getPkGiveStarName()));
         domainPkStar.setPkGiveStarRole(this.checkStringIsEmpty(domainPkStar.getPkGiveStarRole()));
         domainPkStar.setPkStarNum(this.checkStringIsEmpty(domainPkStar.getPkStarNum()));
-        domainPkStar.setPkUpdateTime(new Date());
+        domainPkStar.setPkUpdateTime(sdf.format(new Date()));
         if (pkstarService.updateByPrimaryKey(domainPkStar)) {
             return ResultUtil.success("修改成功！");
         } else {
