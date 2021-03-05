@@ -193,11 +193,7 @@
                         </div>--%>
 		</div>
 		</form>
-
 			</c:if>
-
-
-
 
 		</div>
 	</div>
@@ -214,7 +210,7 @@
 		layer.alert('确定要修改用户信息？', function () {
 			$.ajax({
 				type:'get',
-				url:'adminController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
+				url:'userController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
 				/*  data:id,//数据为id数组*/
 				traditional:true,
 				success:function(result) {

@@ -3,10 +3,12 @@ package com.jzssm.fhf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
+import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainPkStar;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.PkstarService;
 import com.jzssm.fhf.service.UserService;
+import com.jzssm.fhf.utils.MD5Util;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -21,10 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author ：Angular
@@ -106,11 +112,11 @@ public class UserController {
     @ApiOperation(value = "根据登录ID查询用户信息", httpMethod = "GET", notes = "根据登录ID查询用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public ModelAndView findUserByLoginId(@RequestParam String loginId,@ApiIgnore Params params, HttpServletRequest request) {
+    public ModelAndView findUserByLoginId(@RequestParam String loginId, @ApiIgnore Params params, HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView();
         DomainUser pageInfo = userService.selectByPrimaryKey(Integer.parseInt(loginId));
-        DomainPkStar pkInfo = pkstarService.selectByPrimaryKey(null,Integer.parseInt(loginId));
+        DomainPkStar pkInfo = pkstarService.selectByPrimaryKey(null, Integer.parseInt(loginId));
 
         modelAndView.addObject("pkstar", pkInfo);
         modelAndView.addObject("user", pageInfo);
@@ -131,8 +137,49 @@ public class UserController {
     }*/
 
     private String checkStringIsEmpty(String param) {
-        return param == null ? null : (param.equals("") ? null : "%" + param + "%");
+        return param == null ? null : (param.equals("") ? null :  param );
     }
+
+    @RequestMapping(value = "/updateUserBefore", method = GET)
+    @ResponseBody
+    @ApiOperation(value = "修改用户信息跳转修改页", httpMethod = "GET", notes = "修改用户信息跳转修改页")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public Object updateUserBefore(@RequestParam String id, HttpSession session) {
+        DomainUser domainUser = userService.selectByPrimaryKey(Integer.parseInt(id));
+        session.setAttribute("domainUser", domainUser);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("domainUser", domainUser);
+        modelAndView.setViewName("views/pages/user/updateUser.jsp");
+        return ResultUtil.success(modelAndView);
+    }
+
+
+
+    @RequestMapping(value = "/updateUser", method = POST)
+    @ResponseBody
+    @ApiOperation(value = "修改用户信息", httpMethod = "POST", notes = "修改用户信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public Object updateUser(DomainUser domainUser) {
+        domainUser.setUserId(domainUser.getUserId());
+        domainUser.setUserPwd(this.checkStringIsEmpty(MD5Util.getMD5String(domainUser.getUserPwd())));
+        domainUser.setUserAddress(this.checkStringIsEmpty(domainUser.getUserAddress()));
+        domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserDemand()));
+        domainUser.setUserDispatchAddress(this.checkStringIsEmpty(domainUser.getUserDispatchAddress()));
+        domainUser.setUserName(this.checkStringIsEmpty(domainUser.getUserName()));
+        domainUser.setUserOtherDesc(this.checkStringIsEmpty(domainUser.getUserOtherDesc()));
+        domainUser.setUserRole(this.checkStringIsEmpty(domainUser.getUserRole()));
+        domainUser.setUserTelnum(this.checkStringIsEmpty(domainUser.getUserTelnum()));
+        domainUser.setUserUrgent(this.checkStringIsEmpty(domainUser.getUserUrgent()));
+        if (userService.updateByPrimaryKey(domainUser)) {
+            return ResultUtil.success("修改成功！");
+        } else {
+            return ResultUtil.success("修改失败！");
+        }
+
+    }
+
 
     /**
      * ajax请求 的 分页查询

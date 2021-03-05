@@ -86,8 +86,7 @@
                          </textarea>
                 <% } %> <% if (domainRequireUser.getReqDesc() != null) { %>
                 <textarea placeholder="请输入" class="layui-textarea"
-                          name="reqDesc">
-                          <%=domainRequireUser.getReqDesc()%></textarea>
+                          name="reqDesc"><%=domainRequireUser.getReqDesc()%></textarea>
                 <% } %>
 
             </div>
