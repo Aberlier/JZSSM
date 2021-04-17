@@ -41,70 +41,60 @@
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
-
-            <div class="layui-table-cell laytable-cell-1-2-3">
-                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
-                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
-                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
-            </div>
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
 
-                        <th class="layui-input-block">
-                            <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
-                        </th>
                         <th>编号</th>
                         <th>留言编号</th>
                         <th>回复内容</th>
-                        <th>回复人角色</th>
-                        <th>回复人编号</th>
+                        <th>回复角色</th>
                         <th>回复时间</th>
                         <th>留言标题</th>
-                        <th>留言人</th>
+                        <%if (role == 1) {%>
                         <th>操作</th>
+                        <%}%>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${msgResplist}" var="msgResplist">
                         <form class="layui-form" action="">
                             <tr>
-                                <td class="layui-input-block">
-                                    <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${msgResplist.resId}">
-                                </td>
+
                                 <td>${msgResplist.resId}</td>
                                 <td>${msgResplist.msgId}</td>
                                 <td>${msgResplist.resMsg}</td>
-                                <td>
                                 <c:if test="${msgResplist.resRole==null}">
-                                    <td>未知</td>
+                                <td>未知</td>
                                 </c:if>
                                 <c:if test="${msgResplist.resRole==1}">
                                     <td>管理员</td>
                                 </c:if>
                                 <c:if test="${msgResplist.resRole==2}">
-                                <td>家政人员</td>
+                                    <td>家政人员</td>
                                 </c:if>
                                 <c:if test="${msgResplist.resRole==3}">
-                                    用户
+                                <td>用户</td>
                                 </c:if>
-                                </td>
-                                <td>${msgResplist.resUserId}</td>
+
+
                                 <td>${msgResplist.resTime}</td>
                                 <td>${msgResplist.msgName}</td>
-                                <td>${msgResplist.userName}</td>
+
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                       <%-- <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
-                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateMsgResp('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>--%>
+                                            <%-- <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
+                                                class="layui-btn layui-btn-xs">查看</a>
+                                             <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                                onclick="updateMsgResp('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>--%>
+                                        <%if (role == 1) {%>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne(${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                        <%}%>
+
                                     </div>
                                 </td>
                             </tr>
@@ -143,7 +133,8 @@
                 <!--分页-->
                 <%--<div id="page"></div>--%>
                 <div style="margin-top:10px;">
-                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
+                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span
+                        value="">${currentPage}</span>页&nbsp&nbsp
                     <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
                     <input type="text" id="pageNumber" style="width:50px"/>
                     <button onclick="toLocationPage()">go</button>
@@ -151,7 +142,6 @@
                 </div>
                 <!--分页-->
             </div>
-
 
 
         </div>

@@ -61,7 +61,7 @@ $('#fabu').on('click', function () {
         var layer = layui.layer;
         layer.open({
             type: 2,
-            title: '添加用户',
+            title: '添加工作项目',
             fix: false,
             shadeClose: true,
             shade: 0.8,
@@ -76,7 +76,7 @@ $('#fabu').on('click', function () {
 
 //删除单条信息
 function deleteOne(id,loginId,token,role) {
-    layer.confirm('确定要删除该用户信息？', {
+    layer.confirm('确定要删除该信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
@@ -99,9 +99,12 @@ function updateWork(id,loginId,token,role) {
     layer.alert('确定要修改用户信息？', function () {
         $.ajax({
             type:'get',
-            url:'workController/updateWorkBefore?id='+id+"&loginId="+loginId+"&token="+token+ "&role=" + role,
-          /*  data:id,//数据为id数组*/
+            url:'http://localhost:7512/JZSSM/workController/updateWorkBefore?id='+id+"&loginId="+loginId+"&token="+token+ "&role=" + role,
             traditional:true,
+            cache: false,
+            xhrFields: {
+                withCredentials: true
+            },
             success:function(result) {
                 if (result.code == 200) {
                     var domainUser = result.data.model.domainUser
@@ -196,7 +199,7 @@ function deleteAll (loginId,token,role) {
                     },
                     success: function (result) {
                         if (result.code == 200) {
-                            layer.msg('已删除', {icon: 1});s
+                            layer.msg('已删除', {icon: 1});
                         } else {
                             layer("删除失败！错误代码："+result.message,{icon: 2});
                         }

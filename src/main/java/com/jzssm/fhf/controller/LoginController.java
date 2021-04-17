@@ -2,6 +2,7 @@ package com.jzssm.fhf.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainAdmin;
 import com.jzssm.fhf.entity.DomainEmployer;
 import com.jzssm.fhf.entity.DomainUser;
@@ -156,7 +157,7 @@ public class LoginController {
     //处理登录
     @RequestMapping(value = "/regist", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public ResponseData regist(@RequestParam("telnum") String telnum,
+    public Object regist(@RequestParam("telnum") String telnum,
                                @RequestParam("password") String password,
                                @RequestParam("rolename") Integer roleName,
                                @RequestParam("username") String username,
@@ -187,11 +188,9 @@ public class LoginController {
                 admin.setAdminCreatetime(dtf.format(new Date()));
                 int index = adminService.insert(admin);
                 if (index > 0) {
-                    responseData.putDataValue("code", 200);
-                    responseData.putDataValue("msg", "注册成功");
+                    return ResultUtil.success("注册成功！");
                 } else {
-                    responseData.putDataValue("code", 401);
-                    responseData.putDataValue("msg", "注册失败");
+                    return ResultUtil.success("注册失败！");
                 }
             }
 
@@ -218,11 +217,9 @@ public class LoginController {
                 employer.setEmployerTelnum(telnum);
                 int index = employerService.insert(employer);
                 if (index > 0) {
-                    responseData.putDataValue("code", 200);
-                    responseData.putDataValue("msg", "注册成功");
+                    return ResultUtil.success("注册成功！");
                 } else {
-                    responseData.putDataValue("code", 401);
-                    responseData.putDataValue("msg", "注册失败");
+                    return ResultUtil.success("注册失败！");
                 }
             }
         }
@@ -246,11 +243,9 @@ public class LoginController {
                 user.setUserTelnum(telnum);
                 Boolean index = userService.insert(user);
                 if (index) {
-                    responseData.putDataValue("code", 200);
-                    responseData.putDataValue("msg", "注册成功");
+                    return ResultUtil.success("注册成功！");
                 } else {
-                    responseData.putDataValue("code", 401);
-                    responseData.putDataValue("msg", "注册失败");
+                    return ResultUtil.success("注册失败！");
                 }
             }
         }

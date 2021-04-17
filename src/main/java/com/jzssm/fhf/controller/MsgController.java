@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainMsg;
+import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.MsgService;
 import com.jzssm.fhf.utils.UuidTools;
 import io.swagger.annotations.Api;
@@ -72,6 +73,7 @@ public class MsgController {
         //查询数量
         //long couts = msgService.counts();
 
+
         modelAndView.addObject("msglist", msglist);
         //当前页
         modelAndView.addObject("currentPage", pageInfo.getPageNum());
@@ -134,7 +136,7 @@ public class MsgController {
     public Object insertMsg(DomainMsg domainMsg, HttpSession session) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainMsg.setMsgId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
+        domainMsg.setUserId(session.getAttribute("userName").toString());
         domainMsg.setMsgName(this.checkStringIsEmpty(domainMsg.getMsgName()));
         domainMsg.setUserRole(Integer.parseInt(session.getAttribute("role").toString()));
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
@@ -154,9 +156,8 @@ public class MsgController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object updateMsg(DomainMsg domainMsg,HttpSession session) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        domainMsg.setUserId(Integer.parseInt(this.checkStringIsEmpty(domainMsg.getUserId().toString())));
         domainMsg.setMsgName(session.getAttribute("userName").toString());
-        domainMsg.setUserId(Integer.parseInt(session.getAttribute("loginId").toString()));
+        domainMsg.setUserId(session.getAttribute("userName").toString());
         domainMsg.setMsgId(domainMsg.getMsgId());
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));
         domainMsg.setCreateTime(sdf.format(new Date()));
@@ -173,7 +174,7 @@ public class MsgController {
     @ApiOperation(value = "修改留言信息跳转修改页", httpMethod = "GET", notes = "修改留言信息跳转修改页")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateMsgBefore(@RequestParam String id, HttpSession session) {
+    public Object updateUserBefore(@RequestParam String id, HttpSession session) {
         DomainMsg domainMsg = msgService.selectByPrimaryKey(Integer.parseInt(id));
         session.setAttribute("domainMsg", domainMsg);
         ModelAndView modelAndView = new ModelAndView();
@@ -181,6 +182,7 @@ public class MsgController {
         modelAndView.setViewName("views/pages/admin/updateMsg.jsp");
         return ResultUtil.success(modelAndView);
     }
+
 
 
     @RequestMapping(value = "/deleteMsg", method = POST)

@@ -113,11 +113,10 @@
                                         <%}%>
 
 
-                                        <%if(role==3){%>
-                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateWork('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
+                                        <%if(role==1){%>
+
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne($${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne(${worklist.workId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                         <%}%>
 
                                     </div>

@@ -35,10 +35,10 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>用户管理 > <span>用户列表</span></p>
+            <p>评星管理 > <span>评星列表</span></p>
         </div>
         <div class="mbrt layui-col-xs6 layui-col-md6">
-            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加用户需求</a>
+            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加星级职工</a>
         </div>
     </div>
     <!--面包屑导航-->
@@ -80,18 +80,26 @@
                                 <td>${pkstarlist.pkEmpNamer}</td>
                                 <td>${pkstarlist.pkEmpId}</td>
                                 <td>${pkstarlist.pkStarNum}</td>
-                                <td>${pkstarlist.pkGiveStarRole}</td>
+
+                                <c:if test="${pkstarlist.pkGiveStarRole==1}">
+                                    <td>管理员</td>
+                                </c:if><c:if test="${pkstarlist.pkGiveStarRole==2}">
+                                <td>家政人员</td>
+                            </c:if><c:if test="${pkstarlist.pkGiveStarRole==3}">
+                                <td>用户</td>
+                            </c:if>
+
                                 <td>${pkstarlist.pkGiveStarName}</td>
                                 <td>${pkstarlist.pkUpdateTime}</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
-                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updatePkstar('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
+                                            <%--  <a href="<%=basePath%>/views/pages/admin/msgDetail.jsp"
+                                                 class="layui-btn layui-btn-xs">查看</a>--%>
+                                            <%-- <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                                onclick="updatePkstar('${msgResplist.resId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>--%>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne($${msgResplist.resId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne(${pkstarlist.pkId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                     </div>
                                 </td>
                             </tr>
@@ -128,7 +136,8 @@
                     </tbody>
                 </table>
                 <div style="margin-top:10px;">
-                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span value="">${currentPage}</span>页&nbsp&nbsp
+                    共${countNumber}条数据&nbsp&nbsp|&nbsp&nbsp共${sumPageNumber}页&nbsp&nbsp|&nbsp&nbsp当前第<span
+                        value="">${currentPage}</span>页&nbsp&nbsp
                     <a onclick="toPrePage()">上一页</a> &nbsp&nbsp&nbsp<a onclick="toNextPage()">下一页</a>
                     <input type="text" id="pageNumber" style="width:50px"/>
                     <button onclick="toLocationPage()">go</button>

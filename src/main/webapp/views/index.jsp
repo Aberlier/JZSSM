@@ -93,6 +93,9 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
+                            <a href="<%=basePath%>requireController/insertRequireBefore?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">添加需求</a>
+                        </dd>
+                        <dd>
                             <a href="<%=basePath%>empController/findAllEmpData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">人员选择</a>
                         </dd>
                         <dd>
@@ -108,8 +111,8 @@
                     <dl class="layui-nav-child">
                         <dd><a href="<%=basePath%>msgController/findAllMsg?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">留言列表</a>
                         </dd>
-                        <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的留言</a>
-                        </dd>
+                      <%--  <dd><a href="<%=basePath%>msgController/findAllMsgData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的留言</a>
+                        </dd>--%>
                         <dd>
                             <a href="<%=basePath%>respController/findAllMsgRespData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">我的回复</a>
                         </dd>
@@ -172,6 +175,12 @@
                         <dd>
                             <a href="<%=basePath%>adminController/findAllUserData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">用户列表</a>
                         </dd>
+                            <dd>
+                                <a href="<%=basePath%>requireController/findAllReq?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">用户需求</a>
+                            </dd>
+                            <dd>
+                                <a href="<%=basePath%>empController/findAllEmpData?loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>">职工列表</a>
+                            </dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

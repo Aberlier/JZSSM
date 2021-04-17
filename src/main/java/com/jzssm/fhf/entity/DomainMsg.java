@@ -11,11 +11,11 @@ public class DomainMsg {
 
     private String createTime;
 
-    private Integer userId;
+    private String userId;
 
     private Integer userRole;
 
-    public DomainMsg(Integer msgId, String msgName, String msgContent, String createTime, Integer userId,Integer userRole) {
+    public DomainMsg(Integer msgId, String msgName, String msgContent, String createTime, String userId,Integer userRole) {
         this.msgId = msgId;
         this.msgName = msgName;
         this.msgContent = msgContent;
@@ -60,11 +60,11 @@ public class DomainMsg {
         this.createTime = createTime;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

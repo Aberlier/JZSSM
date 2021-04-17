@@ -49,6 +49,7 @@ public class EmpController {
 
     @Autowired
     PkstarService pkstarService;
+
     /**
      * 首页，并且分页查询
      *
@@ -100,7 +101,7 @@ public class EmpController {
 
         ModelAndView modelAndView = new ModelAndView();
         DomainEmployer pageInfo = employerService.selectByPrimaryKey(Integer.parseInt(loginId));
-        DomainPkStar pkInfo = pkstarService.selectByPrimaryKey(null,Integer.parseInt(loginId));
+        DomainPkStar pkInfo = pkstarService.selectByPrimaryKey(null, Integer.parseInt(loginId));
 
         modelAndView.addObject("pkstar", pkInfo);
         modelAndView.addObject("emp", pageInfo);
@@ -122,7 +123,7 @@ public class EmpController {
         domainEmployer.setEmployerAddress(domainEmployer.getEmployerAddress());
         domainEmployer.setEmployerAge(domainEmployer.getEmployerAge());
         domainEmployer.setEmployerDesc(domainEmployer.getEmployerDesc());
-        if (employerService.updateByPrimaryKey(domainEmployer)>0) {
+        if (employerService.updateByPrimaryKey(domainEmployer) > 0) {
             return ResultUtil.success("修改成功！");
         } else {
             return ResultUtil.success("修改失败！");
@@ -149,20 +150,43 @@ public class EmpController {
     @ApiOperation(value = "修改工作种类信息", httpMethod = "GET", notes = "修改工作种类信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateField(@RequestParam String workType,HttpSession session) {
+    public Object updateField(@RequestParam String workType, HttpSession session) {
         Boolean index = null;
         DomainEmployer domainEmployer = employerService.selectByPrimaryKey(Integer.parseInt(session.getAttribute("loginId").toString()));
-        if(domainEmployer.getEmployerField()==null){
-            if(workType!=null && !"".equals(workType)){
-                index = employerService.updateField(session.getAttribute("loginId").toString(),workType);
+        if (domainEmployer.getEmployerField() == null) {
+            if (workType != null && !"".equals(workType)) {
+                index = employerService.updateField(session.getAttribute("loginId").toString(), workType);
             }
         }
-        if (index!=null && index ==true) {
+        if (index != null && index == true) {
             return ResultUtil.success("修改成功！");
-        }else {
+        } else {
             return ResultUtil.error("已经存在对应的职位角色，请勿重复申请！");
         }
 
+    }
+
+
+    @RequestMapping(value = "/deleteEmp", method = POST)
+    @ResponseBody
+    @ApiOperation(value = "删除需求信息", httpMethod = "POST", notes = "删除需求信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public Object deleteEmp(String id, String[] arrays) {
+        int index = 0;
+        if (id != null && !"".equals(id)) {
+            index = employerService.deleteByPrimaryKey(Integer.parseInt(id));
+            if (index > 0) {
+                return ResultUtil.success("删除成功！");
+            }
+        } else {
+            for (String str : arrays) {
+                index = employerService.deleteByPrimaryKey(Integer.parseInt(str));
+                if (index>0) {
+                    return ResultUtil.success("删除成功！");
+                }
+            }
+        }
+        return null;
     }
 
 

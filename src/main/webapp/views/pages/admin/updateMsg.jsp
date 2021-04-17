@@ -1,4 +1,5 @@
-<%@ page import="com.jzssm.fhf.entity.DomainUser" %><%--
+<%@ page import="com.jzssm.fhf.entity.DomainUser" %>
+<%@ page import="com.jzssm.fhf.entity.DomainMsg" %><%--
   Created by IntelliJ IDEA.
   User: Angular
   Date: 2021/1/10
@@ -12,7 +13,7 @@
     String param = (String) session.getAttribute("token");
     Integer loginId = Integer.parseInt(session.getAttribute("loginId").toString());
     Integer role = Integer.parseInt(session.getAttribute("role").toString());
-    DomainUser domainUser = (DomainUser) session.getAttribute("domainUser");
+    DomainMsg domainMsg = (DomainMsg) session.getAttribute("domainMsg");
 %>
 
 <!DOCTYPE html>
@@ -29,125 +30,39 @@
 <body class="layui-tank">
 <div class="layui-card">
     <form class="layui-form" id="form" action="">
-        <input type="text" hidden="true" name="userRole" value="3">
-        <input type="text" hidden="true" name="userId" value="<%=domainUser.getUserId()%>">
+        <input type="text" hidden="true" name="msgId" value="<%=domainMsg.getMsgId()%>">
+        <input type="text" hidden="true" name="userId" value="<%=loginId%>">
+        <input type="text" hidden="true" name="userRole" value="<%=role%>">
         <div class="layui-form-item">
-            <label class="layui-form-label">用户姓名</label>
+            <label class="layui-form-label">留言用户</label>
             <div class="layui-input-block">
-                <input type="text" name="userName" value="<%=domainUser.getUserName()%>" lay-verify="title"
+                <input type="text" name="msgUserId" readonly = "true" value="<%=domainMsg.getUserId()%>" lay-verify="title"
                        autocomplete="off"
                        placeholder=""
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">用户密码</label>
+            <label class="layui-form-label">留言标题</label>
             <div class="layui-input-block">
-                <input type="password" name="userPwd" value="<%=domainUser.getUserPwd()%>" lay-verify="title"
-                       value="123456"
-                       autocomplete="off"
-                       placeholder="" class="layui-input">
-                <%--   <span style="color: red">*初始密码：123456</span>--%>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户手机号</label>
-            <div class="layui-input-block">
-                <input type="text" name="userTelnum" lay-verify="title" value="<%=domainUser.getUserTelnum()%>"
+                <input type="text" name="msgName" value="<%=domainMsg.getMsgName()%>" lay-verify="title"
                        autocomplete="off"
                        placeholder=""
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户需求</label>
-            <div class="layui-input-block">
-                <div class="layui-input-inline">
-                    <select name="userDemand" lay-filter="aihao">
-                        <% if (domainUser.getUserDemand() != null && Integer.parseInt(domainUser.getUserDemand()) > 0 && Integer.parseInt(domainUser.getUserDemand()) == 1) { %>
-                        <option value="1" selected>保安</option>
-                        <option value="2">保洁</option>
-                        <option value="3">保镖</option>
-                        <option value="4">护工</option>
-                        <option value="5">月嫂</option>
-                        <% } %> <% if (domainUser.getUserDemand() != null && Integer.parseInt(domainUser.getUserDemand()) > 0 && Integer.parseInt(domainUser.getUserDemand()) == 2) { %>
-                        <option value="1" >保安</option>
-                        <option value="2" selected>保洁</option>
-                        <option value="3">保镖</option>
-                        <option value="4">护工</option>
-                        <option value="5">月嫂</option>
-                        <% } %> <% if (domainUser.getUserDemand() != null && Integer.parseInt(domainUser.getUserDemand()) > 0 && Integer.parseInt(domainUser.getUserDemand()) == 3) { %>
-                        <option value="1" >保安</option>
-                        <option value="2">保洁</option>
-                        <option value="3" selected>保镖</option>
-                        <option value="4">护工</option>
-                        <option value="5">月嫂</option>
-                        <% } %> <% if (domainUser.getUserDemand() != null && Integer.parseInt(domainUser.getUserDemand()) > 0 && Integer.parseInt(domainUser.getUserDemand()) == 4) { %>
-                        <option value="1" >保安</option>
-                        <option value="2">保洁</option>
-                        <option value="3">保镖</option>
-                        <option value="4" selected>护工</option>
-                        <option value="5">月嫂</option>
-                        <% } %> <% if (domainUser.getUserDemand() != null && Integer.parseInt(domainUser.getUserDemand()) > 0 && Integer.parseInt(domainUser.getUserDemand()) == 5) { %>
-                        <option value="1" >保安</option>
-                        <option value="2">保洁</option>
-                        <option value="3">保镖</option>
-                        <option value="4">护工</option>
-                        <option value="5" selected>月嫂</option>
-                        <% } %>
 
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">是否加急</label>
-            <div class="layui-input-block">
-                <div class="layui-input-inline">
-                    <select name="userUrgent">
-                        <% if (domainUser.getUserUrgent() != null && Integer.parseInt(domainUser.getUserUrgent()) > 0 && Integer.parseInt(domainUser.getUserUrgent()) == 1) { %>
-                        <option value="1" selected>是</option>
-                        <option value="2">否</option>
-                        <% } %><% if (domainUser.getUserUrgent() != null && Integer.parseInt(domainUser.getUserUrgent()) > 0 && Integer.parseInt(domainUser.getUserUrgent()) == 2) { %>
-                        <option value="2" selected>否</option>
-                        <option value="1">是</option>
-                        <% } %>
-
-                        <%--                        <option value="0" disabled="">否</option>--%>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户地址</label>
-            <div class="layui-input-block">
-                <input type="text" name="userAddress" value="<%=domainUser.getUserAddress()%>" lay-verify="title"
-                       autocomplete="off"
-                       placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">派遣地址</label>
-            <div class="layui-input-block">
-                <input type="text" name="userDispatchAddress" value="<%=domainUser.getUserDispatchAddress()%>"
-                       lay-verify="title"
-                       autocomplete="off" placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">描述</label>
+            <label class="layui-form-label">留言内容</label>
             <div class="layui-input-block">
 
-                <% if (domainUser.getUserOtherDesc() == null) { %>
+                <% if (domainMsg.getMsgContent() == null) { %>
                 <textarea placeholder="请输入" class="layui-textarea"
-                          name="userOtherDesc">
+                          name="msgContent">
                          </textarea>
-                <% } %> <% if (domainUser.getUserOtherDesc() != null) { %>
+                <% } %> <% if (domainMsg.getMsgContent() != null) { %>
                 <textarea placeholder="请输入" class="layui-textarea"
-                          name="userOtherDesc">
-                          <%=domainUser.getUserOtherDesc()%></textarea>
+                          name="msgContent"><%=domainMsg.getMsgContent()%></textarea>
                 <% } %>
 
             </div>
@@ -156,13 +71,13 @@
 </div>
 <div class=" tkbtnfxd">
     <button type="button" class="layui-btn  layui-btn-normal float-right"
-            onclick="updateUser('<%=loginId%>','<%=param%>','<%=role%>')">确定
+            onclick="updatemsg('<%=loginId%>','<%=param%>','<%=role%>')">确定
     </button>
     <button type="button" class="layui-btn layui-btn-primary float-right">取消</button>
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/admin/user/updateuser.js"></script>
+<script src="<%=basePath%>views/js/admin/msg/updatemsg.js"></script>
 <script>
     layui.use('layedit', function () {
         var layedit = layui.layedit;

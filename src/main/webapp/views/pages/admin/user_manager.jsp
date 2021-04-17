@@ -45,23 +45,7 @@
     <div class="layui-row">
         <div class="layui-card">
 
-            <div class="sortbox layui-form">
 
-                <div class="layui-form-item">
-
-                    <label class="layui-form-label">按需求筛选</label>
-                    <div class="layui-input-inline">
-                        <select name="interest" lay-filter="aihao">
-                            <option value=""></option>
-                            <option value="保安">保安</option>
-                            <option value="1" selected="">保洁</option>
-                            <option value="2">保镖</option>
-                            <option value="3">护工</option>
-                            <option value="4">月嫂</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"

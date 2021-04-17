@@ -113,12 +113,13 @@ function deleteOne(id,loginId,token,role) {
     });
 }
 //修改信息
+//修改信息
 function updateMsg(id,loginId,token,role) {
-    layer.alert('确定要修改留言信息？', function () {
+    layer.alert('确定要修改用户信息？', function () {
         $.ajax({
             type:'get',
-            url:'msgController/updateMsgBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role=" +role,
-          /*  data:id,//数据为id数组*/
+            url:'msgController/updateMsgBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
+            /*  data:id,//数据为id数组*/
             traditional:true,
             success:function(result) {
                 if (result.code == 200) {
@@ -126,7 +127,7 @@ function updateMsg(id,loginId,token,role) {
                     var layer = layui.layer;
                     layer.open({
                         type: 2,
-                        title: '修改留言',
+                        title: '修改用户',
                         fix: false,
                         shadeClose: true,
                         shade: 0.8,

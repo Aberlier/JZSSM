@@ -135,11 +135,19 @@
                                 <c:if test="${emp.employerField !=null }">
                                     <td>
                                         <div class="layui-table-cell laytable-cell-1-0-10">
+                                            <%if(role==3){%>
                                             <a class="layui-btn layui-btn-normal layui-btn-xs"
                                                onclick="addReqByEmpForYuYue('${emp.employerField}','${emp.employerName}','${emp.employerId}','${emp.employerPostname}','<%=loginId%>','<%=param%>','<%=role%>')">立即预约</a>
-                                           <%-- <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
+                                           <%}%>
+                                            <%if(role==1){%>
+                                            <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                               onclick="updateEmp('${emp.employerId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
+                                            <a class="layui-btn layui-btn-danger layui-btn-xs"
+                                               onclick="deleteOne('${emp.employerId}','<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                            <%}%>
+                                                <%-- <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                                onclick="deleteOne(${emp.employerId},'<%=loginId%>','<%=param%>','<%=role%>')">立即点评</a>--%>
-                                            <a class="layui-btn layui-btn-normal layui-btn-xs submit">立即点评</a>
+
                                         </div>
                                        <%-- <div class="layui-table-cell laytable-cell-1-0-10">
                                             <a class="layui-btn layui-btn-normal layui-btn-xs submit">立即点评</a>
@@ -212,16 +220,7 @@
 <script src="<%=basePath%>views/js/pageJs.js"></script>
 <script>
     //判断弹框
-    $(".submit").click(function(){
-        layer.confirm('确定给予该职工五星好评？', {
-            btn: ['是','否'] //按钮
-        }, function(){
 
-            layer.msg('已发放', {icon: 1});
-        }, function(){
-            layer.msg('已取消',  {icon: 2});
-        });
-    })
 </script>
 </body>
 </html>

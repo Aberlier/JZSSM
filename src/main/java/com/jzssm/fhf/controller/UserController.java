@@ -141,7 +141,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/updateUserBefore", method = GET)
-    @ResponseBody
     @ApiOperation(value = "修改用户信息跳转修改页", httpMethod = "GET", notes = "修改用户信息跳转修改页")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
@@ -150,7 +149,7 @@ public class UserController {
         session.setAttribute("domainUser", domainUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("domainUser", domainUser);
-        modelAndView.setViewName("views/pages/user/updateUser.jsp");
+        modelAndView.setViewName("views/pages/user/updateUser");
         return ResultUtil.success(modelAndView);
     }
 

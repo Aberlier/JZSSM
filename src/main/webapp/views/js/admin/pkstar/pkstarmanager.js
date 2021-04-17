@@ -61,12 +61,12 @@ $('#fabu').on('click', function () {
         var layer = layui.layer;
         layer.open({
             type: 2,
-            title: '添加用户',
+            title: '添加星级职工',
             fix: false,
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/admin/addpkstar.jsp',
+            content: 'views/pages/admin/addPkstar.jsp',
             end: function () {
                 location.reload();
             }
@@ -76,12 +76,12 @@ $('#fabu').on('click', function () {
 
 //删除单条信息
 function deleteOne(id,loginId,token,role) {
-    layer.confirm('确定要删除该用户信息？', {
+    layer.confirm('确定要删除该信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
-            type:'post',
-            url:"pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
+            type:'get',
+            url:"http://localhost:7512/JZSSM/pkstarController/deletePkstar?loginId="+loginId+"&token="+token+"&id="+id+"&role=" +role,
             data:id,//数据为id数组
             traditional:true,
             success:function(data){

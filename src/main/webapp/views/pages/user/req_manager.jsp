@@ -143,10 +143,12 @@
                                 <td>
                                     <%if(role==1 || role == 3){%>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs submit" >立即点评</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
                                            onclick="updateReq('${req.reqId}','<%=loginId%>','<%=param%>','<%=role%>')">编辑</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne(${req.reqId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+
                                     </div>
                                     <%}%>
 
@@ -206,5 +208,33 @@
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
 <script src="<%=basePath%>views/js/user/reqmanager.js"></script>
 <script src="<%=basePath%>views/js/pageJs.js"></script>
+<script>
+    $(".submit").click(function(){
+        layer.confirm('确定给予该职工五星好评？', {
+            btn: ['是','否'] //按钮
+        }, function(){
+
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.open({
+                        type: 2,
+                        title: '添加星级职工',
+                        fix: false,
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['660px', '420px'],
+                        content: 'views/pages/admin/addPkstar.jsp',
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                });
+
+
+        }, function(){
+            layer.msg('已取消',  {icon: 2});
+        });
+    })
+</script>
 </body>
 </html>

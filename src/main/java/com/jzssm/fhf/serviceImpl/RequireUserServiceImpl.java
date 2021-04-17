@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Angular
@@ -116,4 +117,26 @@ public class RequireUserServiceImpl implements RequireUserService {
 
         return pageInfo;
     }
+
+    @Override
+    public List<Map<String,Object>> selectEmpMsg(){
+       return domainRequireUserMapper.selectEmpMsg();
+    }
+
+    @Override
+    public List<Map<String,Object>> queryEmpFields(String employerId){
+       return domainRequireUserMapper.queryEmpFields(employerId);
+    }
+     @Override
+    public PageInfo<DomainRequireUser> findAllReq(Params params){
+         //查询
+         int pageNo = params.getPageNo();
+         int pageSize = params.getPageSize();
+         PageHelper.startPage(pageNo, pageSize);
+         List<DomainRequireUser> blogs = domainRequireUserMapper.findAllReq();
+         //用PageInfo对结果进行包装
+         PageInfo<DomainRequireUser> pageInfo = new PageInfo<DomainRequireUser>(blogs);
+         return pageInfo;
+    }
+
 }

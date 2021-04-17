@@ -1,9 +1,11 @@
 package com.jzssm.fhf.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.common.ResultUtil;
 import com.jzssm.fhf.entity.DomainPkStar;
+import com.jzssm.fhf.entity.DomainRequireUser;
 import com.jzssm.fhf.entity.DomainWork;
 import com.jzssm.fhf.service.PkstarService;
 import com.jzssm.fhf.service.WorkService;
@@ -14,6 +16,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -87,12 +91,26 @@ public class WorkController {
     @ResponseBody
     @ApiOperation(value = "添加工作类型", httpMethod = "POST", notes = "添加工作类型")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertWork(DomainWork domainWork) {
+    public Object insertWork(@RequestBody Map<String,Object> map) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DomainWork domainWork =  JSON.parseObject(JSON.toJSONString(map), DomainWork.class);
+        if("1".equals(map.get("workId"))){
+            domainWork.setWorkName("保安");
+        }else if("2".equals(map.get("workId"))){
+            domainWork.setWorkName("保洁");
+        }else if("3".equals(map.get("workId"))){
+            domainWork.setWorkName("保镖");
+        }else if("4".equals(map.get("workId"))){
+            domainWork.setWorkName("护工");
+        }else if("5".equals(map.get("workId"))){
+            domainWork.setWorkName("月嫂");
+        }
         domainWork.setWorkId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
+        domainWork.setWorkType(map.get("workType").toString());
+        domainWork.setWorkDesc(map.get("workContent").toString());
+      /*  domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
         domainWork.setWorkType(this.checkStringIsEmpty(domainWork.getWorkType()));
-        domainWork.setWorkDesc(this.checkStringIsEmpty(domainWork.getWorkDesc()));
+        domainWork.setWorkDesc(this.checkStringIsEmpty(domainWork.getWorkDesc()));*/
         if (workService.insert(domainWork)) {
             return ResultUtil.success("添加成功！");
         } else {

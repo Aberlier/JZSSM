@@ -1,5 +1,6 @@
 package com.jzssm.fhf.dao;
 
+import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.entity.DomainRequireUser;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +29,10 @@ public interface DomainRequireUserMapper {
     List<DomainRequireUser> findAllReqByEmpIdData(@Param("loginId") Integer loginId);
 
     List<DomainRequireUser> findAllReqByUserIdData(@Param("loginId") Integer loginId);
+
+    List<Map<String, Object>> selectEmpMsg();
+
+    List<Map<String, Object>> queryEmpFields(@Param("employerId") String employerId);
+
+    List<DomainRequireUser> findAllReq();
 }

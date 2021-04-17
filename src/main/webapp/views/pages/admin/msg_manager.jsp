@@ -35,7 +35,7 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>用户管理 > <span>用户列表</span></p>
+            <p>留言管理 > <span>留言列表</span></p>
         </div>
         <div class="mbrt layui-col-xs6 layui-col-md6">
             <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">留言</a>
@@ -44,39 +44,45 @@
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
-
+            <%if (role == 1) {%>
 
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"
                    onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
             </div>
+            <%}%>
 
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
+                        <%if (role == 1) {%>
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
+                        <%}%>
                         <th>编号</th>
                         <th>留言用户</th>
                         <th>留言标题</th>
                         <th>留言内容</th>
                         <th>留言角色</th>
                         <th>留言时间</th>
+
                         <th>操作</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${msglist}" var="msg">
                         <form class="layui-form" action="">
                             <tr>
-                                <td class="layui-input-block">
+
+                                <%if (role == 1) {%> <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
                                            value="${msg.msgId}">
-                                </td>
+                                </td><%}%>
                                 <td>${msg.msgId}</td>
                                 <td>${msg.userId}</td>
                                 <td>${msg.msgName}</td>
@@ -94,14 +100,18 @@
 
                                 <td>${msg.createTime}</td>
                                     <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
+
                                 <td>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                           onclick="respMsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">回复</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
                                            onclick="updateMsg('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
                                            onclick="deleteOne('${msg.msgId}','<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
                                     </div>
                                 </td>
+
                             </tr>
                             <input type="hidden" name="startPage" id="startPage" value="${startPage}"/>
                             <input type="hidden" name="currentPage" id="currentPage" value="${currentPage }"/>

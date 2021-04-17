@@ -43,7 +43,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户密码</label>
             <div class="layui-input-block">
-                <input type="password" name="userPwd" value="<%=domainUser.getUserPwd()%>" lay-verify="title"
+                <input type="password"  readonly = "true" name="userPwd" value="<%=domainUser.getUserPwd()%>" lay-verify="title"
                        value="123456"
                        autocomplete="off"
                        placeholder="" class="layui-input">

@@ -31,6 +31,7 @@
 <div class="layui-card">
     <form class="layui-form" id="form" action="">
         <input type="text" hidden="true" name="employerId" value="<%=domainEmployer.getEmployerId()%>">
+        <input type="text" hidden="true" name="employerRole" value="2">
         <div class="layui-form-item">
             <label class="layui-form-label">姓名：</label>
             <div class="layui-input-block">
@@ -52,16 +53,24 @@
         <div class="layui-form-item">
             <label class="layui-form-label">密码：</label>
             <div class="layui-input-block">
-                <input type="password" name="employerPwd" value="<%=domainEmployer.getEmployerPwd()%>" lay-verify="title"
+                <input type="password" readonly = "true" name="employerPwd" value="<%=domainEmployer.getEmployerPwd()%>" lay-verify="title"
                        autocomplete="off"
                        placeholder="" class="layui-input">
-                <%--   <span style="color: red">*初始密码：123456</span>--%>
+
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">手机号：</label>
             <div class="layui-input-block">
                 <input type="text" name="employerTelnum" lay-verify="title" value="<%=domainEmployer.getEmployerTelnum()%>"
+                       autocomplete="off"
+                       placeholder=""
+                       class="layui-input">
+            </div>
+        </div><div class="layui-form-item">
+            <label class="layui-form-label">身份证号：</label>
+            <div class="layui-input-block">
+                <input type="text" name="employerIdcard" lay-verify="title" value="<%=domainEmployer.getEmployerIdcard()%>"
                        autocomplete="off"
                        placeholder=""
                        class="layui-input">
@@ -75,6 +84,24 @@
                        placeholder=""
                        class="layui-input">
             </div>
+        </div><div class="layui-form-item">
+            <label class="layui-form-label">工种：</label>
+            <div class="layui-input-block">
+                <input type="text" name="employerField" lay-verify="title" value="<%=domainEmployer.getEmployerField()%>"
+                       autocomplete="off"
+                       placeholder=""
+                       class="layui-input">
+                <span style="color: red">*修改时注意：5表示月嫂/4表示护工/3为保镖/2为保洁/1为保安</span>
+            </div>
+        </div><div class="layui-form-item">
+            <label class="layui-form-label">获得星数：</label>
+            <div class="layui-input-block">
+                <input type="text" name="employerPostname" lay-verify="title" value="<%=domainEmployer.getEmployerPostname()%>"
+                       autocomplete="off"
+                       placeholder=""
+                       class="layui-input">
+                <span style="color: red">*修改时注意：星数最高为5星</span>
+            </div>
         </div>
 
         <div class="layui-form-item layui-form-text">
@@ -83,12 +110,10 @@
 
                 <% if (domainEmployer.getEmployerDesc() == null) { %>
                 <textarea placeholder="请输入" class="layui-textarea"
-                          name="employerDesc">
-                         </textarea>
+                          name="employerDesc"></textarea>
                 <% } %> <% if (domainEmployer.getEmployerDesc() != null) { %>
                 <textarea placeholder="请输入" class="layui-textarea"
-                          name="employerDesc">
-                          <%=domainEmployer.getEmployerDesc()%></textarea>
+                          name="employerDesc"><%=domainEmployer.getEmployerDesc()%></textarea>
                 <% } %>
 
             </div>

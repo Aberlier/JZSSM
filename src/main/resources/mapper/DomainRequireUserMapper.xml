@@ -33,7 +33,7 @@
         <include refid="Base_Column_List"/>
         from tb_require_user
         <if test="loginId != null">
-        where req_do_emp_id = #{loginId,jdbcType=INTEGER}
+            where req_do_emp_id = #{loginId,jdbcType=INTEGER}
         </if>
     </select>
 
@@ -42,7 +42,7 @@
         <include refid="Base_Column_List"/>
         from tb_require_user
         <if test="loginId != null">
-        where req_user_id = #{loginId,jdbcType=INTEGER}
+            where req_user_id = #{loginId,jdbcType=INTEGER}
         </if>
     </select>
 
@@ -181,7 +181,7 @@
         where req_id = #{reqId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainRequireUser">
-    update tb_require_user
+        update tb_require_user
         <set>
             <if test="reqType != null">
                 req_type = #{reqType,jdbcType=VARCHAR},
@@ -217,12 +217,40 @@
                 req_user_name = #{reqUserName,jdbcType=VARCHAR},
             </if>
         </set>
-    where req_id = #{reqId,jdbcType=INTEGER}
-  </update>
+        where req_id = #{reqId,jdbcType=INTEGER}
+    </update>
     <select id="selectAllReqData" resultMap="BaseResultMap">
         select
         *
         from tb_require_user
         where req_user_id = #{loginId,jdbcType=INTEGER}
+    </select>
+    <select id="selectEmpMsg" resultType="java.util.Map">
+SELECT
+	emp.employer_id employerId,
+	emp.employer_name AS employerName,
+	emp.employer_field AS employerField,
+	star.pk_star_num AS pkStarNum
+FROM
+	tb_employer AS emp
+	LEFT JOIN tb_pkstar AS star ON emp.employer_id = star.pk_emp_id
+    </select>
+
+    <select id="queryEmpFields" resultType="java.util.Map">
+SELECT
+	emp.employer_id employerId,
+	emp.employer_name AS employerName,
+	emp.employer_field AS employerField,
+	star.pk_star_num AS pkStarNum
+FROM
+	tb_employer AS emp
+	LEFT JOIN tb_pkstar AS star ON emp.employer_id = star.pk_emp_id
+	where emp.employer_id = #{employerId}
+    </select>
+    <select id="findAllReq"  resultMap="BaseResultMap">
+SELECT
+	*
+FROM
+	tb_require_user
     </select>
 </mapper>

@@ -125,6 +125,24 @@ function updateMsg(id,loginId,token,role) {
             }
         });
     });
+}function huifu(id,loginId,token,role) {
+    layer.alert('确定要回复留言信息？', function () {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            layer.open({
+                type: 2,
+                title: '回复留言',
+                fix: false,
+                shadeClose: true,
+                shade: 0.8,
+                area: ['660px', '420px'],
+                content: 'views/pages/admin/addMsgResp.jsp',
+                end: function () {
+                    location.reload();
+                }
+            });
+        });
+    });
 }
 //获取所有要删除的数据
 function checkAll(obj) {

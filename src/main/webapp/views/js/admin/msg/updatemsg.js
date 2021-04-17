@@ -1,6 +1,6 @@
 function updatemsg(loginId, token,role) {
     $.ajax({
-        url: "adminController/updateMsg?loginId=" + loginId + "&token=" + token+"&role=" +role,
+        url: "http://localhost:7512/JZSSM/msgController/updateMsg?loginId=" + loginId + "&token=" + token+"&role=" +role,
         type: "post",
         data: $("#form").serialize(),
         dataType: "json",
@@ -14,14 +14,14 @@ function updatemsg(loginId, token,role) {
         },
         success: function (result) {
             if (result.code == 200) {
-                alert("修改用户成功！");
-                parent.location.href = "adminController/findAllMsgData?loginId=" + loginId + "&token=" + token+"&role=" +role;
+                alert("修改留言成功！");
+                parent.location.href = "msgController/findAllMsgData?loginId=" + loginId + "&token=" + token+"&role=" +role;
                 location.reload();
             } else {
-                alert("修改用户失败！错误代码：" + result.message);
+                alert("修改留言失败！");
             }
         }, error: function (result) {
-            alert("网络连接失败！" + result.resultCode);
+            alert("网络连接失败！" );
         }
     });
 }

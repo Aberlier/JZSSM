@@ -4,6 +4,9 @@ import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.entity.DomainRequireUser;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author ：Angular
  * @ProjectName: JZSSM
@@ -41,4 +44,10 @@ public interface RequireUserService {
     PageInfo<DomainRequireUser> findAllReqByEmpIdData(Params params, int loginId);
 
     PageInfo<DomainRequireUser> findAllReqByUserIdData(Params params, int loginId);
+
+    List<Map<String,Object>> selectEmpMsg();
+
+    List<Map<String, Object>> queryEmpFields(String employerId);
+
+    PageInfo<DomainRequireUser> findAllReq(Params params);
 }

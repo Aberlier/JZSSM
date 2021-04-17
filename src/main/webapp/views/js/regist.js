@@ -46,16 +46,16 @@ layui.define(['element'], function (exports) {
                 },
                 success: function (result) {
                     if (result.code == 200) {
-                        alert(result.msg);
+                        layer.msg('注册成功', {icon: 1});
                         window.location.href = "http://localhost:7512/JZSSM/login_page";
 
                     } else if(result.code == 400){
-                        alert("注册失败！" + result.message);
+                        layer.msg('注册失败', {icon: 1});
                     }else{
-                        alert("注册失败，请重新注册" + result.message);
+                        alert("注册失败，请重新注册！");
                     }
                 }, error: function (result) {
-                    alert("请求连接失败！" + result.resultCode);
+                    alert("请求连接失败！" );
                 }
             });
 

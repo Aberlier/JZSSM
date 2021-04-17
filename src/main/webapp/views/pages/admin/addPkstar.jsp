@@ -28,86 +28,71 @@
 <body class="layui-tank">
 <div class="layui-card">
     <form class="layui-form" id= "form" action="">
-        <input type="text" hidden="true" name="userRole" value="3">
+
         <div class="layui-form-item">
-            <label class="layui-form-label">用户姓名</label>
-            <div class="layui-input-block">
-                <input type="text" name="userName" lay-verify="title" autocomplete="off" placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户密码</label>
-            <div class="layui-input-block">
-                <input type="password" name="userPwd" lay-verify="title" readonly="true" value="123456"
-                       autocomplete="off"
-                       placeholder="" class="layui-input">
-                <span style="color: red">*初始密码：123456</span>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户手机号</label>
-            <div class="layui-input-block">
-                <input type="text" name="userTelnum" lay-verify="title" autocomplete="off" placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户需求</label>
+            <label class="layui-form-label">评星数量</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline">
                     <select name="userDemand" lay-filter="aihao">
-                        <option value="">请选择对应需求</option>
-                        <option value="1">保安</option>
-                        <option value="2" selected="">保洁</option>
-                        <option value="3">保镖</option>
-                        <option value="4">护工</option>
-                        <option value="5">月嫂</option>
+                        <option value="">请选择星数</option>
+                        <option value="1">1星</option>
+                        <option value="2" >2星</option>
+                        <option value="3">3星</option>
+                        <option value="4">4星</option>
+                        <option value="5" selected="">5星</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">是否加急</label>
+            <label class="layui-form-label">选择职工人员</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline">
-                    <select name="userUrgent">
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-<%--                        <option value="0" disabled="">否</option>--%>
+                    <select name="reqDoEmpId" id="reqDoEmpId" >
+                        <c:forEach items="${listEmp}" var="emp">
+
+                            <%--                                <a href="requireController/queryEmpFields?employerId=${emp.employerId}&loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>"><option value="${emp.employerId}">${emp.employerName} </option></a>--%>
+                            <option value="${emp.employerId}">${emp.employerName}
+                                <c:if test="${emp.employerField==1}">
+
+                                    (保安)
+
+                                </c:if>
+                                <c:if test="${emp.employerField==2}">
+
+                                    (保洁)
+
+                                </c:if>
+                                <c:if test="${emp.employerField==3}">
+
+                                    (保镖)
+
+                                </c:if>
+                                <c:if test="${emp.employerField==4}">
+                                    (护工)
+
+                                </c:if>
+                                <c:if test="${emp.employerField==5}">
+
+                                    (月嫂)
+
+                                </c:if>
+                            </option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户地址</label>
-            <div class="layui-input-block">
-                <input type="text" name="userAddress" lay-verify="title" autocomplete="off" placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">派遣地址</label>
-            <div class="layui-input-block">
-                <input type="text" name="userDispatchAddress" lay-verify="title" autocomplete="off" placeholder=""
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">描述</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请输入" class="layui-textarea" name="userOtherDesc"></textarea>
-            </div>
-        </div>
+
     </form>
 </div>
 <div class=" tkbtnfxd">
-    <button type="button" class="layui-btn  layui-btn-normal float-right" onclick="addUser('<%=loginId%>','<%=param%>','<%=role%>')">确定</button>
+    <button type="button" class="layui-btn  layui-btn-normal float-right" onclick="addPkstar('<%=loginId%>','<%=param%>','<%=role%>')">确定</button>
     <button type="button" class="layui-btn layui-btn-primary float-right">取消</button>
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/admin/user/adduser.js"></script>
+<script src="<%=basePath%>views/js/admin/pkstar/addpkstar.js"></script>
 <script>
     layui.use('layedit', function () {
         var layedit = layui.layedit;
