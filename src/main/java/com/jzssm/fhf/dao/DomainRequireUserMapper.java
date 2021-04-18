@@ -35,4 +35,6 @@ public interface DomainRequireUserMapper {
     List<Map<String, Object>> queryEmpFields(@Param("employerId") String employerId);
 
     List<DomainRequireUser> findAllReq();
+
+    int checkReq(DomainRequireUser record);
 }

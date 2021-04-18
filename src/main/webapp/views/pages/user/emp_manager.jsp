@@ -49,7 +49,7 @@
 
 
             </div>
-            <%if(role==1){%>
+            <%if(role==4){%>
             <div class="layui-table-cell laytable-cell-1-2-3">
                 <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
                 <a class="layui-btn layui-btn-danger layui-btn-xs delete"
@@ -60,7 +60,7 @@
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
-                        <%if(role==1){%>
+                        <%if(role==4){%>
                         <th class="layui-input-block">
                             <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
                         </th>
@@ -81,7 +81,7 @@
                     <c:forEach items="${empList}" var="emp">
                         <form class="layui-form" action="">
                             <tr>
-                                <%if(role==1){%>
+                                <%if(role==4){%>
                                 <td class="layui-input-block">
                                     <input type="checkbox" name="arrays" lay-skin="primary" title=""
                                            value="${emp.employerId}">

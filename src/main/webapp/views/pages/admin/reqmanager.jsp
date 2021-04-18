@@ -18,7 +18,7 @@
 <head>
     <base href="<%=basePath%>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>用户管理</title>
+    <title>职工管理</title>
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/view.css"/>
     <link rel="stylesheet" href="<%=basePath%>views/assets/css/admin.css"/>
@@ -35,17 +35,16 @@
     <div class="mianb">
         <div class="mblf layui-col-xs6 layui-col-md6">
             <i class="layui-icon">&#xe656;</i>
-            <p>用户管理 > <span>用户列表</span></p>
-        </div>
-        <div class="mbrt layui-col-xs6 layui-col-md6">
-            <a href="javascript:;" class="layui-btn layui-btn-normal" id="fabu">添加用户需求</a>
+            <p>需求列表 > <span>全部需求</span></p>
         </div>
     </div>
     <!--面包屑导航-->
     <div class="layui-row">
         <div class="layui-card">
 
+            <div class="sortbox layui-form">
 
+            </div>
 
             <div class="table-responsive">
 
@@ -53,79 +52,91 @@
                     <thead>
                     <tr>
 
-                        <th>编号</th>
+                        <th>需求编号</th>
+                        <th>用户编号</th>
                         <th>用户姓名</th>
-                        <th>用户手机</th>
-                        <th>用户需求</th>
-                        <th>是否加急</th>
-                        <th>用户地址</th>
-                        <th>用户派遣地址</th>
-                        <th>角色</th>
-                        <th>其他描述</th>
+                        <th>需求类型</th>
+                        <th>需求详情</th>
+                        <th>需求创建时间</th>
+                        <th>审核人</th>
+                        <th>审核角色</th>
+                        <th>职工姓名</th>
+                        <th>职工编号</th>
+                        <th>职工等级</th>
+
                         <th>操作</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${userlist}" var="user">
+                    <c:forEach items="${reqList}" var="req">
                         <form class="layui-form" action="">
                             <tr>
-                                
-                                <td>${user.user_id}</td>
-                                <td>${user.user_name}</td>
-                                <td>${user.user_telnum}</td>
-
-                                <td><c:if test="${user.user_demand==1}">
+                                                              <td>${req.reqId}</td>
+                                <td>${req.reqUserId}</td>
+                                <td>${req.reqUserName}</td>
+                                <td><c:if test="${req.reqType==1}">
                                     <option value="1">保安</option>
                                 </c:if>
-                                    <c:if test="${user.user_demand==2}">
+                                    <c:if test="${req.reqType==2}">
                                         <option value="2">保洁</option>
                                     </c:if>
-                                    <c:if test="${user.user_demand==3}">
+                                    <c:if test="${req.reqType==3}">
                                         <option value="3">保镖</option>
                                     </c:if>
-                                    <c:if test="${user.user_demand==4}">
+                                    <c:if test="${req.reqType==4}">
                                         <option value="4">护工</option>
                                     </c:if>
-                                    <c:if test="${user.user_demand==5}">
+                                    <c:if test="${req.reqType==5}">
                                         <option value="5">月嫂</option>
                                     </c:if></td>
-                                    <%-- <td class="layui-form">
-                                         <input id = "switch" type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                     </td>--%>
-
-                                <c:if test="${user.user_urgent == 1 }">
-                                    <td class="layui-form">
-                                        <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest"
-                                               lay-text="ON|OFF">
-                                    </td>
-                                </c:if>
-                                <c:if test="${user.user_urgent == 2 }">
-                                    <td class="layui-form">
-                                        <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest"
-                                               lay-text="ON|OFF">
-                                    </td>
-                                </c:if>
-                                <td>${user.user_address}</td>
-                                <td>${user.user_dispatch_address}</td>
-                                <c:if test="${user.user_role == 3 }">
-                                    <td>平台用户</td>
-                                </c:if><c:if test="${user.user_role == 2 }">
-                                <td>从业职工</td>
-                            </c:if><c:if test="${user.user_role == 1 }">
-                                <td>管理员</td>
-                            </c:if>
-
-                                <td>${user.user_other_desc}</td>
-                                    <%--  <td><a class="layui-btn layui-btn-normal layui-btn-xs">置顶</a></td>--%>
+                                <td>${req.reqDesc}</td>
+                                <td>${req.reqTime}</td>
                                 <td>
+                                    <c:if test="${req.reqCheckName == null }">
+                                        暂未审核
+                                    </c:if><c:if test="${req.reqCheckName != null }">
+                                    ${req.reqCheckName}
+                                </c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${req.reqCheckRole == null }">
+                                        暂未审核
+                                    </c:if>
+                                    <c:if test="${req.reqCheckRole == 1 }">
+                                        管理员
+                                    </c:if><c:if test="${req.reqCheckRole == 2 }">
+                                    职工
+                                </c:if>
+                                </td>
+                                <td>${req.reqDoEmpName}</td>
+                                <td>${req.reqDoEmpId}</td>
+                                <td>
+                                    <c:if test="${req.reqDoEmpPostname==2}">
+                                        <option value="2">荣获2星专业人员</option>
+                                    </c:if><c:if test="${req.reqDoEmpPostname==3}">
+                                    <option value="3">荣获3星专业人员</option>
+                                </c:if><c:if test="${req.reqDoEmpPostname==4}">
+                                    <option value="4">荣获4星专业人员</option>
+                                </c:if><c:if test="${req.reqDoEmpPostname==5}">
+                                    <option value="5">荣获5星专业人员</option>
+                                </c:if>
+                                </td>
+
+
+                                <td>
+
                                     <div class="layui-table-cell laytable-cell-1-0-10">
-                                        <a href="<%=basePath%>/views/pages/admin/userDetail.jsp"
-                                           class="layui-btn layui-btn-xs">查看</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
-                                           onclick="updateUser('${user.user_id}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
+                                           onclick="checkReq('${req.reqId}','<%=loginId%>','<%=param%>','<%=role%>')">审核</a>
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs submit" >立即点评</a>
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs"
+                                           onclick="updateReq('${req.reqId}','<%=loginId%>','<%=param%>','<%=role%>')">编辑</a>
                                         <a class="layui-btn layui-btn-danger layui-btn-xs deleteOne"
-                                           onclick="deleteOne(${user.user_id},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+                                           onclick="deleteOne(${req.reqId},'<%=loginId%>','<%=param%>','<%=role%>')">删除</a>
+
                                     </div>
+
                                 </td>
                             </tr>
                             <input type="hidden" name="startPage" id="startPage" value="${startPage}"/>
@@ -180,7 +191,35 @@
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/admin/user/usermanager.js"></script>
+<script src="<%=basePath%>views/js/user/reqmanager.js"></script>
 <script src="<%=basePath%>views/js/pageJs.js"></script>
+<script>
+    $(".submit").click(function(){
+        layer.confirm('确定给予该职工五星好评？', {
+            btn: ['是','否'] //按钮
+        }, function(){
+
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                layer.open({
+                    type: 2,
+                    title: '添加星级职工',
+                    fix: false,
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['660px', '420px'],
+                    content: 'views/pages/admin/addPkstar.jsp',
+                    end: function () {
+                        location.reload();
+                    }
+                });
+            });
+
+
+        }, function(){
+            layer.msg('已取消',  {icon: 2});
+        });
+    })
+</script>
 </body>
 </html>

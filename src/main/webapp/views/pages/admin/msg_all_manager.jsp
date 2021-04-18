@@ -45,23 +45,13 @@
     <div class="layui-row">
         <div class="layui-card">
 
-            <%if(role==1){%>
-            <div class="layui-table-cell laytable-cell-1-2-3">
-                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
-                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
-                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
-            </div>
-            <%}%>
+
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
-                        <%if(role==1){%>
-                        <th class="layui-input-block">
-                            <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
-                        </th>
-                        <%}%>
+
                         <th>编号</th>
                         <th>留言用户</th>
                         <th>留言标题</th>
@@ -75,12 +65,7 @@
                     <c:forEach items="${msglist}" var="msg">
                         <form class="layui-form" action="">
                             <tr>
-                                <%if(role==1){%>
-                                <td class="layui-input-block">
-                                    <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${msg.msgId}">
-                                </td>
-                                <%}%>
+
                                 <td>${msg.msgId}</td>
                                 <td>${msg.userId}</td>
                                 <td>${msg.msgName}</td>

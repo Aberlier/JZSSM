@@ -53,6 +53,7 @@ public class RequireController {
 
     @Autowired
     RequireUserService requireUserService;
+
     /**
      * 首页，并且分页查询
      *
@@ -68,7 +69,7 @@ public class RequireController {
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainRequireUser> pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        PageInfo<DomainRequireUser> pageInfo = requireUserService.findAllReqByEmpIdData(params, Integer.parseInt(session.getAttribute("loginId").toString()));
         List<DomainRequireUser> reqList = pageInfo.getList();
         //查询数量
         long couts = requireUserService.counts();
@@ -109,8 +110,8 @@ public class RequireController {
         List<DomainRequireUser> reqList = pageInfo.getList();
         //查询数量
         long couts = requireUserService.counts();
-        List<Map<String,Object>> list = requireUserService.selectEmpMsg();
-        session.setAttribute("listEmp",list);
+        List<Map<String, Object>> list = requireUserService.selectEmpMsg();
+        session.setAttribute("listEmp", list);
         modelAndView.addObject("listEmp", list);
 
         modelAndView.addObject("reqList", reqList);
@@ -141,19 +142,19 @@ public class RequireController {
         //一开始第一页，查询10条
         params.setPageNo(1);
         params.setPageSize(10);
-        PageInfo<DomainRequireUser> pageInfo =null;
-        if(Integer.parseInt(session.getAttribute("role").toString())==3 ){
-           pageInfo = requireUserService.findAllReqByUserIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        PageInfo<DomainRequireUser> pageInfo = null;
+        if (Integer.parseInt(session.getAttribute("role").toString()) == 3) {
+            pageInfo = requireUserService.findAllReqByUserIdData(params, Integer.parseInt(session.getAttribute("loginId").toString()));
         }
-        if(Integer.parseInt(session.getAttribute("role").toString())==2){
-            pageInfo = requireUserService.findAllReqByEmpIdData(params,Integer.parseInt(session.getAttribute("loginId").toString()));
+        if (Integer.parseInt(session.getAttribute("role").toString()) == 2) {
+            pageInfo = requireUserService.findAllReqByEmpIdData(params, Integer.parseInt(session.getAttribute("loginId").toString()));
         }
-        if(Integer.parseInt(session.getAttribute("role").toString())==1){
+        if (Integer.parseInt(session.getAttribute("role").toString()) == 1) {
             pageInfo = requireUserService.findAllReq(params);
         }
         List<DomainRequireUser> reqList = pageInfo.getList();
-        List<Map<String,Object>> list = requireUserService.selectEmpMsg();
-        session.setAttribute("listEmp",list);
+        List<Map<String, Object>> list = requireUserService.selectEmpMsg();
+        session.setAttribute("listEmp", list);
 
         //查询数量
         long couts = requireUserService.counts();
@@ -182,13 +183,13 @@ public class RequireController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object insertRequireBefore(@RequestParam Integer loginId, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        List<Map<String,Object>> mapList = requireUserService.selectEmpMsg();
+        List<Map<String, Object>> mapList = requireUserService.selectEmpMsg();
         ModelAndView modelAndView = new ModelAndView();
-        if (mapList.size()>0){
+        if (mapList.size() > 0) {
             modelAndView.addObject("list", mapList);
             modelAndView.setViewName("views/pages/user/addRequire");
             return modelAndView;
-        }else {
+        } else {
             modelAndView.addObject("msg", "数据查询出错！");
             modelAndView.setViewName("views/pages/user/addRequire");
             return modelAndView;
@@ -201,13 +202,13 @@ public class RequireController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object queryEmpFields(@RequestParam String employerId, HttpSession session) {
 
-        List<Map<String,Object>> mapList = requireUserService.queryEmpFields(employerId);
+        List<Map<String, Object>> mapList = requireUserService.queryEmpFields(employerId);
         ModelAndView modelAndView = new ModelAndView();
-        if (mapList.size()>0){
+        if (mapList.size() > 0) {
             modelAndView.addObject("listmap", mapList);
             modelAndView.setViewName("views/pages/user/addRequire");
             return modelAndView;
-        }else {
+        } else {
             modelAndView.addObject("msg", "数据查询出错！");
             modelAndView.setViewName("views/pages/user/addRequire");
             return modelAndView;
@@ -218,15 +219,15 @@ public class RequireController {
     @ResponseBody
     @ApiOperation(value = "添加用户需求", httpMethod = "POST", notes = "添加用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertRequire(@RequestBody Map<String,Object> stringObjectMap, @RequestParam Integer loginId, HttpSession session) {
+    public Object insertRequire(@RequestBody Map<String, Object> stringObjectMap, @RequestParam Integer loginId, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        DomainRequireUser domainRequireUser =  JSON.parseObject(JSON.toJSONString(stringObjectMap), DomainRequireUser.class);
+        DomainRequireUser domainRequireUser = JSON.parseObject(JSON.toJSONString(stringObjectMap), DomainRequireUser.class);
       /*  domainRequireUser.setReqType(reqType);
         domainRequireUser.setReqDesc(reqContent);
         domainRequireUser.setReqDoEmpId(id);
         domainRequireUser.setReqDoEmpName(empName);
         domainRequireUser.setReqDoEmpPostname(empstarnum.toString());*/
-        List<Map<String, Object>> list =  requireUserService.queryEmpFields(domainRequireUser.getReqDoEmpId().toString());
+        List<Map<String, Object>> list = requireUserService.queryEmpFields(domainRequireUser.getReqDoEmpId().toString());
         domainRequireUser.setReqDoEmpName(list.get(0).get("employerName").toString());
         domainRequireUser.setReqDoEmpPostname(list.get(0).get("pkStarNum").toString());
         //需求编号
@@ -245,14 +246,11 @@ public class RequireController {
     }
 
 
-
-
-
     @RequestMapping(value = "/insertReq", method = POST)
     @ResponseBody
     @ApiOperation(value = "添加用户需求", httpMethod = "POST", notes = "添加用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object insertReq(@RequestParam String reqType,@RequestParam String reqContent, @RequestParam String id, @RequestParam String empName, @RequestParam Integer empstarnum, @RequestParam Integer loginId, HttpSession session) {
+    public Object insertReq(@RequestParam String reqType, @RequestParam String reqContent, @RequestParam String id, @RequestParam String empName, @RequestParam Integer empstarnum, @RequestParam Integer loginId, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         DomainRequireUser domainRequireUser = new DomainRequireUser();
         domainRequireUser.setReqType(reqType);
@@ -278,7 +276,7 @@ public class RequireController {
     @ApiOperation(value = "修改用户信息", httpMethod = "POST", notes = "修改用户信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object updateReq( DomainRequireUser domainRequireUser) {
+    public Object updateReq(DomainRequireUser domainRequireUser) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         domainRequireUser.setReqType(domainRequireUser.getReqType());
         domainRequireUser.setReqTime(sdf.format(new Date()));
@@ -324,6 +322,26 @@ public class RequireController {
                 if (index) {
                     return ResultUtil.success("删除成功！");
                 }
+            }
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/checkReq", method = POST)
+    @ResponseBody
+    @ApiOperation(value = "审核需求信息", httpMethod = "POST", notes = "审核需求信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
+    public Object checkReq(@RequestParam String id,HttpSession session) {
+        Boolean index = null;
+        if (id != null && !"".equals(id)) {
+            DomainRequireUser domainRequireUser = new DomainRequireUser();
+            domainRequireUser.setReqId(Integer.parseInt(id));
+            domainRequireUser.setReqCheckName(session.getAttribute("userName").toString());
+            domainRequireUser.setReqCheckRoleId(session.getAttribute("loginId").toString());
+            domainRequireUser.setReqCheckRole(session.getAttribute("role").toString());
+            index = requireUserService.checkReq(domainRequireUser);
+            if (index) {
+                return ResultUtil.success("审核成功！");
             }
         }
         return null;

@@ -45,23 +45,13 @@
             <div class="sortbox layui-form">
 
             </div>
-            <%if(role==1 || role == 3){%>
-            <div class="layui-table-cell laytable-cell-1-2-3">
-                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
-                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
-                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
-            </div>
-            <%}%>
+
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
-                        <%if(role==1 || role == 3){%>
-                        <th class="layui-input-block">
-                            <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
-                        </th>
-                        <%}%>
+
                         <th>需求编号</th>
                         <th>用户编号</th>
                         <th>用户姓名</th>
@@ -82,12 +72,7 @@
                     <c:forEach items="${reqList}" var="req">
                         <form class="layui-form" action="">
                             <tr>
-                                <%if(role==1 || role == 3){%>
-                                <td class="layui-input-block">
-                                    <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${req.reqId}">
-                                </td>
-                                <%}%>
+
                                 <td>${req.reqId}</td>
                                 <td>${req.reqUserId}</td>
                                 <td>${req.reqUserName}</td>
@@ -143,6 +128,7 @@
                                 <td>
                                     <%if(role==1 || role == 3){%>
                                     <div class="layui-table-cell laytable-cell-1-0-10">
+
                                         <a class="layui-btn layui-btn-normal layui-btn-xs submit" >立即点评</a>
                                         <a class="layui-btn layui-btn-normal layui-btn-xs"
                                            onclick="updateReq('${req.reqId}','<%=loginId%>','<%=param%>','<%=role%>')">编辑</a>

@@ -35,6 +35,12 @@ public class RequireUserServiceImpl implements RequireUserService {
     }
 
     @Override
+    public Boolean checkReq(DomainRequireUser record) {
+        int index = domainRequireUserMapper.checkReq(record);
+        return index > 0 ? true : false;
+    }
+
+    @Override
     public Boolean insert(DomainRequireUser record) {
         int index = domainRequireUserMapper.insert(record);
         return index > 0 ? true : false;

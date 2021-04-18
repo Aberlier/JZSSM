@@ -50,4 +50,6 @@ public interface RequireUserService {
     List<Map<String, Object>> queryEmpFields(String employerId);
 
     PageInfo<DomainRequireUser> findAllReq(Params params);
+
+    Boolean checkReq(DomainRequireUser record);
 }

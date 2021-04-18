@@ -219,6 +219,22 @@
         </set>
         where req_id = #{reqId,jdbcType=INTEGER}
     </update>
+    <update id="checkReq">
+        update tb_require_user
+        <set>
+            <if test="reqCheckName != null">
+                req_check_name = #{reqCheckName,jdbcType=VARCHAR},
+            </if>
+            <if test="reqCheckRole != null">
+                req_check_role = #{reqCheckRole,jdbcType=VARCHAR},
+            </if>
+            <if test="reqCheckRoleId != null">
+                req_check_role_id = #{reqCheckRoleId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where req_id = #{reqId,jdbcType=INTEGER}
+
+    </update>
     <select id="selectAllReqData" resultMap="BaseResultMap">
         select
         *

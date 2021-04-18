@@ -45,19 +45,13 @@
     <div class="layui-row">
         <div class="layui-card">
 
-            <div class="layui-table-cell laytable-cell-1-2-3">
-                <%--                <a class="layui-btn layui-btn-danger layui-btn-xs delete" οnclick='deleteAll (\"" +  <%=loginId%> + "\",\"" +  <%=param%> + "\")'>批量删除</a>--%>
-                <a class="layui-btn layui-btn-danger layui-btn-xs delete"
-                   onclick="deleteAll('<%=loginId%>','<%=param%>','<%=role%>')">批量删除</a>
-            </div>
+
             <div class="table-responsive">
 
                 <table class="layui-table" lay-skin="line" lay-size="lg" id="table">
                     <thead>
                     <tr>
-                        <th class="layui-input-block">
-                            <input type="checkbox" name="" lay-skin="primary" title="" onclick="checkAll(this)">
-                        </th>
+
                         <th>编号</th>
                         <th>职工姓名</th>
                         <th>职工编号</th>
@@ -72,10 +66,7 @@
                     <c:forEach items="${pkstarlist}" var="pkstarlist">
                         <form class="layui-form" action="">
                             <tr>
-                                <td class="layui-input-block">
-                                    <input type="checkbox" name="arrays" lay-skin="primary" title=""
-                                           value="${pkstarlist.pkId}">
-                                </td>
+
                                 <td>${pkstarlist.pkId}</td>
                                 <td>${pkstarlist.pkEmpNamer}</td>
                                 <td>${pkstarlist.pkEmpId}</td>

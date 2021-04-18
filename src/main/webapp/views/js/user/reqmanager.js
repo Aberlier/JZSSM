@@ -1,4 +1,4 @@
-layui.use(['laypage', 'layer','form'], function () {
+layui.use(['laypage', 'layer', 'form'], function () {
     var limit = 10;
     var loginId;
     var token;
@@ -11,13 +11,13 @@ layui.use(['laypage', 'layer','form'], function () {
         layer = layui.layer;
 
     // $("#switch").on('click', function(data){
-    form.on('switch(switchTest)', function(data){
-        if(this.checked){
-            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+    form.on('switch(switchTest)', function (data) {
+        if (this.checked) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
                 offset: '6px'
             });
             layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅 仅是ON|OFF', data.othis)
-        }else{
+        } else {
             layer.msg('开关： 关掉了', {
                 offset: '6px'
             });
@@ -38,8 +38,8 @@ layui.use(['laypage', 'layer','form'], function () {
 
 
 //用户添加需求
-function addReqByEmpForYuYue(empname,id,empstarnum) {
-    layui.use('layer', function(){
+function addReqByEmpForYuYue(empname, id, empstarnum) {
+    layui.use('layer', function () {
         var layer = layui.layer;
         layer.open({
             type: 2,
@@ -48,7 +48,7 @@ function addReqByEmpForYuYue(empname,id,empstarnum) {
             shadeClose: true,
             shade: 0.8,
             area: ['660px', '420px'],
-            content: 'views/pages/user/addReq.jsp?empname='+empname+'&id='+id+'&empstarnum='+empstarnum,
+            content: 'views/pages/user/addReq.jsp?empname=' + empname + '&id=' + id + '&empstarnum=' + empstarnum,
             end: function () {
                 location.reload();
             }
@@ -77,16 +77,16 @@ $('#fabu').on('click', function () {
 })
 
 //删除单条信息
-function deleteOne(id,loginId,token,role) {
+function deleteOne(id, loginId, token, role) {
     layer.confirm('确定要删除该需求信息？', {
         btn: ['是', '否'] //按钮
     }, function () {
         $.ajax({
-            type:'post',
-            url:"requireController/deleteReq?loginId="+loginId+"&token="+token+"&id="+id+"&role="+role,
-            data:id,//数据为id数组
-            traditional:true,
-            success:function(data){
+            type: 'post',
+            url: "requireController/deleteReq?loginId=" + loginId + "&token=" + token + "&id=" + id + "&role=" + role,
+            data: id,//数据为id数组
+            traditional: true,
+            success: function (data) {
                 //成功后刷新界面
                 alert("删除成功！");
                 location.reload();
@@ -96,15 +96,16 @@ function deleteOne(id,loginId,token,role) {
         layer.msg('已取消', {icon: 2});
     });
 }
+
 //修改信息
-function updateReq(id,loginId,token,role) {
+function updateReq(id, loginId, token, role) {
     layer.alert('确定要修改需求信息？', function () {
         $.ajax({
-            type:'get',
-            url:'requireController/updateReqBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
-          /*  data:id,//数据为id数组*/
-            traditional:true,
-            success:function(result) {
+            type: 'get',
+            url: 'requireController/updateReqBefore?id=' + id + "&loginId=" + loginId + "&token=" + token + "&role=" + role,
+            /*  data:id,//数据为id数组*/
+            traditional: true,
+            success: function (result) {
                 if (result.code == 200) {
                     var domainUser = result.data.model.domainUser
                     var layer = layui.layer;
@@ -122,13 +123,14 @@ function updateReq(id,loginId,token,role) {
                     });
                     /* //成功后刷新界面
                      location.reload();*/
-                }else {
-                    alert("修改失败！错误代码："+result.message,{icon: 2});
+                } else {
+                    alert("修改失败！错误代码：" + result.message, {icon: 2});
                 }
             }
         });
     });
 }
+
 //获取所有要删除的数据
 function checkAll(obj) {
     var isCheck = obj.checked;
@@ -137,36 +139,37 @@ function checkAll(obj) {
         checkList[i].checked = isCheck;
     }
 }
+
 //判断弹框
 
-function deleteAll (loginId,token,role) {
+function deleteAll(loginId, token, role) {
     var loginId = loginId;
     var token = token;
     var role = role;
-    var myArray=new Array();
-    var len=0;
-    var arrays=document.getElementsByName("arrays");//获取所有check
-    if(arrays[0].checked){
+    var myArray = new Array();
+    var len = 0;
+    var arrays = document.getElementsByName("arrays");//获取所有check
+    if (arrays[0].checked) {
         layer.confirm('确定要删除需求信息？', {
             btn: ['是', '否'] //按钮
         }, function () {
             if ($('#table tbody tr').length === 1) {
                 layer.msg('只有一条不允许删除。', {
-                    time : 2000
+                    time: 2000
                 });
             } else {
-                for(var i=0;i<arrays.length;i++){
-                    if(arrays[i].checked){
-                        myArray[len++]=arrays[i].value;
+                for (var i = 0; i < arrays.length; i++) {
+                    if (arrays[i].checked) {
+                        myArray[len++] = arrays[i].value;
                     }
                 }
                 $.ajax({
-                    url: "requireController/deleteReq?loginId="+loginId+"&token="+token+"&role="+role,
+                    url: "requireController/deleteReq?loginId=" + loginId + "&token=" + token + "&role=" + role,
                     type: "post",
-                    data:{"arrays":myArray},//数据为id数组
+                    data: {"arrays": myArray},//数据为id数组
                     dataType: "json",
                     cache: false,
-                    traditional:true,
+                    traditional: true,
                     xhrFields: {
                         withCredentials: true
                     },
@@ -176,9 +179,10 @@ function deleteAll (loginId,token,role) {
                     },
                     success: function (result) {
                         if (result.code == 200) {
-                            layer.msg('已删除', {icon: 1});s
+                            layer.msg('已删除', {icon: 1});
+
                         } else {
-                            layer("删除失败！错误代码："+result.message,{icon: 2});
+                            layer("删除失败！错误代码：" + result.message, {icon: 2});
                         }
                     }, error: function (result) {
                         alert("网络连接失败！" + result.resultCode);
@@ -189,9 +193,42 @@ function deleteAll (loginId,token,role) {
         }, function () {
             layer.msg('已取消', {icon: 2});
         });
-    }else {
-        layer.msg("请选择要删除的信息!",{icon: 2});
+    } else {
+        layer.msg("请选择要删除的信息!", {icon: 2});
     }
+
+}
+function checkReq(id, loginId, token, role) {
+    layer.alert('确定要审核需求信息？', function () {
+            $.ajax({
+                url: "requireController/checkReq?loginId=" + loginId + "&token=" + token + "&role=" + role,
+                type: "post",
+                data: {"id": id},//数据为id数组
+                dataType: "json",
+                cache: false,
+                traditional: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (result) {
+                    if (result.code == 200) {
+                        alert("审核成功！");
+                        location.reload();
+                    } else {
+                        layer("审核失败！错误代码：" + result.message, {icon: 2});
+                    }
+                }, error: function (result) {
+                    alert("网络连接失败！");
+                }
+            });
+
+        }, function () {
+            layer.msg('已取消', {icon: 2});
+        });
 
 }
 
