@@ -106,7 +106,7 @@ public class WorkController {
             domainWork.setWorkName("月嫂");
         }
         domainWork.setWorkId(Integer.parseInt(UuidTools.getUuidNum()));
-        domainWork.setWorkType(map.get("workType").toString());
+        domainWork.setWorkType(map.get("workId").toString());
         domainWork.setWorkDesc(map.get("workContent").toString());
       /*  domainWork.setWorkName(this.checkStringIsEmpty(domainWork.getWorkName()));
         domainWork.setWorkType(this.checkStringIsEmpty(domainWork.getWorkType()));

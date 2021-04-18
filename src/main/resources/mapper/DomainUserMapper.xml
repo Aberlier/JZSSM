@@ -135,7 +135,7 @@
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="userPwd != null">
+      <if test="userPwd != null and userPwd != '' ">
         user_pwd = #{userPwd,jdbcType=VARCHAR},
       </if>
       <if test="userTelnum != null">
@@ -165,7 +165,9 @@
   <update id="updateByPrimaryKey" parameterType="com.jzssm.fhf.entity.DomainUser">
     update tb_user
     set user_name = #{userName,jdbcType=VARCHAR},
+    <if test="userRole != null">
       user_pwd = #{userPwd,jdbcType=VARCHAR},
+    </if>
       user_telnum = #{userTelnum,jdbcType=VARCHAR},
       user_demand = #{userDemand,jdbcType=VARCHAR},
       user_urgent = #{userUrgent,jdbcType=VARCHAR},

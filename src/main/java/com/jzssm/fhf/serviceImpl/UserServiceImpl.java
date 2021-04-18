@@ -60,8 +60,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(DomainUser record) {
-        return 0;
+    public Boolean updateByPrimaryKeySelective(DomainUser record) {
+        int index = domainUserMapper.updateByPrimaryKeySelective(record);
+        return index > 0 ? true : false;
     }
 
     @Override

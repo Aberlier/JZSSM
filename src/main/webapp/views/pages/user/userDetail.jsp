@@ -96,43 +96,9 @@
 				</div>
 
 			</form>
-			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-				<legend>直接需求</legend>
-			</fieldset>
+
 			<form  class="layui-form" action="">
-				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="col-red">*</span>所需职位</label>
-					<div class="layui-input-block">
-						<td><c:if test="${user.userDemand==1}">
-							<a href="javascript:;" class="layui-btn">保安</a>
-						</c:if>
-							<c:if test="${user.userDemand==2}">
-								<a href="javascript:;" class="layui-btn">保洁</a>
-							</c:if>
-							<c:if test="${user.userDemand==3}">
-								<a href="javascript:;" class="layui-btn">保镖</a>
-							</c:if>
-							<c:if test="${user.userDemand==4}">
-								<a href="javascript:;" class="layui-btn">护工</a>
-							</c:if>
-							<c:if test="${user.userDemand==5}">
-								<a href="javascript:;" class="layui-btn">月嫂</a>
-							</c:if></td>
-					</div>
-				</div>
-				<div class="layui-form-item">
-					<div class="layui-inline">
-						<label class="layui-form-label">是否加急</label>
-						<div class="layui-input-inline" style="width: 100px;">
-							<c:if test="${user.userUrgent==1}">
-								是
-							</c:if>
-							<c:if test="${user.userUrgent==2}">
-								否
-							</c:if>
-						</div>
-					</div>
-				</div>
+
 				<div class="layui-form-item">
 					<label class="layui-form-label">家庭地址</label>
 					<div class="layui-input-block">
@@ -210,7 +176,7 @@
 		layer.alert('确定要修改用户信息？', function () {
 			$.ajax({
 				type:'get',
-				url:'userController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
+				url:'adminController/updateUserBefore?id='+id+"&loginId="+loginId+"&token="+token+"&role="+role,
 				/*  data:id,//数据为id数组*/
 				traditional:true,
 				success:function(result) {

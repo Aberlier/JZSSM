@@ -112,7 +112,9 @@ public class AdminController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object updateUser(DomainUser domainUser) {
         domainUser.setUserId(domainUser.getUserId());
-        domainUser.setUserPwd(this.checkStringIsEmpty(MD5Util.getMD5String(domainUser.getUserPwd())));
+        if(domainUser.getUserPwd()!=null && !"".equals(domainUser.getUserPwd())){
+            domainUser.setUserPwd(this.checkStringIsEmpty(MD5Util.getMD5String(domainUser.getUserPwd())));
+        }
         domainUser.setUserAddress(this.checkStringIsEmpty(domainUser.getUserAddress()));
         domainUser.setUserDemand(this.checkStringIsEmpty(domainUser.getUserDemand()));
         domainUser.setUserDispatchAddress(this.checkStringIsEmpty(domainUser.getUserDispatchAddress()));
@@ -121,7 +123,7 @@ public class AdminController {
         domainUser.setUserRole(this.checkStringIsEmpty(domainUser.getUserRole()));
         domainUser.setUserTelnum(this.checkStringIsEmpty(domainUser.getUserTelnum()));
         domainUser.setUserUrgent(this.checkStringIsEmpty(domainUser.getUserUrgent()));
-        if (userService.updateByPrimaryKey(domainUser)) {
+        if (userService.updateByPrimaryKeySelective(domainUser)) {
             return ResultUtil.success("修改成功！");
         } else {
             return ResultUtil.success("修改失败！");

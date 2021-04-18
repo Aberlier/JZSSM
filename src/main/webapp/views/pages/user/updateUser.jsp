@@ -43,10 +43,10 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户密码</label>
             <div class="layui-input-block">
-                <input type="password" eadonly = "true" name="userPwd" value="<%=domainUser.getUserPwd()%>" lay-verify="title"
-                       value="123456"
+                <input type="text" eadonly = "true" name="userPwd" lay-verify="title"
+
                        autocomplete="off"
-                       placeholder="" class="layui-input">
+                       placeholder="请输入新密码" class="layui-input">
                 <%--   <span style="color: red">*初始密码：123456</span>--%>
             </div>
         </div>
@@ -59,7 +59,7 @@
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+       <%-- <div class="layui-form-item">
             <label class="layui-form-label">用户需求</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline">
@@ -99,8 +99,8 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="layui-form-item">
+        </div>--%>
+       <%-- <div class="layui-form-item">
             <label class="layui-form-label">是否加急</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline">
@@ -113,11 +113,11 @@
                         <option value="1">是</option>
                         <% } %>
 
-                        <%--                        <option value="0" disabled="">否</option>--%>
+                        &lt;%&ndash;                        <option value="0" disabled="">否</option>&ndash;%&gt;
                     </select>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="layui-form-item">
             <label class="layui-form-label">用户地址</label>
             <div class="layui-input-block">
@@ -162,7 +162,7 @@
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
-<script src="<%=basePath%>views/js/user/updateuser.js"></script>
+<script src="<%=basePath%>views/js/admin/user/updateuser.js"></script>
 <script>
     layui.use('layedit', function () {
         var layedit = layui.layedit;

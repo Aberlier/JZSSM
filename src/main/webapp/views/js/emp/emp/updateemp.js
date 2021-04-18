@@ -15,7 +15,7 @@ function updateEmp(loginId, token, role) {
         success: function (result) {
             if (result.code == 200) {
                 alert("修改成功！");
-                parent.location.href = "empController/findAllEmpData?loginId=" + loginId + "&token=" + token+"&role=" +role;
+               // parent.location.href = "empController/findAllEmpData?loginId=" + loginId + "&token=" + token+"&role=" +role;
                 location.reload();
             } else {
                 alert("修改失败！错误代码：" + result.message);

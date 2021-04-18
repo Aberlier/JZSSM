@@ -125,7 +125,7 @@
       <if test="employerName != null">
         employer_name = #{employerName,jdbcType=VARCHAR},
       </if>
-      <if test="employerPwd != null">
+      <if test="employerPwd != null and employerPwd != ''">
         employer_pwd = #{employerPwd,jdbcType=VARCHAR},
       </if>
       <if test="employerAge != null">

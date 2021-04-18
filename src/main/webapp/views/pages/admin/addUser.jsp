@@ -52,7 +52,7 @@
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+       <%-- <div class="layui-form-item">
             <label class="layui-form-label">用户需求</label>
             <div class="layui-input-block">
                 <div class="layui-input-inline">
@@ -74,11 +74,11 @@
                     <select name="userUrgent">
                         <option value="1">是</option>
                         <option value="0">否</option>
-<%--                        <option value="0" disabled="">否</option>--%>
+&lt;%&ndash;                        <option value="0" disabled="">否</option>&ndash;%&gt;
                     </select>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="layui-form-item">
             <label class="layui-form-label">用户地址</label>
             <div class="layui-input-block">

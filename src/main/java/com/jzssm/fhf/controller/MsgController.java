@@ -156,7 +156,7 @@ public class MsgController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
     public Object updateMsg(DomainMsg domainMsg,HttpSession session) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        domainMsg.setMsgName(session.getAttribute("userName").toString());
+        domainMsg.setMsgName(domainMsg.getMsgName());
         domainMsg.setUserId(session.getAttribute("userName").toString());
         domainMsg.setMsgId(domainMsg.getMsgId());
         domainMsg.setMsgContent(this.checkStringIsEmpty(domainMsg.getMsgContent()));

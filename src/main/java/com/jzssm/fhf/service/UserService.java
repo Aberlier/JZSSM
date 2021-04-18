@@ -27,7 +27,7 @@ public interface UserService {
 
     DomainUser selectByTelNum(String telnum);
 
-    int updateByPrimaryKeySelective(DomainUser record);
+    Boolean updateByPrimaryKeySelective(DomainUser record);
 
     Boolean updateByPrimaryKey(DomainUser record);
 

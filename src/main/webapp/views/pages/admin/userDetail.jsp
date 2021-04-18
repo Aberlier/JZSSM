@@ -49,7 +49,7 @@
 	<!--面包屑导航-->
 	<blockquote class="layui-elem-quote">
 		平台用户
-		<a class="layui-btn layui-btn-normal float-right">修改</a>
+		<a class="layui-btn layui-btn-normal float-right" onclick="updateUser('${user.user_id}','<%=loginId%>','<%=param%>','<%=role%>')">修改</a>
 	</blockquote>
 	<!--岗位标题-->
 	<div class="layui-row">
@@ -168,6 +168,8 @@
 </div>
 <script src="<%=basePath%>views/assets/jquery.min.js"></script>
 <script src="<%=basePath%>views/assets/layui.all.js"></script>
+<script src="<%=basePath%>views/js/admin/user/usermanager.js"></script>
+<script src="<%=basePath%>views/js/admin/user/updateuser.js"></script>
 <script>
 	layui.use('form', function(){
 		var form = layui.form;

@@ -118,12 +118,15 @@ public class EmpController {
     public Object updateEmp(DomainEmployer domainEmployer) {
         domainEmployer.setEmployerId(domainEmployer.getEmployerId());
         domainEmployer.setEmployerName(domainEmployer.getEmployerName());
-        domainEmployer.setEmployerPwd(domainEmployer.getEmployerPwd());
+        if(domainEmployer.getEmployerPwd()!=null && !"".equals(domainEmployer.getEmployerPwd())){
+            domainEmployer.setEmployerPwd(MD5Util.getMD5String(domainEmployer.getEmployerPwd()));
+        }
+//        domainEmployer.setEmployerPwd(domainEmployer.getEmployerPwd());
         domainEmployer.setEmployerTelnum(domainEmployer.getEmployerTelnum());
         domainEmployer.setEmployerAddress(domainEmployer.getEmployerAddress());
         domainEmployer.setEmployerAge(domainEmployer.getEmployerAge());
         domainEmployer.setEmployerDesc(domainEmployer.getEmployerDesc());
-        if (employerService.updateByPrimaryKey(domainEmployer) > 0) {
+        if (employerService.updateByPrimaryKeySelective(domainEmployer) > 0) {
             return ResultUtil.success("修改成功！");
         } else {
             return ResultUtil.success("修改失败！");
@@ -153,7 +156,7 @@ public class EmpController {
     public Object updateField(@RequestParam String workType, HttpSession session) {
         Boolean index = null;
         DomainEmployer domainEmployer = employerService.selectByPrimaryKey(Integer.parseInt(session.getAttribute("loginId").toString()));
-        if (domainEmployer.getEmployerField() == null) {
+        if (domainEmployer.getEmployerField() == null && "".equals(domainEmployer.getEmployerField())) {
             if (workType != null && !"".equals(workType)) {
                 index = employerService.updateField(session.getAttribute("loginId").toString(), workType);
             }
