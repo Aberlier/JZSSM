@@ -161,6 +161,7 @@ public class PkstarController {
         domainPkStar.setPkGiveStarRole(this.checkStringIsEmpty(domainPkStar.getPkGiveStarRole()));
         domainPkStar.setPkStarNum(this.checkStringIsEmpty(domainPkStar.getPkStarNum()));
         domainPkStar.setPkUpdateTime(sdf.format(new Date()));
+
         if (pkstarService.updateByPrimaryKey(domainPkStar)) {
             return ResultUtil.success("修改成功！");
         } else {

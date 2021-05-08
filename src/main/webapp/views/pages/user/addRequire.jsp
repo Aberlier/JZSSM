@@ -70,7 +70,7 @@ ${msg}
                     <label class="layui-form-label">选择人员</label>
                     <div class="layui-input-inline">
                         <select name="reqDoEmpId" id="reqDoEmpId" >
-                            <c:forEach items="${listEmp}" var="emp">
+                            <c:forEach items="${list}" var="emp">
 
                                 <%--                                <a href="requireController/queryEmpFields?employerId=${emp.employerId}&loginId=<%=loginId%>&token=<%=param%>&role=<%=role%>"><option value="${emp.employerId}">${emp.employerName} </option></a>--%>
                                 <option value="${emp.employerId}">${emp.employerName}

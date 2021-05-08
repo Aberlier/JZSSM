@@ -46,7 +46,7 @@ layui.define(['element'], function (exports) {
                 },
                 success: function (result) {
                     if (result.code == 200) {
-                        layer.msg('注册成功', {icon: 1});
+                        alert("注册成功,请跳转登录页！");
                         window.location.href = "http://localhost:7512/JZSSM/login_page";
 
                     } else if(result.code == 400){

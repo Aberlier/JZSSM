@@ -19,4 +19,6 @@ public interface DomainPkStarMapper {
     int updateByPrimaryKey(DomainPkStar record);
 
     List<DomainPkStar> selectAllPkstarData();
+
+    int updateByStrPostName(@Param("pkEmpId") Integer pkEmpId, @Param("pkStarNum") String pkStarNum);
 }

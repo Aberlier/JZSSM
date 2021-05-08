@@ -37,6 +37,7 @@ public class PkstarServiceImpl implements PkstarService {
     @Override
     public Boolean insert(DomainPkStar record) {
         int index = domainPkStarMapper.insert(record);
+        int flag = domainPkStarMapper.updateByStrPostName(record.getPkEmpId(),record.getPkStarNum());
         return index > 0 ? true : false;
     }
 

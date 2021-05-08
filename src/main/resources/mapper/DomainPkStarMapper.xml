@@ -135,6 +135,12 @@
     where pk_id = #{pkId,jdbcType=INTEGER}
   </update>
 
+  <update id="updateByStrPostName">
+    update tb_employer
+    set employer_postname = #{pkStarNum,jdbcType=VARCHAR}
+    where employer_id =  #{pkEmpId,jdbcType=INTEGER}
+  </update>
+
   <select id="selectAllPkstarData" resultMap="BaseResultMap">
     select * from tb_pkstar
   </select>

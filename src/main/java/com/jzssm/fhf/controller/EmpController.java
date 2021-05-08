@@ -156,7 +156,7 @@ public class EmpController {
     public Object updateField(@RequestParam String workType, HttpSession session) {
         Boolean index = null;
         DomainEmployer domainEmployer = employerService.selectByPrimaryKey(Integer.parseInt(session.getAttribute("loginId").toString()));
-        if (domainEmployer.getEmployerField() == null && "".equals(domainEmployer.getEmployerField())) {
+        if (domainEmployer.getEmployerField() == null || "".equals(domainEmployer.getEmployerField())) {
             if (workType != null && !"".equals(workType)) {
                 index = employerService.updateField(session.getAttribute("loginId").toString(), workType);
             }

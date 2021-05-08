@@ -184,6 +184,9 @@ public class RequireController {
     public Object insertRequireBefore(@RequestParam Integer loginId, HttpSession session) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<Map<String, Object>> mapList = requireUserService.selectEmpMsg();
+ /*       List<Map<String, Object>> list = requireUserService.selectEmpMsg();
+        session.setAttribute("listEmp", list);
+        modelAndView.addObject("listEmp", list);*/
         ModelAndView modelAndView = new ModelAndView();
         if (mapList.size() > 0) {
             modelAndView.addObject("list", mapList);
@@ -229,7 +232,7 @@ public class RequireController {
         domainRequireUser.setReqDoEmpPostname(empstarnum.toString());*/
         List<Map<String, Object>> list = requireUserService.queryEmpFields(domainRequireUser.getReqDoEmpId().toString());
         domainRequireUser.setReqDoEmpName(list.get(0).get("employerName").toString());
-        domainRequireUser.setReqDoEmpPostname(list.get(0).get("pkStarNum").toString());
+        domainRequireUser.setReqDoEmpPostname(list.get(0).get("pkStarNum") != null ? list.get(0).get("pkStarNum").toString() : "");
         //需求编号
         domainRequireUser.setReqId(Integer.parseInt(UuidTools.getUuidNum()));
         //需求创建时间
@@ -331,7 +334,7 @@ public class RequireController {
     @ResponseBody
     @ApiOperation(value = "审核需求信息", httpMethod = "POST", notes = "审核需求信息")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "token", value = "token标记", required = true), @ApiImplicitParam(paramType = "query", dataType = "int", name = "loginId", value = "loginId标记", required = true)})
-    public Object checkReq(@RequestParam String id,HttpSession session) {
+    public Object checkReq(@RequestParam String id, HttpSession session) {
         Boolean index = null;
         if (id != null && !"".equals(id)) {
             DomainRequireUser domainRequireUser = new DomainRequireUser();
