@@ -7,21 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201ff9a3-3faf-41aa-995b-f0fdda56777a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/InfoCollectController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/entity/DomainInfoCollect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/info.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/js/info.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/dao/DomainUserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jzssm/fhf/serviceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DomainUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DomainUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,6 +320,7 @@
       <workItem from="1630286622923" duration="3751000" />
       <workItem from="1630565685899" duration="7040000" />
       <workItem from="1630590985816" duration="1873000" />
+      <workItem from="1630629080257" duration="229000" />
     </task>
     <task id="LOCAL-00001" summary="初始搭建基于SSM的家政服务管理系统">
       <created>1609586809026</created>
@@ -510,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620486536990</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="完结版本5.0">
+      <created>1630629213823</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1630629213823</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +535,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="初始搭建基于SSM的家政服务管理系统" />
     <MESSAGE value="引入pom依赖、spring相关配置文件、对应的数据库和实体" />
     <MESSAGE value="整合jwt登录授权认证" />
     <MESSAGE value="添加前端页面并用ajax实现登录和主页跳转等功能" />
@@ -566,13 +559,18 @@
     <MESSAGE value="完结版本2.0" />
     <MESSAGE value="完结版本3.0" />
     <MESSAGE value="完结版本4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="完结版本4.0" />
+    <MESSAGE value="完结版本5.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="完结版本5.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="613" y="132" key="#com.intellij.ide.util.MemberChooser" timestamp="1626857126048">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="613" y="132" key="#com.intellij.ide.util.MemberChooser/62.0.1474.864@62.0.1474.864" timestamp="1626857126048" />
+    <state x="403" y="26" key="CommitChangelistDialog2" timestamp="1630629210876">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="403" y="26" key="CommitChangelistDialog2/62.0.1474.864/1920.0.1920.1050@62.0.1474.864" timestamp="1630629210876" />
     <state width="1158" height="292" key="GridCell.Tab.0.bottom" timestamp="1626860111845">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
@@ -641,6 +639,10 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="305" y="83" key="SettingsEditor/62.0.1474.864@62.0.1474.864" timestamp="1625997730021" />
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2" timestamp="1630629230984">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2/62.0.1474.864/1920.0.1920.1050@62.0.1474.864" timestamp="1630629230984" />
     <state x="480" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1630629135004">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
