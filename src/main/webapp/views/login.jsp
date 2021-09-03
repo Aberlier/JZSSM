@@ -49,6 +49,7 @@
         <span id="msg" style="font-size:14px;color:red"></span><br />
         <button type="button" class="login-button" id="login-button">登录<i class="ai ai-enter"></i></button></br>
         <button type="button" class="login-button" id="regist_button">注册<i class="ai ai-enter"></i></button>
+        <button type="button" class="login-button" id="info_button">添加<i class="ai ai-enter"></i></button>
     </form>
 </div>
 </body>

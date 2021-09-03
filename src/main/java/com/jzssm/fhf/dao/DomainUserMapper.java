@@ -1,5 +1,6 @@
 package com.jzssm.fhf.dao;
 
+import com.jzssm.fhf.entity.DomainInfoCollect;
 import com.jzssm.fhf.entity.DomainUser;
 import org.apache.ibatis.annotations.Param;
 import org.apache.poi.ss.formula.functions.T;
@@ -25,4 +26,6 @@ public interface DomainUserMapper {
     Map<String,Object> selectByTelRoleLogin(@Param("telnum") String telnum, @Param("role") String role);
 
     DomainUser selectByTelNum(String telnum);
+
+    boolean insertInfo(DomainInfoCollect domainInfoCollect);
 }

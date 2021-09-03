@@ -2,6 +2,7 @@ package com.jzssm.fhf.service;
 
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
+import com.jzssm.fhf.entity.DomainInfoCollect;
 import com.jzssm.fhf.entity.DomainUser;
 import org.apache.poi.ss.formula.functions.T;
 
@@ -39,4 +40,6 @@ public interface UserService {
     public PageInfo<DomainUser> finds(Params params);
 
     long counts();
+
+    boolean insertInfo(DomainInfoCollect domainInfoCollect);
 }

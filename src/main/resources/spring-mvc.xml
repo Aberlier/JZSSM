@@ -42,10 +42,12 @@
             <mvc:exclude-mapping path="/views/lay/**" />
             <mvc:exclude-mapping path="/register" />
             <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/insertInfo" />
             <mvc:exclude-mapping path="/login_page" />
             <mvc:exclude-mapping path="/regist" />
             <mvc:exclude-mapping path="/swagger/api-doc" />
             <mvc:exclude-mapping path="/regist_page"/>
+            <mvc:exclude-mapping path="/info_page"/>
             <mvc:exclude-mapping path="/swagger/**"/>
             <mvc:exclude-mapping path="/swagger-ui.html"/>
             <mvc:exclude-mapping path="/v2/api-docs"/>

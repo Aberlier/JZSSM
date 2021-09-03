@@ -62,6 +62,18 @@
       #{userAddress,jdbcType=VARCHAR}, #{userDispatchAddress,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}, 
       #{userOtherDesc,jdbcType=VARCHAR})
   </insert>
+
+
+  <insert id="insertInfo" parameterType="com.jzssm.fhf.entity.DomainInfoCollect">
+    insert into t_Info (postcode, address, companyname,
+      username, job, tel1,
+      tel2)
+    values ( #{postcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{companyname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR},
+      #{tel1,jdbcType=VARCHAR}, #{tel2,jdbcType=VARCHAR}
+  </insert>
+
+
   <insert id="insertSelective" parameterType="com.jzssm.fhf.entity.DomainUser">
     insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides=",">

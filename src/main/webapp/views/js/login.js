@@ -13,6 +13,8 @@ layui.define(['element'], function (exports) {
     });
 $('#regist_button').on('click',function(){
     window.document.location.href = "regist_page";
+});$('#info_button').on('click',function(){
+    window.document.location.href = "info_page";
 });
     $('#login-button').on('click', function () {
         var loginId;

@@ -234,7 +234,7 @@
        <div><img src="<%=basePath%>views/assets/images/xxx.png"></div>
     </div>
     <div class="layui-footer">
-        <p>网络工程专业：<a href="" target="_blank">冯贺飞</a></p>
+<%--        <p>网络工程专业：<a href="" target="_blank">冯贺飞</a></p>--%>
     </div>
     <div class="mobile-mask"></div>
 </div>

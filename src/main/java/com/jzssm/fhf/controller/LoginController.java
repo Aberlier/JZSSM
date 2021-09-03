@@ -58,6 +58,11 @@ public class LoginController {
         return "views/regist";
     }
 
+    @RequestMapping("/info_page")
+    public String infoPage() {
+        return "views/info";
+    }
+
     //处理登录
     @RequestMapping(value = "/login")
     @ResponseBody
@@ -65,9 +70,9 @@ public class LoginController {
                               @RequestParam("rolename") String role,
                               @RequestParam("password") String password, HttpSession session, Model model) {
         ResponseData responseData = ResponseData.ok();
-        Map<String,Object> userMap = new HashMap<>();
-        Map<String,Object> employerMap = new HashMap<>();
-        Map<String,Object> adminMap = new HashMap<>();
+        Map<String, Object> userMap = new HashMap<>();
+        Map<String, Object> employerMap = new HashMap<>();
+        Map<String, Object> adminMap = new HashMap<>();
         DomainEmployer loginEmployer = null;
         DomainAdmin loginAdmin = null;
         DomainUser loginUser = null;
@@ -86,15 +91,15 @@ public class LoginController {
         switch (role) {
             case "3":
                 userMap = userService.selectByTelRoleLogin(telnum, role);
-                loginUser = JSON.parseObject(JSON.toJSONString(userMap),DomainUser.class);
+                loginUser = JSON.parseObject(JSON.toJSONString(userMap), DomainUser.class);
                 break;
             case "2":
                 employerMap = userService.selectByTelRoleLogin(telnum, role);
-                loginEmployer = JSON.parseObject(JSON.toJSONString(employerMap),DomainEmployer.class);
+                loginEmployer = JSON.parseObject(JSON.toJSONString(employerMap), DomainEmployer.class);
                 break;
             case "1":
                 adminMap = userService.selectByTelRoleLogin(telnum, role);
-                loginAdmin = JSON.parseObject(JSON.toJSONString(adminMap),DomainAdmin.class);
+                loginAdmin = JSON.parseObject(JSON.toJSONString(adminMap), DomainAdmin.class);
                 break;
             default:
                 return null;
@@ -115,7 +120,7 @@ public class LoginController {
             responseData.putDataValue("user", loginUser);
             responseData.putDataValue("code", 200);
             responseData.putDataValue("msg", "登陆成功");
-        } else if(null != loginEmployer && MD5Util.checkPassword(password, loginEmployer.getEmployerPwd())) {
+        } else if (null != loginEmployer && MD5Util.checkPassword(password, loginEmployer.getEmployerPwd())) {
             //给用户jwt加密生成token
             String token = JWT.sign(loginEmployer, 60L * 1000L * 30L);
             //封装成对象返回给客户端
@@ -131,7 +136,7 @@ public class LoginController {
             responseData.putDataValue("user", loginEmployer);
             responseData.putDataValue("code", 200);
             responseData.putDataValue("msg", "登陆成功");
-        }else if(null != loginAdmin && MD5Util.checkPassword(password, loginAdmin.getAdminPwd())) {
+        } else if (null != loginAdmin && MD5Util.checkPassword(password, loginAdmin.getAdminPwd())) {
             //给用户jwt加密生成token
             String token = JWT.sign(loginAdmin, 60L * 1000L * 30L);
             //封装成对象返回给客户端
@@ -147,7 +152,7 @@ public class LoginController {
             responseData.putDataValue("user", loginAdmin);
             responseData.putDataValue("code", 200);
             responseData.putDataValue("msg", "登陆成功");
-        }else {
+        } else {
             responseData = ResponseData.customerError();
         }
 
@@ -158,25 +163,24 @@ public class LoginController {
     @RequestMapping(value = "/regist", produces = "application/json; charset=utf-8")
     @ResponseBody
     public Object regist(@RequestParam("telnum") String telnum,
-                               @RequestParam("password") String password,
-                               @RequestParam("rolename") Integer roleName,
-                               @RequestParam("username") String username,
-                               @RequestParam("age") String age
+                         @RequestParam("password") String password,
+                         @RequestParam("rolename") Integer roleName,
+                         @RequestParam("username") String username,
+                         @RequestParam("age") String age
     ) throws ParseException {
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ResponseData responseData = ResponseData.ok();
         //管理员
         if (roleName.equals(1)) {
 //            DomainAdmin adminDomain = adminService.selectByTelNum(telnum);
-            Map<String,Object> adminMap =  userService.selectByTelRoleLogin(telnum, String.valueOf(roleName));
-            DomainAdmin adminDomain = JSON.parseObject(JSON.toJSONString(adminMap),DomainAdmin.class);
-            if(adminDomain!=null && !"".equals(adminDomain)){
+            Map<String, Object> adminMap = userService.selectByTelRoleLogin(telnum, String.valueOf(roleName));
+            DomainAdmin adminDomain = JSON.parseObject(JSON.toJSONString(adminMap), DomainAdmin.class);
+            if (adminDomain != null && !"".equals(adminDomain)) {
                 if (telnum.equals(adminDomain.getAdminTelnum())) {
                     responseData.putDataValue("code", 400);
                     responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
                 }
-            }
-             else {
+            } else {
                 DomainAdmin admin = new DomainAdmin();
                 /* DomainAdmin admin = JSON.toJavaObject(jsonObject, DomainAdmin.class);*/
                 admin.setAdminId(Integer.parseInt(UuidTools.getUuidNum()));
@@ -198,15 +202,14 @@ public class LoginController {
         //从业者
         else if (roleName.equals(2)) {
 //            DomainEmployer eDomain = employerService.selectByTelNum(telnum);
-            Map<String,Object> eMap =  userService.selectByTelRoleLogin(telnum,String.valueOf(roleName));
-            DomainEmployer eDomain = JSON.parseObject(JSON.toJSONString(eMap),DomainEmployer.class);
-            if(eDomain!=null && !"".equals(eDomain)){
+            Map<String, Object> eMap = userService.selectByTelRoleLogin(telnum, String.valueOf(roleName));
+            DomainEmployer eDomain = JSON.parseObject(JSON.toJSONString(eMap), DomainEmployer.class);
+            if (eDomain != null && !"".equals(eDomain)) {
                 if (telnum.equals(eDomain.getEmployerTelnum())) {
                     responseData.putDataValue("code", 400);
                     responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
                 }
-            }
-            else {
+            } else {
                 // DomainEmployer employer = JSON.toJavaObject(jsonObject, DomainEmployer.class);
                 DomainEmployer employer = new DomainEmployer();
                 employer.setEmployerId(Integer.parseInt(UuidTools.getUuidNum()));
@@ -226,15 +229,14 @@ public class LoginController {
         //用户
         else if (roleName.equals(3)) {
 //            DomainUser eDomain = userService.selectByTelNum(telnum);
-            Map<String,Object> uMap =  userService.selectByTelRoleLogin(telnum,String.valueOf(roleName));
-            DomainUser userDomain = JSON.parseObject(JSON.toJSONString(uMap),DomainUser.class);
-            if(userDomain!=null && !"".equals(userDomain)){
+            Map<String, Object> uMap = userService.selectByTelRoleLogin(telnum, String.valueOf(roleName));
+            DomainUser userDomain = JSON.parseObject(JSON.toJSONString(uMap), DomainUser.class);
+            if (userDomain != null && !"".equals(userDomain)) {
                 if (telnum.equals(userDomain.getUserTelnum())) {
                     responseData.putDataValue("code", 400);
                     responseData.putDataValue("msg", "该手机号已经注册，请重新注册！");
                 }
-            }
-           else {
+            } else {
                 DomainUser user = new DomainUser();
                 user.setUserId(Integer.parseInt(UuidTools.getUuidNum()));
                 user.setUserName(username);

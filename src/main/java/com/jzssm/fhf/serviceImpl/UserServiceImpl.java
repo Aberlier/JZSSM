@@ -4,10 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jzssm.fhf.common.Params;
 import com.jzssm.fhf.dao.DomainUserMapper;
+import com.jzssm.fhf.entity.DomainInfoCollect;
 import com.jzssm.fhf.entity.DomainUser;
 import com.jzssm.fhf.service.UserService;
 import org.apache.ibatis.annotations.Param;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int insertSelective(DomainUser record) {
         return domainUserMapper.insertSelective(record);
+    }
+
+    @Override
+    public boolean insertInfo(DomainInfoCollect domainInfoCollect) {
+        return domainUserMapper.insertInfo(domainInfoCollect);
     }
 
     @Override
